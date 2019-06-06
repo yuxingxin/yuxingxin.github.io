@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="宇信同行">
+    <title>从Android Studio来谈开发工具 - 宇信同行</title>
+    <meta name="author" content="Sean Liu">
+    <meta name="description" content="宇信同行">
+    <link rel="icon" href="/assets/images/fav.ico">
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+    <!--STYLES END-->
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-77096739-2']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?fdaa18e768db90bb9e82a9db3aec9d3d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="https://yuxingxin.com">宇信同行</a>
+    </h1>
+    
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="/assets/images/user.jpg">
+        </a>
+    
+</header>
+            <nav id="sidebar">
+    
+    <div class="sidebar-profile">
+        <a href="/#about">
+            
+            <img class="sidebar-profile-picture" src="/assets/images/user.jpg">
+            
+        </a>
+        <span class="sidebar-profile-name hide-md">Sean Liu</span>
+    </div>
+    
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc hide-md">主页</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-categories">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc hide-md">分类</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-tags">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc hide-md">标签</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-archives">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc hide-md">归档</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/#about">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc hide-md">关于宇行信</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="http://weibo.com/lx8909" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-weibo"></i>
+                    <span class="sidebar-button-desc hide-md">weibo</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://github.com/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc hide-md">GitHub</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="http://stackoverflow.com/users/4866682/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+                    <span class="sidebar-button-desc hide-md">Stack Overflow</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://twitter.com/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc hide-md">Twitter</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://www.facebook.com/profile.php?id=100004716995168" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+                    <span class="sidebar-button-desc hide-md">Facebook</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="mailto:lx8909@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc hide-md">Mail</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/atom.xml">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc hide-md">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+            <div id="main">
+                
+<style type="text/css">
+
+.-hoofoo-share-buttons {
+  display: inline-block;
+}
+.-hoofoo-share-title {
+  font-size: 1.1em;
+  font-weight: 200;
+}
+.-hoofoo-share-ui-button {
+  cursor: pointer;
+  background-color: #555;
+  color: #fff;
+  font-size: 24px;
+  line-height: 40px;
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  border-radius: 25px;
+  float: left;
+  transition: background 0.4s;
+  -moz-transition: background 0.4s; /* Firefox 4 */
+  -webkit-transition: background 0.4s; /* Safari å’Œ Chrome */
+  -o-transition: background 0.4s;
+  text-align: center;
+}
+.-hoofoo-share-weibo:hover {
+  background-color: #cf3f41;
+}
+.-hoofoo-share-weixin:hover {
+  background-color: #18a01a;
+}
+.-hoofoo-share-qq:hover {
+  background-color: #5593d9;
+}
+.-hoofoo-share-twitter:hover {
+  background-color: #2ab3e6;
+}
+.-hoofoo-share-more:hover {
+  background-color: #777;
+}
+.-mob-share-weixin-qrcode-content {
+  border-radius: 4px;
+  -webkit-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  -o-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+.-mob-share-weixin-qrcode {
+  margin: 5% !important;
+  width: 90% !important;
+  height: auto !important;
+}
+.-mob-share-weixin-qrcode-close {
+  background-image: url("/assets/images/fancybox_sprite.png") !important;
+}
+.-mob-share-weixin-qrcode-close {
+  overflow: hidden;
+  line-height: 100px !important;
+  position: absolute !important;
+  top: -18px !important;
+  right: -18px !important;
+  width: 36px !important;
+  height: 36px !important;
+  cursor: pointer !important;
+  z-index: 8040 !important;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  .-mob-share-weixin-qrcode-close {
+    background-image: url("/assets/images/fancybox_sprite@2x.png") !important;
+    background-size: 44px 152px !important; /*The size of the normal image, half the size of the hi-res image*/
+  }
+}
+.-mob-share-close {
+  height: 4em !important;
+  font-size: 0.8em !important;
+  line-height: 4em !important;
+  background: #555 !important;
+  color: #fff !important;
+}
+</style>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">从Android Studio来谈开发工具</h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" content="Tue Mar 01 2016 00:00:00 GMT+0800">
+        Mar 01, 2016
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Android/">Android</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3><p>不得不说这是一个老生常谈的话题，从我们开始学习一门新语言或者接触一个新的开发平台，面临的第一个问题就是开发工具的选择与熟悉，写这个话题一方面是MDG第一篇总结，另一方面也是知乎上一个用户问的一个问题，他想让我推荐一本以Android Studio(后面都简称as)为开发工具的Android入门书籍，其实做久了Android的都知道，网上讲解as的系列文章有很多（我把不错的都列在文章结尾），然后呢，Android入门书籍也有很多，其中大家公认的郭神的《第一行代码》算是经典，但是这本书写的比较早，里面的代码所用的开发工具还都基于eclipse,然后这对于我们新进入Android开发领域的同学似乎有点犯难了，总觉得有本两者结合的书那该有多好。其实这些都无可厚非，这篇文章想从Android Studio下手（当然我会挑常用的来列）来聊聊开发工具的一些琐碎的东西。</p>
+<p>不得不说我是一个JetBrains公司的超级粉，从Web开发的IntelliJ IDEA到前端开发的WebStorm,从Python开发的PyCharm到Android开发的as（基于JetBrains的IntelliJ IDEA Community Edition），从我一开始学习了其中一个，然后切换到其他任何一个，其实都不是很困难，因为他们有很多相似的地方。这里先不谈这些，言归正传：我把开发工具的熟悉呢分为三个方面：代码编辑、编译调试、发布部署，这也是按照我们项目开发的流程来的。在说这个之前，可能有必要提下它与eclipse的工程区别：</p>
+<ul>
+<li>as是单个工程的开发模式；其实JetBrains公司的其它几款产品也有类似开发模式。</li>
+<li>as中的application相当于eclispe中的workspace</li>
+<li>as中的module相当于eclipse中的project</li>
+</ul>
+<h3 id="1-关注Tips"><a href="#1-关注Tips" class="headerlink" title="1. 关注Tips"></a>1. 关注Tips</h3><p>如果你在第一次打开之后设置了不再显示，也没有关系，可以从菜单——&gt;Help——&gt;Tip of the day中找到:</p>
+<p><img src="/assets/images/tips.png" alt="image"></p>
+<p>另外值得一提的是，国外开发者整理的Tips库<a href="https://github.com/pavlospt/Android-Studio-Tips-by-Philippe-Breault" target="_blank" rel="noopener">Android-Studio-Tips-by-Philippe-Breault</a></p>
+<h3 id="2-Android-Studio项目目录"><a href="#2-Android-Studio项目目录" class="headerlink" title="2. Android Studio项目目录"></a>2. Android Studio项目目录</h3><p>关于项目目录的一些菜单,如下图这部分：</p>
+<p><img src="/assets/images/nav1.png" alt="image"> <img src="/assets/images/nav.png" alt="image"></p>
+<ul>
+<li>文件和导航关联<br>我们在写代码的时候经常需要打开某个文件的时候，想在左边的文件树上自动打开关联到位置，这样很方便的找寻本目录下的其他文件或者其他的相关文件，AS提供了这几种方案：</li>
+</ul>
+<ol>
+<li>通过点击图中红框圈住的最左边的小圆圈</li>
+<li>通过设置勾选<code>AutoScroll to Source</code>和<code>AutoScroll from source</code></li>
+<li>通过点击小圆圈右边的折叠导航按钮打开Navigation Bar，操作方式就是打开文件的时候，然后就会出现一个下拉，基本就是这个文件所在目录的文件列表，还可以使用上下左右的键位来选择其他目录。</li>
+</ol>
+<ul>
+<li>AS针对左边项目目录提供两种视图：平铺和树状（如上图），这里有一点值得要提的是，当我们想在同一个目录下同时建立两个空文件夹时，在这两种视图模式下，记得要把<code>Hide Empty Middle Package</code> 和 <code>Compact Empty Middle Package</code>给勾掉</li>
+<li>如果我们想在类中的成员显示在左边导航，记得勾选<code>Show Members</code></li>
+</ul>
+<h3 id="3-常用设置"><a href="#3-常用设置" class="headerlink" title="3. 常用设置"></a>3. 常用设置</h3><ul>
+<li>中文乱码：找到IDE preferences -&gt; Appearance,在右侧勾选上“Override default fonts by”，然后在第一个下拉框中选择字体为“simsun”，然后apply，重启IDE，可以解决。</li>
+<li>设置快捷键：IDE preferences -&gt; Keymap  可以选择自己喜欢的Eclipse快捷键或者其他的。当然也可以修改或者删除</li>
+<li>设置行号：IDE preferences -&gt; Editor -&gt; General -&gt; Appearance -&gt; Show line numbers 勾选 ，然后点击应用。</li>
+<li>设置主题：找到IDE preferences -&gt; Appearance ,右侧Theme,我自己有在用Darcula。</li>
+<li>Eclipse工程导入AS：直接通过File -&gt; Import Project然后在弹出的对话框中选择项目，注意Project和Module的区别。</li>
+<li>右键删除项目：我们首先需要通过在Module Setting中移除module，即在打开的对话框点击减号，然后回到项目可以发现右键菜单的delete选项。</li>
+<li>我们只有每次引用一些类的时候必须要导包，而Studio可以通过设置自动导包:<br>到 Preferences -&gt; Editor —&gt; General -&gt; Auto Import -&gt; Java 把以下选项勾上就OK了</li>
+</ul>
+<p><img src="/assets/images/import.png" alt="image"> </p>
+<h3 id="4-常用快捷键"><a href="#4-常用快捷键" class="headerlink" title="4.常用快捷键"></a>4.常用快捷键</h3><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>Mac OSX</th>
+<th>Win/Linux</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>注释代码(//)</td>
+<td>Cmd + /</td>
+<td>Ctrl + /</td>
+</tr>
+<tr>
+<td>注释代码(/**/)</td>
+<td>Cmd + Option + /</td>
+<td>Ctrl + Shift + /</td>
+</tr>
+<tr>
+<td>格式化代码</td>
+<td>Cmd + Option + L</td>
+<td>Ctrl + Alt + L</td>
+</tr>
+<tr>
+<td>清除无效包引用</td>
+<td>Option + Control + O</td>
+<td>Alt + Ctrl + O</td>
+</tr>
+<tr>
+<td>查找</td>
+<td>Cmd + F</td>
+<td>Ctrl + F</td>
+</tr>
+<tr>
+<td>查找+替换</td>
+<td>Cmd + R</td>
+<td>Ctrl + R</td>
+</tr>
+<tr>
+<td>上下移动代码</td>
+<td>Option + Shift + Up/Down</td>
+<td>Alt + Shift + Up/Down</td>
+</tr>
+<tr>
+<td>删除行</td>
+<td>Cmd + Delete</td>
+<td>Ctrl + Y</td>
+</tr>
+<tr>
+<td>扩大缩小选中范围</td>
+<td>Option + Up/Down</td>
+<td>Ctrl + W/Ctrl + Shift + W</td>
+</tr>
+<tr>
+<td>快捷生成结构体</td>
+<td>Cmd + Option + T</td>
+<td>Ctrl + Alt + T</td>
+</tr>
+<tr>
+<td>快捷覆写方法</td>
+<td>Cmd + O</td>
+<td>Ctrl + O</td>
+</tr>
+<tr>
+<td>快捷定位到行首/尾</td>
+<td>Cmd + Left/Right</td>
+<td>Ctrl + Left/Right</td>
+</tr>
+<tr>
+<td>折叠展开代码块</td>
+<td>Cmd + Plus,Minus</td>
+<td>Ctrl + Plus/Minus</td>
+</tr>
+<tr>
+<td>折叠展开全部代码块</td>
+<td>Cmd + Shift + Plus,Minus</td>
+<td>Ctrl + Shift + Plus,Minus</td>
+</tr>
+<tr>
+<td>文件方法结构</td>
+<td>Cmd + F12</td>
+<td>Ctrl + F12</td>
+</tr>
+<tr>
+<td>查找调用的位置</td>
+<td>Ctrl + Option + H</td>
+<td>Ctrl + Alt + H</td>
+</tr>
+<tr>
+<td>大小写转换</td>
+<td>Cmd + Shift + U</td>
+<td>Ctrl + Shift + U</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-Gradle基础"><a href="#5-Gradle基础" class="headerlink" title="5. Gradle基础"></a>5. Gradle基础</h3><p>先来看项目结构：</p>
+<ul>
+<li>src/main/            //源代码</li>
+<li>src/androidTest/     //测试代码</li>
+</ul>
+<p>源代码下面：</p>
+<ul>
+<li>java/          //Java代码</li>
+<li>resources/    //资源文件</li>
+</ul>
+<p>另外还有针对Android特有的文件和文件夹：</p>
+<ul>
+<li>AndroidManifest.xml</li>
+<li>res/</li>
+<li>assets/</li>
+<li>aidl/</li>
+<li>rs/</li>
+<li>jni/</li>
+<li>jniLibs/</li>
+</ul>
+<p>对于旧工程不满足默认的项目工程目录，所以我们还需要灵活配置，让它们重新映射到新的资源文件或者文件夹里面：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    sourceSets &#123;</span><br><span class="line">        main &#123;</span><br><span class="line">            manifest<span class="selector-class">.srcFile</span> <span class="string">'AndroidManifest.xml'</span></span><br><span class="line">            java<span class="selector-class">.srcDirs</span> = [<span class="string">'src'</span>]</span><br><span class="line">            resources<span class="selector-class">.srcDirs</span> = [<span class="string">'src'</span>]</span><br><span class="line">            aidl<span class="selector-class">.srcDirs</span> = [<span class="string">'src'</span>]</span><br><span class="line">            renderscript<span class="selector-class">.srcDirs</span> = [<span class="string">'src'</span>]</span><br><span class="line">            res<span class="selector-class">.srcDirs</span> = [<span class="string">'res'</span>]</span><br><span class="line">            assets<span class="selector-class">.srcDirs</span> = [<span class="string">'assets'</span>]</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        androidTest.setRoot(<span class="string">'tests'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="项目构建"><a href="#项目构建" class="headerlink" title="项目构建"></a>项目构建</h4><p>通常情况下任务约定由assemble(编译)、check(检查)、build(构建)、clean(清理)  其中build包含了assemble和check</p>
+<p>Build Types:<br>默认Android plugin提供了debug和release两个构建变量，当然，我们同时也可以自定义构建变量，如下：<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">android </span>&#123;</span><br><span class="line">    <span class="keyword">buildTypes </span>&#123;</span><br><span class="line">        <span class="built_in">debug</span> &#123;</span><br><span class="line">            applicationIdSuffix <span class="string">".debug"</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">jnidebug </span>&#123;</span><br><span class="line">            initWith(<span class="keyword">buildTypes.debug)</span></span><br><span class="line"><span class="keyword"> </span>           applicationIdSuffix <span class="string">".jnidebug"</span></span><br><span class="line">            <span class="keyword">jniDebuggable </span>true</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面新建了一个jnidebug的构建变量，另外为了保证可以安装在同一个设备上，我们这里修改了他们的applicationId，即加上分别加上后缀’.debug’和’.jnidebug’，另外通过initWith方法来指定jniDebug是从debug这个基础上的一个副本，然后通过jniDebuggable配置来启用JNI组件的构建调试。</p>
+<p>除此之外，我们也可以用构建变量添加指定的代码和资源文件，对于每个构建变量，在一个新的sourceSet被创建后，它都有一个默认位置：<code>src/&lt;buildtypename&gt;</code>,如：<code>src/debug/java</code> 目录，它可以用来放只在编译debug APK时才会被编译的代码，这也就意味着构建变量名字不能是<code>main</code>或者<code>androidTest</code>（插件强制的），它们必须是独一无二的。</p>
+<p>像其他源码集一样，它可以被重新定位：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    sourceSets<span class="selector-class">.jnidebug</span><span class="selector-class">.setRoot</span>(<span class="string">'foo/jnidebug'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当然，对应我们也会生成一个新的assembleJnidebug任务，它和默认的debug/release一样。</p>
+<h4 id="签名"><a href="#签名" class="headerlink" title="签名"></a>签名</h4><p>签名一个App需要下面这几样：</p>
+<ul>
+<li>A keystore</li>
+<li>A keystore password</li>
+<li>A key alias name</li>
+<li>A key password</li>
+<li>The store type</li>
+</ul>
+
+        
+            
+        
+        <!--MOB SHARE BEGIN-->
+        <div class="-hoofoo-share-title">分享到：</div>
+        <div class="-hoofoo-share-buttons">
+            <div class="-mob-share-weibo -hoofoo-share-weibo -hoofoo-share-ui-button"><i class="fa fa-weibo" aria-hidden="true"></i></div>
+            <div class="-mob-share-weixin -hoofoo-share-weixin -hoofoo-share-ui-button"><i class="fa fa-weixin" aria-hidden="true"></i></div>
+            <div class="-mob-share-qq -hoofoo-share-qq -hoofoo-share-ui-button"><i class="fa fa-qq" aria-hidden="true"></i></div>
+            <div class="-mob-share-twitter -hoofoo-share-twitter -hoofoo-share-ui-button"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+            <div class="-hoofoo-share-more -hoofoo-share-ui-button -mob-share-open"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+        </div>
+        <div class="-mob-share-ui -mob-share-ui-theme" style="display: none; left: 0px; top: 0px;">
+            <ul class="-mob-share-list">
+                <li class="-mob-share-weibo" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>新浪微博</p></li>
+                <li class="-mob-share-weixin" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>微信</p></li>
+                <li class="-mob-share-qzone" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>QQ空间</p></li>
+                <li class="-mob-share-qq" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>QQ好友</p></li>
+                
+                <li class="-mob-share-douban" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>豆瓣</p></li>
+                <li class="-mob-share-youdao" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>有道云笔记</p></li>
+                
+                <li class="-mob-share-facebook" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Facebook</p></li>
+                <li class="-mob-share-twitter" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Twitter</p></li>
+                <li class="-mob-share-pocket" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Pocket</p></li>
+                <li class="-mob-share-google" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Google+</p></li>
+                <li class="-mob-share-tumblr" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Tumblr</p></li>
+                <li class="-mob-share-instapaper" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Instapaper</p></li>
+                <li class="-mob-share-linkedin" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Linkedin</p></li>
+            </ul>
+            <div class="-mob-share-close">取消</div>
+        </div>
+        <div class="-mob-share-ui-bg"></div>
+        <script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=23a3d44c6690c"></script>
+<!--MOB SHARE END-->
+            
+        <div style="background-color: #2E7D32;height: 3px;margin-bottom: 15px;margin-top: 15px;"></div>
+        <span>移动开发者/技术爱好者/喜欢开源与分享，你也可以关注微信公众号MobDevGroup，移动开发在线分享：<a href="http://mobdevgroup.com">MobDevGroup</a></span>
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/Android-Studio/">Android Studio</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/07/17/MaterialDesign/" data-tooltip="西安GDG上《以开发者的角度再聊Material Design》的总结">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/02/25/NewYearPlanSummary/" data-tooltip="新的一年，每一天都在努力为明天，记新年开篇">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+        
+    </div>
+</article>
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 Sean Liu. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div class="post-bottom-bar">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/07/17/MaterialDesign/" data-tooltip="西安GDG上《以开发者的角度再聊Material Design》的总结">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/02/25/NewYearPlanSummary/" data-tooltip="新的一年，每一天都在努力为明天，记新年开篇">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/user.jpg">
+        
+            <h4 id="about-card-name">Sean Liu</h4>
+        
+            <h5 id="about-card-bio">Just Keep Sharing 移动开发在线分享：http://mobdevgroup.com</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                Mobile Developer
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br>
+                Xi&#39;an, Shaanxi, China
+            </h5>
+        
+    </div>
+</div>
+        <div id="cover" style="background-color:#2196f3"></div>
+
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.fancybox.js"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js"></script>
+<script src="/assets/js/tranquilpeak.js"></script>
+<!--SCRIPTS END-->
+
+
+</html>

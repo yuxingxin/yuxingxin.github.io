@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="宇信同行">
+    <title>西安GDG上关于主题[当Android遇上RxJava]的分享总结 - 宇信同行</title>
+    <meta name="author" content="Sean Liu">
+    <meta name="description" content="宇信同行">
+    <link rel="icon" href="/assets/images/fav.ico">
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+    <!--STYLES END-->
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-77096739-2']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?fdaa18e768db90bb9e82a9db3aec9d3d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="https://yuxingxin.com">宇信同行</a>
+    </h1>
+    
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="/assets/images/user.jpg">
+        </a>
+    
+</header>
+            <nav id="sidebar">
+    
+    <div class="sidebar-profile">
+        <a href="/#about">
+            
+            <img class="sidebar-profile-picture" src="/assets/images/user.jpg">
+            
+        </a>
+        <span class="sidebar-profile-name hide-md">Sean Liu</span>
+    </div>
+    
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc hide-md">主页</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-categories">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc hide-md">分类</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-tags">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc hide-md">标签</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-archives">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc hide-md">归档</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/#about">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc hide-md">关于宇行信</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="http://weibo.com/lx8909" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-weibo"></i>
+                    <span class="sidebar-button-desc hide-md">weibo</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://github.com/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc hide-md">GitHub</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="http://stackoverflow.com/users/4866682/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+                    <span class="sidebar-button-desc hide-md">Stack Overflow</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://twitter.com/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc hide-md">Twitter</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://www.facebook.com/profile.php?id=100004716995168" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+                    <span class="sidebar-button-desc hide-md">Facebook</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="mailto:lx8909@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc hide-md">Mail</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/atom.xml">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc hide-md">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+            <div id="main">
+                
+<style type="text/css">
+
+.-hoofoo-share-buttons {
+  display: inline-block;
+}
+.-hoofoo-share-title {
+  font-size: 1.1em;
+  font-weight: 200;
+}
+.-hoofoo-share-ui-button {
+  cursor: pointer;
+  background-color: #555;
+  color: #fff;
+  font-size: 24px;
+  line-height: 40px;
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  border-radius: 25px;
+  float: left;
+  transition: background 0.4s;
+  -moz-transition: background 0.4s; /* Firefox 4 */
+  -webkit-transition: background 0.4s; /* Safari å’Œ Chrome */
+  -o-transition: background 0.4s;
+  text-align: center;
+}
+.-hoofoo-share-weibo:hover {
+  background-color: #cf3f41;
+}
+.-hoofoo-share-weixin:hover {
+  background-color: #18a01a;
+}
+.-hoofoo-share-qq:hover {
+  background-color: #5593d9;
+}
+.-hoofoo-share-twitter:hover {
+  background-color: #2ab3e6;
+}
+.-hoofoo-share-more:hover {
+  background-color: #777;
+}
+.-mob-share-weixin-qrcode-content {
+  border-radius: 4px;
+  -webkit-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  -o-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+.-mob-share-weixin-qrcode {
+  margin: 5% !important;
+  width: 90% !important;
+  height: auto !important;
+}
+.-mob-share-weixin-qrcode-close {
+  background-image: url("/assets/images/fancybox_sprite.png") !important;
+}
+.-mob-share-weixin-qrcode-close {
+  overflow: hidden;
+  line-height: 100px !important;
+  position: absolute !important;
+  top: -18px !important;
+  right: -18px !important;
+  width: 36px !important;
+  height: 36px !important;
+  cursor: pointer !important;
+  z-index: 8040 !important;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  .-mob-share-weixin-qrcode-close {
+    background-image: url("/assets/images/fancybox_sprite@2x.png") !important;
+    background-size: 44px 152px !important; /*The size of the normal image, half the size of the hi-res image*/
+  }
+}
+.-mob-share-close {
+  height: 4em !important;
+  font-size: 0.8em !important;
+  line-height: 4em !important;
+  background: #555 !important;
+  color: #fff !important;
+}
+</style>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">西安GDG上关于主题[当Android遇上RxJava]的分享总结</h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" content="Sun Jan 10 2016 00:00:00 GMT+0800">
+        Jan 10, 2016
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Android/">Android</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>1月10号这一天，也是值得高兴的日子，一大早起来打开手机看到《RxJava Essentials》一书的作者Ivan.Morgillo给我在推特上发的消息点赞并转发后关注了我，这让我激动不已，可能对于我这种没见过大世面的人来说，这点小事或许就足以让我自己心里乐上三天。然后就是昨天下午在西安GDG做了关于RxJava的分享，这也圆了我的梦想，当我还是初生牛犊的时候，就不断的听到GDG这个词，心里就梦想着哪一天也能站在上面讲一次，果不其然，一次偶然的机会就真应了习大大新年贺词的那句话：“只要坚持,梦想总是可以实现的”，可能对于我这种喜欢Google的开发者来说，在GDG做一次分享真是莫大的荣幸与荣耀。</p>
+<p>##分享内容总结</p>
+<p>大致分为以下三个主题线：</p>
+<ul>
+<li>1.介绍了ReactiveX、RxJava</li>
+<li>2.Android开发中遇到的常见场景</li>
+<li>3.关于RxJava与Android的学习</li>
+</ul>
+<h3 id="ReactiveX的介绍"><a href="#ReactiveX的介绍" class="headerlink" title="ReactiveX的介绍"></a>ReactiveX的介绍</h3><p>我把它总结为以下三点：</p>
+<ul>
+<li>1.扩展的观察者模式：通过订阅可观测对象的序列流然后做出反应。</li>
+<li>2.迭代器模式：对对象序列进行迭代输出从而使订阅者可以依次对其处理。</li>
+<li>3.函数式编程思想：简化问题的解决的步骤，让你的代码更优雅和简洁</li>
+</ul>
+<p>然后介绍了ReactiveX在各个语言和平台上的实现,<a href="http://reactivex.io/languages.html" target="_blank" rel="noopener">官方地址</a><br>最后对上面三点展开进行详细介绍：</p>
+<ul>
+<li>1.先介绍GoF书中的观察者模式，被观察者发出事件，然后观察者（事件源）订阅然后进行处理。并指出其中的不足：比如观察者不知道是否出错与完成，还有就是整个过程是同步，会阻塞线程，从而引出所谓的“扩展”的观察者模式，除了提到的不足作为补充外，另外还有一点：如果没有观察者，被观察者是不会发出任何事件的。</li>
+<li>2.迭代器模式：提供一种方法顺序访问一个聚合对象中的各种元素,而又不暴露该对象的内部表示，用《RxJava Essentials》一书做的的对比：迭代器模式在事件处理上采用的是“同步/拉式”的方式，而被观察者采用的是“异步/推式”的方式，而对观察者而言，显然后者更灵活。</li>
+<li>3.对于函数式编程举例展示了代码风格的不同。</li>
+</ul>
+<h3 id="RxJava的介绍"><a href="#RxJava的介绍" class="headerlink" title="RxJava的介绍"></a>RxJava的介绍</h3><p>我也按照三点作为介绍</p>
+<ul>
+<li>1.RxJava的核心</li>
+<li>2.RxJava操作符</li>
+<li>3.RxJava的扩展</li>
+</ul>
+<p>然后对这三点展开来讲，其中最花时间的也是这一部分。</p>
+<h4 id="RxJava的核心对象"><a href="#RxJava的核心对象" class="headerlink" title="RxJava的核心对象"></a>RxJava的核心对象</h4><p>先是通过一个<code>Hello World</code>的例子介绍了几个容易混淆的类/接口：</p>
+<ul>
+<li>Observable</li>
+<li>OnSubscribe</li>
+<li>Observer</li>
+<li>Subscription</li>
+<li>Subscriber</li>
+</ul>
+<p>代码展示如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">Observable&lt;String&gt; myObservable = Observable</span><br><span class="line">        .create(<span class="keyword">new</span> Observable.OnSubscribe&lt;String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Subscriber&lt;? <span class="keyword">super</span> String&gt; subscriber)</span> </span>&#123;</span><br><span class="line">                subscriber.onNext(<span class="string">"Hello World!"</span>);</span><br><span class="line">                subscriber.onCompleted();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">Subscriber&lt;String&gt; mySubscriber = <span class="keyword">new</span> Subscriber&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        Log.i(<span class="string">"基础写法："</span>, s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">myObservable.subscribe(mySubscriber);</span><br></pre></td></tr></table></figure></p>
+<p>简化一下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Observable&lt;String&gt; myObservable = Observable.just(<span class="string">"Hello World!"</span>);</span><br><span class="line"></span><br><span class="line">Action1&lt;String&gt; onNextAction = <span class="keyword">new</span> Action1&lt;String&gt;() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        Log.v(<span class="string">"Action1简化后:"</span>, s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">myObservable.subscribe(onNextAction);</span><br></pre></td></tr></table></figure></p>
+<p>匿名函数写法：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Observable.just(<span class="string">"Hello World!"</span>).subscribe(<span class="keyword">new</span> Action1&lt;String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">                Log.v(<span class="string">"匿名函数写法："</span>,s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>最后用Java 8 lambdas(Retrolambda)表达式：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Observable.just(<span class="string">"Hello World!"</span>).subscribe(s -&gt; Log.v(<span class="string">"lambdas写法"</span>,s));</span><br></pre></td></tr></table></figure></p>
+<p>其中这一部分从源码角度简单概括了从被观察者创建，到观察者创建，最后再订阅的过程，并顺便指出了上面几个易混淆的类/接口之间的关系。</p>
+<p>第二部分是关于异步的话题：</p>
+<p>先是介绍这几种调度器：</p>
+<ul>
+<li>1.Schedulers.immediate()</li>
+<li>2.Schedulers.newThread()</li>
+<li>3.Schedulers.trampoline()</li>
+<li>4.Schedulers.io()</li>
+<li>5.Schedulers.computation()</li>
+<li>6.AndroidSchedulers.mainThread()</li>
+</ul>
+<p>然后就是两个操作符：</p>
+<ul>
+<li>subscribeOn()：指定 subscribe() 所发生的线程，事件产生的线程</li>
+<li>observeOn()：指定 Subscriber 所运行在的线程，事件消费的线程</li>
+</ul>
+<h4 id="RxJava操作符"><a href="#RxJava操作符" class="headerlink" title="RxJava操作符"></a>RxJava操作符</h4><p>在讲操作符之前，先是介绍了直观有趣的宝石图：这里引用了一张官方的<a href="http://reactivex.io/documentation/observable.html" target="_blank" rel="noopener">图片</a>,另外再附上一个国外程序员创建的动态的宝石图<a href="http://rxmarbles.com/" target="_blank" rel="noopener">网站</a>，虽然不全，但是作者一直在更新，相信后面会有更多，这有助于我们来理解操作符。</p>
+<p>大致分为这几类展开介绍：</p>
+<ul>
+<li>创建操作符：Create, Defer, From, Interval, Just, Range, Repeat, Timer等。</li>
+<li>变换操作符：Map、FlatMap、ConcatMap等。</li>
+<li>过滤操作符：Debounce, Distinct, ElementAt, Filter, First, Last, Sample, Skip, SkipLast, Take, TakeLast等。</li>
+<li>合买操作符以及自定义操作符。</li>
+</ul>
+<p>最后用一个例子做了下总结，需求如下：</p>
+<ul>
+<li>将一个为数字的字符串数组元素转换为数字</li>
+<li>过滤掉大于10的数字</li>
+<li>去重</li>
+<li>取最后面3个元素</li>
+<li>累计求和</li>
+</ul>
+<p>用代码实现就是：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String[] numbers = &#123;<span class="string">"11"</span>, <span class="string">"2"</span>, <span class="string">"2"</span>, <span class="string">"13"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>,<span class="string">"7"</span>&#125;;</span><br><span class="line">Observable.from(numbers)</span><br><span class="line">        .map(s -&gt; Integer.parseInt(s))</span><br><span class="line">        .filter(i -&gt; i &lt; <span class="number">10</span>)</span><br><span class="line">        .distinct()</span><br><span class="line">        .takeLast(<span class="number">3</span>)</span><br><span class="line">        .reduce((number1,number2) -&gt; number1 + number2)</span><br><span class="line">        .subscribe(i -&gt; System.out.println(i));</span><br></pre></td></tr></table></figure></p>
+<p>其中创建操作符例子如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">String[] strings = &#123;<span class="string">"张三"</span>,<span class="string">"李四"</span>,<span class="string">"王五"</span>,<span class="string">"赵六"</span>&#125;;</span><br><span class="line">Observable.from(strings)</span><br><span class="line">        .subscribe(<span class="keyword">new</span> Action1&lt;String&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">                Log.i(<span class="string">"name"</span>, s);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>变换操作符例子：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showUserName</span><span class="params">(String userName)</span></span>&#123;</span><br><span class="line">    textView.setText(userName);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showUserName</span><span class="params">(String userName)</span></span>&#123;</span><br><span class="line">    Observable.just(userName).subscribe( <span class="keyword">new</span>  Action1&lt;String&gt;()&#123;</span><br><span class="line">             <span class="meta">@Override</span></span><br><span class="line">             <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(String s)</span></span>&#123;</span><br><span class="line">                textView.setText(s);</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果需要在显示前对这个字符串做处理，然后再展示，比如加“张三，你好”</p>
+<ul>
+<li>方法1：我们可以对字符串本身操作   (不合适)</li>
+<li>方法2：我们可以放到Action1.call()方法里做处理   （不合适）</li>
+<li>方法3：使用操作符做变换：map    （RxJava的做法）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">showUserName</span><span class="params">(String userName)</span></span>&#123;</span><br><span class="line">    Observable.just(userName).map(<span class="keyword">new</span> Func1&lt;String,String&gt;()&#123;</span><br><span class="line">          <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">(String text)</span></span>&#123;</span><br><span class="line">             <span class="keyword">return</span> handleUserName(text);   </span><br><span class="line">           &#125;</span><br><span class="line">    &#125;).subscribe( <span class="keyword">new</span> Action1&lt;String&gt;()&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(String s)</span></span>&#123;</span><br><span class="line">            textView.setText(s);</span><br><span class="line">          &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>关于flatMap()<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//打印出中国的所有省份名称。</span></span><br><span class="line">List&lt;Province&gt;  provinceList = …</span><br><span class="line">Observable.from(provinceList)</span><br><span class="line">    .map(<span class="keyword">new</span> Func1&lt;Province,String&gt;()&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">(Province province)</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> province.getName();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;).subscribe(<span class="keyword">new</span> Action1&lt;String&gt;()&#123;</span><br><span class="line">         <span class="meta">@Override</span></span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(String s)</span></span>&#123;</span><br><span class="line">            Log.i(“省份名称”,s)</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//打印出中国每个省份的所有城市  (不合适)</span></span><br><span class="line">List&lt;Province&gt;  provinceList = …</span><br><span class="line">Observable.from(provinceList)</span><br><span class="line">    .subscribe(<span class="keyword">new</span> Action1&lt;Province&gt;()&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Province province)</span></span>&#123;</span><br><span class="line">            List&lt;City&gt; cities = province.getCities();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cities.size(); i++) &#123;</span><br><span class="line">                   City city = cities.get(i);</span><br><span class="line">                   Log.i(“城市”, city.getName());</span><br><span class="line">            &#125;        </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//RxJava做法</span></span><br><span class="line">List&lt;Province&gt;  provinceList = …</span><br><span class="line">Observable.from(provinceList)</span><br><span class="line">    .flatMap(<span class="keyword">new</span> Func1&lt;Province,Observable&lt;City&gt;&gt;()&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Observable&lt;City&gt; <span class="title">call</span><span class="params">(Province province)</span></span>&#123;</span><br><span class="line">                 <span class="keyword">return</span> Observable.from(province.getCities());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .subscribe(<span class="keyword">new</span> Action1&lt;City&gt;()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(City city)</span></span>&#123;</span><br><span class="line">               Log.i(“城市”, city.getName());       </span><br><span class="line">            &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>关于flatMap的应用扩展<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//介绍回调地狱</span></span><br><span class="line">restAdapter.getApiService().getToken(<span class="keyword">new</span> Callback&lt;String&gt;()&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">success</span><span class="params">(String token)</span> </span>&#123;</span><br><span class="line">        restAdapter.getApiService().getUserInfo(token,<span class="keyword">new</span> Callback&lt;UserInfo&gt;()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">success</span><span class="params">(UserInfo userInfo)</span> </span>&#123;</span><br><span class="line">                     showMessage(userInfo.getUser);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">failure</span><span class="params">(RetrofitError error)</span> </span>&#123;</span><br><span class="line">                <span class="comment">//处理错误</span></span><br><span class="line">                ...</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">failure</span><span class="params">(RetrofitError error)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Error handling</span></span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>如何用RxJava来解决：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">restAdapter.getApiService()</span><br><span class="line">    .getToken()</span><br><span class="line">    .flatMap(<span class="keyword">new</span> Func1&lt;String,Observable&lt;UserInfo&gt;&gt;()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Observable&lt;UserInfo&gt; <span class="title">call</span><span class="params">(String token)</span></span>&#123;</span><br><span class="line">                     <span class="keyword">return</span> restAdapter.getApiService().getUserInfo(token);</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .subscribe(<span class="keyword">new</span> Action1&lt;UserInfo&gt;()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(UserInfo userInfo)</span></span>&#123;</span><br><span class="line">                     showMessage(userInfo.getUser);</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>加入线程切换</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">restAdapter.getApiService().getToken()</span><br><span class="line">    .flatMap(<span class="keyword">new</span> Func1&lt;String,Observable&lt;UserInfo&gt;&gt;()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Observable&lt;UserInfo&gt; <span class="title">call</span><span class="params">(String token)</span></span>&#123;</span><br><span class="line">                     <span class="keyword">return</span> restAdapter.getApiService().getUserInfo(token);</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .subscribeOn(Schedulers.io()) <span class="comment">// 指定 subscribe() 发生在 IO 线程</span></span><br><span class="line">    .observeOn(AndroidSchedulers.mainThread())<span class="comment">// 指定 Subscriber 的回调发生在主线程</span></span><br><span class="line">    .subscribe(<span class="keyword">new</span> Action1&lt;UserInfo&gt;()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(UserInfo userInfo)</span></span>&#123;</span><br><span class="line">                     showMessage(userInfo.getUser);</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<p>#####操作符复用：</p>
+<p>先介绍不合适的做法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;T&gt; <span class="function">Observable&lt;T&gt; <span class="title">applySchedulers</span><span class="params">(Observable&lt;T&gt; observable)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> observable.subscribeOn(Schedulers.io())</span><br><span class="line">     .observeOn(AndroidSchedulers.mainThread());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>应用后，破坏了链式调用<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">applySchedulers(restAdapter.getApiService().getToken()</span><br><span class="line">    .flatMap(<span class="keyword">new</span> Func1&lt;String,Observable&lt;UserInfo&gt;&gt;()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Observable&lt;UserInfo&gt; <span class="title">call</span><span class="params">(String token)</span></span>&#123;</span><br><span class="line">                     <span class="keyword">return</span> restAdapter.getApiService().getUserInfo(token);</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    ).subscribe(<span class="keyword">new</span> Action1&lt;UserInfo&gt;()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(UserInfo userInfo)</span></span>&#123;</span><br><span class="line">                     showMessage(userInfo.getUser);</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure></p>
+<h5 id="我们加入转换器与Compose"><a href="#我们加入转换器与Compose" class="headerlink" title="我们加入转换器与Compose()"></a>我们加入转换器与Compose()</h5><p>Transformer：继承Func1<observable<t>, Observable<r>&gt;的一个接口，其实是将一个Observable转换为另一个Observable<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;T&gt; <span class="function">Transformer&lt;T, T&gt; <span class="title">applySchedulers</span><span class="params">()</span> </span>&#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="keyword">new</span> Transformer&lt;T, T&gt;() &#123;</span><br><span class="line">       <span class="meta">@Override</span></span><br><span class="line">       <span class="function"><span class="keyword">public</span> Observable&lt;T&gt; <span class="title">call</span><span class="params">(Observable&lt;T&gt; observable)</span> </span>&#123;</span><br><span class="line">         <span class="keyword">return</span> observable.subscribeOn(Schedulers.io())</span><br><span class="line">             .observeOn(AndroidSchedulers.mainThread());</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></r></observable<t></p>
+<p>用compose操作符做法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">restAdapter.getApiService().getToken()</span><br><span class="line">    .flatMap(<span class="keyword">new</span> Func1&lt;String,Observable&lt;UserInfo&gt;&gt;()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Observable&lt;UserInfo&gt; <span class="title">call</span><span class="params">(String token)</span></span>&#123;</span><br><span class="line">                     <span class="keyword">return</span> restAdapter.getApiService().getUserInfo(token);</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .compose(applySchedulers())</span><br><span class="line">    .subscribe(<span class="keyword">new</span> Action1&lt;UserInfo&gt;()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(UserInfo userInfo)</span></span>&#123;</span><br><span class="line">                     showMessage(userInfo.getUser);</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="RxJava的扩展"><a href="#RxJava的扩展" class="headerlink" title="RxJava的扩展"></a>RxJava的扩展</h4><p>主要是针对以下几个开源库展开来说：</p>
+<ul>
+<li>1.Rxbinding：用RxJava实现onClick,TextWatcher,check等事件绑定。</li>
+<li>2.RxBus：用RxJava实现EventBus或者Otto。</li>
+<li>3.RxPreferences：用RxJava实现Android中的SharedPreferences。</li>
+<li>4.RxLifecycle：用来严格控制由于发布了一个订阅后，由于没有及时取消，导致Activity/Fragment无法销毁导致的内存泄露。</li>
+<li>5.ReactiveNetwork：使用RxJava来监听网络连接状态和wifi信号强度变化。</li>
+<li>6.RxPermissions：针对 Android 6.0 权限管理进行一个 Rx 封装的一个类库。</li>
+<li>7.rxloader：用RxJava对loader的一个封装。</li>
+<li>还有更多…</li>
+</ul>
+<h3 id="Android应用场景"><a href="#Android应用场景" class="headerlink" title="Android应用场景"></a>Android应用场景</h3><ul>
+<li>1.避免嵌套回调地狱问题。</li>
+<li>2.使用debounce减少频繁的网络请求。避免每输入（删除）一个字就做一次联想。</li>
+<li>3.使用combineLatest合并最近N个结点,注册的时候所有输入信息（邮箱、密码、电话号码等）合法才点亮注册按钮。</li>
+<li>4.使用merge合并两个数据源,最后做统一处理。</li>
+<li>5.使用concat和first做缓存，依次检查memory、disk和network中是否存在数据，任何一步一旦发现数据后面的操作都不执行。</li>
+<li>6.使用timer做定时操作。</li>
+<li>7.使用interval做周期性操作。</li>
+<li>8.使用throttleFirst防止按钮重复点击</li>
+<li>9.做响应式的界面。</li>
+<li>更多…</li>
+</ul>
+<p>部分例子代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RxTextView.textChanges(searchEditText)</span><br><span class="line">     .debounce(<span class="number">150</span>, MILLISECONDS)</span><br><span class="line">     .switchMap(Api::searchItems)</span><br><span class="line">     .subscribe(<span class="keyword">this</span>::updateList, t-&gt;showError());</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">Observable.merge(getNews(), getHotNews(), </span><br><span class="line">    <span class="keyword">new</span> Func2&lt;Response&lt;News&gt;, MyResponse&lt;News&gt;, Boolean&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Boolean <span class="title">call</span><span class="params">(Response&lt;News&gt; response, Response&lt;News&gt; response2)</span> </span>&#123;</span><br><span class="line">            mData.clear();</span><br><span class="line">            mData.addAll(response);</span><br><span class="line">            mData.addAll(response2.msg);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .subscribeOn(Schedulers.io())</span><br><span class="line">    .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">    .subscribe(<span class="keyword">new</span> Subscriber&lt;Boolean&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;&#125;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Boolean o)</span> </span>&#123;</span><br><span class="line">               mAdapter.notifyDataSetChanged();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">RxView.clicks(button)  </span><br><span class="line">      .throttleFirst(<span class="number">1</span>, TimeUnit.SECONDS)  </span><br><span class="line">      .subscribe(<span class="keyword">new</span> Observer&lt;Object&gt;() &#123;  </span><br><span class="line">          <span class="meta">@Override</span>  </span><br><span class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">                log.d (<span class="string">"completed"</span>);  </span><br><span class="line">          &#125;  </span><br><span class="line">  </span><br><span class="line">          <span class="meta">@Override</span>  </span><br><span class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;  </span><br><span class="line">                log.e(<span class="string">"error"</span>);  </span><br><span class="line">          &#125;  </span><br><span class="line">  </span><br><span class="line">          <span class="meta">@Override</span>  </span><br><span class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Object o)</span> </span>&#123;  </span><br><span class="line">               log.d(<span class="string">"button clicked"</span>);  </span><br><span class="line">          &#125;  </span><br><span class="line">      &#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(<span class="keyword">this</span>);  </span><br><span class="line">RxSharedPreferences rxPreferences = RxSharedPreferences.create(preferences);  </span><br><span class="line">  </span><br><span class="line">Preference&lt;Boolean&gt; checked = rxPreferences.getBoolean(<span class="string">"checked"</span>, <span class="keyword">true</span>);  </span><br><span class="line">  </span><br><span class="line">CheckBox checkBox = (CheckBox) findViewById(R.id.cb_test);  </span><br><span class="line">RxCompoundButton.checkedChanges(checkBox)  </span><br><span class="line">        .subscribe(checked.asAction());</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">Observable&lt;String&gt; memory = Observable</span><br><span class="line">    .create(<span class="keyword">new</span> Observable.OnSubscribe&lt;String&gt;() &#123;  </span><br><span class="line">        <span class="meta">@Override</span>  </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Subscriber&lt;? <span class="keyword">super</span> String&gt; subscriber)</span> </span>&#123;  </span><br><span class="line">            <span class="keyword">if</span> (memoryCache != <span class="keyword">null</span>) &#123;  </span><br><span class="line">                subscriber.onNext(memoryCache);  </span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">                subscriber.onCompleted();  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;);  </span><br><span class="line"></span><br><span class="line">Observable&lt;String&gt; disk = Observable</span><br><span class="line">    .create(<span class="keyword">new</span> Observable.OnSubscribe&lt;String&gt;() &#123;  </span><br><span class="line">        <span class="meta">@Override</span>  </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">call</span><span class="params">(Subscriber&lt;? <span class="keyword">super</span> String&gt; subscriber)</span> </span>&#123;  </span><br><span class="line">            String cachePref = rxPreferences.getString(<span class="string">"cache"</span>).get();  </span><br><span class="line">            <span class="keyword">if</span> (!TextUtils.isEmpty(cachePref)) &#123;  </span><br><span class="line">                subscriber.onNext(cachePref);  </span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">                subscriber.onCompleted();  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;);  </span><br><span class="line"></span><br><span class="line">Observable&lt;String&gt; network = Observable.just(<span class="string">"network"</span>);  </span><br><span class="line">  </span><br><span class="line"><span class="comment">//依次检查memory、disk、network  </span></span><br><span class="line">Observable.concat(memory, disk, network)  </span><br><span class="line">    .first()  </span><br><span class="line">    .subscribeOn(Schedulers.newThread())  </span><br><span class="line">    .subscribe(s -&gt; &#123;  </span><br><span class="line">        memoryCache = <span class="string">"memory"</span>;  </span><br><span class="line">        System.out.println(<span class="string">"subscribe: "</span> + s);  </span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<h4 id="感谢-参考"><a href="#感谢-参考" class="headerlink" title="感谢/参考"></a>感谢/参考</h4><p>感谢Jake大神的启蒙，感谢Ivan.Morgillo的书《RxJava Essentials》,感谢扔物线的文章和大头鬼的翻译文章，同时也是一路看他们的文章走过来的，最后感谢所有分享RxJava的小伙伴们。</p>
+<ul>
+<li><a href="http://gank.io/post/560e15be2dca930e00da1083" target="_blank" rel="noopener">http://gank.io/post/560e15be2dca930e00da1083</a></li>
+<li><a href="http://blog.csdn.net/lzyzsd/article/details/41833541" target="_blank" rel="noopener">http://blog.csdn.net/lzyzsd/article/details/41833541</a></li>
+<li><a href="http://blog.csdn.net/theone10211024/article/details/50435325" target="_blank" rel="noopener">http://blog.csdn.net/theone10211024/article/details/50435325</a></li>
+<li>《RxJava Essentials》</li>
+<li><a href="http://reactivex.io" target="_blank" rel="noopener">http://reactivex.io</a></li>
+</ul>
+<h3 id="关于RxJava和Android的学习"><a href="#关于RxJava和Android的学习" class="headerlink" title="关于RxJava和Android的学习"></a>关于RxJava和Android的学习</h3><p>主要从渠道，知识点和资源几方面介绍了下学习，提到<a href="http://mobdevgroup.com" target="_blank" rel="noopener">MobDevGroup</a>这个资源站。</p>
+<h2 id="GDG总结"><a href="#GDG总结" class="headerlink" title="GDG总结"></a>GDG总结</h2><p>由于时间上的问题，没有对一些原理进行讲解，尤其是变换等，大部分是在讲应用，总之呢除了对自己知识点一次不错的总结外，也是对自己的一次历练，接下来再接再厉。最后附上这次的PPT下载地址：</p>
+<ul>
+<li>Mac <a href="http://vdisk.weibo.com/s/CeH3i0tfvuvLU" target="_blank" rel="noopener">keynote</a></li>
+<li>Windows <a href="http://vdisk.weibo.com/s/CeH3i0tfvuvMd" target="_blank" rel="noopener">PowerPoint</a></li>
+</ul>
+
+        
+            
+        
+        <!--MOB SHARE BEGIN-->
+        <div class="-hoofoo-share-title">分享到：</div>
+        <div class="-hoofoo-share-buttons">
+            <div class="-mob-share-weibo -hoofoo-share-weibo -hoofoo-share-ui-button"><i class="fa fa-weibo" aria-hidden="true"></i></div>
+            <div class="-mob-share-weixin -hoofoo-share-weixin -hoofoo-share-ui-button"><i class="fa fa-weixin" aria-hidden="true"></i></div>
+            <div class="-mob-share-qq -hoofoo-share-qq -hoofoo-share-ui-button"><i class="fa fa-qq" aria-hidden="true"></i></div>
+            <div class="-mob-share-twitter -hoofoo-share-twitter -hoofoo-share-ui-button"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+            <div class="-hoofoo-share-more -hoofoo-share-ui-button -mob-share-open"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+        </div>
+        <div class="-mob-share-ui -mob-share-ui-theme" style="display: none; left: 0px; top: 0px;">
+            <ul class="-mob-share-list">
+                <li class="-mob-share-weibo" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>新浪微博</p></li>
+                <li class="-mob-share-weixin" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>微信</p></li>
+                <li class="-mob-share-qzone" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>QQ空间</p></li>
+                <li class="-mob-share-qq" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>QQ好友</p></li>
+                
+                <li class="-mob-share-douban" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>豆瓣</p></li>
+                <li class="-mob-share-youdao" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>有道云笔记</p></li>
+                
+                <li class="-mob-share-facebook" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Facebook</p></li>
+                <li class="-mob-share-twitter" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Twitter</p></li>
+                <li class="-mob-share-pocket" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Pocket</p></li>
+                <li class="-mob-share-google" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Google+</p></li>
+                <li class="-mob-share-tumblr" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Tumblr</p></li>
+                <li class="-mob-share-instapaper" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Instapaper</p></li>
+                <li class="-mob-share-linkedin" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Linkedin</p></li>
+            </ul>
+            <div class="-mob-share-close">取消</div>
+        </div>
+        <div class="-mob-share-ui-bg"></div>
+        <script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=23a3d44c6690c"></script>
+<!--MOB SHARE END-->
+            
+        <div style="background-color: #2E7D32;height: 3px;margin-bottom: 15px;margin-top: 15px;"></div>
+        <span>移动开发者/技术爱好者/喜欢开源与分享，你也可以关注微信公众号MobDevGroup，移动开发在线分享：<a href="http://mobdevgroup.com">MobDevGroup</a></span>
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/RxJava/">RxJava</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/01/29/NewYearPlan/" data-tooltip="写在最后一个工作日的MobDevGroup新年计划">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/01/08/RxJavaEssentials/" data-tooltip="RxJava Essentials翻译总结">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+        
+    </div>
+</article>
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 Sean Liu. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div class="post-bottom-bar">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/01/29/NewYearPlan/" data-tooltip="写在最后一个工作日的MobDevGroup新年计划">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/01/08/RxJavaEssentials/" data-tooltip="RxJava Essentials翻译总结">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/user.jpg">
+        
+            <h4 id="about-card-name">Sean Liu</h4>
+        
+            <h5 id="about-card-bio">Just Keep Sharing 移动开发在线分享：http://mobdevgroup.com</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                Mobile Developer
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br>
+                Xi&#39;an, Shaanxi, China
+            </h5>
+        
+    </div>
+</div>
+        <div id="cover" style="background-color:#2196f3"></div>
+
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.fancybox.js"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js"></script>
+<script src="/assets/js/tranquilpeak.js"></script>
+<!--SCRIPTS END-->
+
+
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="宇信同行">
+    <title>Android技巧之ColorState实践篇 - 宇信同行</title>
+    <meta name="author" content="Sean Liu">
+    <meta name="description" content="宇信同行">
+    <link rel="icon" href="/assets/images/fav.ico">
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+    <!--STYLES END-->
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-77096739-2']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?fdaa18e768db90bb9e82a9db3aec9d3d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="https://yuxingxin.com">宇信同行</a>
+    </h1>
+    
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="/assets/images/user.jpg">
+        </a>
+    
+</header>
+            <nav id="sidebar">
+    
+    <div class="sidebar-profile">
+        <a href="/#about">
+            
+            <img class="sidebar-profile-picture" src="/assets/images/user.jpg">
+            
+        </a>
+        <span class="sidebar-profile-name hide-md">Sean Liu</span>
+    </div>
+    
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc hide-md">主页</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-categories">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc hide-md">分类</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-tags">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc hide-md">标签</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-archives">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc hide-md">归档</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/#about">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc hide-md">关于宇行信</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="http://weibo.com/lx8909" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-weibo"></i>
+                    <span class="sidebar-button-desc hide-md">weibo</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://github.com/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc hide-md">GitHub</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="http://stackoverflow.com/users/4866682/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+                    <span class="sidebar-button-desc hide-md">Stack Overflow</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://twitter.com/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc hide-md">Twitter</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://www.facebook.com/profile.php?id=100004716995168" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+                    <span class="sidebar-button-desc hide-md">Facebook</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="mailto:lx8909@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc hide-md">Mail</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/atom.xml">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc hide-md">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+            <div id="main">
+                
+<style type="text/css">
+
+.-hoofoo-share-buttons {
+  display: inline-block;
+}
+.-hoofoo-share-title {
+  font-size: 1.1em;
+  font-weight: 200;
+}
+.-hoofoo-share-ui-button {
+  cursor: pointer;
+  background-color: #555;
+  color: #fff;
+  font-size: 24px;
+  line-height: 40px;
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  border-radius: 25px;
+  float: left;
+  transition: background 0.4s;
+  -moz-transition: background 0.4s; /* Firefox 4 */
+  -webkit-transition: background 0.4s; /* Safari å’Œ Chrome */
+  -o-transition: background 0.4s;
+  text-align: center;
+}
+.-hoofoo-share-weibo:hover {
+  background-color: #cf3f41;
+}
+.-hoofoo-share-weixin:hover {
+  background-color: #18a01a;
+}
+.-hoofoo-share-qq:hover {
+  background-color: #5593d9;
+}
+.-hoofoo-share-twitter:hover {
+  background-color: #2ab3e6;
+}
+.-hoofoo-share-more:hover {
+  background-color: #777;
+}
+.-mob-share-weixin-qrcode-content {
+  border-radius: 4px;
+  -webkit-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  -o-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+.-mob-share-weixin-qrcode {
+  margin: 5% !important;
+  width: 90% !important;
+  height: auto !important;
+}
+.-mob-share-weixin-qrcode-close {
+  background-image: url("/assets/images/fancybox_sprite.png") !important;
+}
+.-mob-share-weixin-qrcode-close {
+  overflow: hidden;
+  line-height: 100px !important;
+  position: absolute !important;
+  top: -18px !important;
+  right: -18px !important;
+  width: 36px !important;
+  height: 36px !important;
+  cursor: pointer !important;
+  z-index: 8040 !important;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  .-mob-share-weixin-qrcode-close {
+    background-image: url("/assets/images/fancybox_sprite@2x.png") !important;
+    background-size: 44px 152px !important; /*The size of the normal image, half the size of the hi-res image*/
+  }
+}
+.-mob-share-close {
+  height: 4em !important;
+  font-size: 0.8em !important;
+  line-height: 4em !important;
+  background: #555 !important;
+  color: #fff !important;
+}
+</style>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">Android技巧之ColorState实践篇</h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" content="Mon Oct 26 2015 00:00:00 GMT+0800">
+        Oct 26, 2015
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Android/">Android</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><p>在Android开发者中，对图片的使用是必不可少的，有时候不会切图，有时候是因为图标过多导致应用程序包过大等等，常见的就是在图标的几种状态，一般都是默认和选中两种，我们给图片着色来让它只用一张图标可以配置任何我们想要的图标颜色，我们这里提到一个小技巧来处理这些事情，我们尽可能的写一些代码来改变这种情况。</p>
+<h2 id="2-问题"><a href="#2-问题" class="headerlink" title="2.问题"></a>2.问题</h2><p>在官方的做法一般是我们会去像下面那样写资源文件通过配置不同的图片来解决来标明在不同状态下对应显示的图标<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;<span class="name">selector</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:state_pressed</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:drawable</span>=<span class="string">"@drawable/button_pressed"</span> /&gt;</span> <span class="comment">&lt;!-- pressed --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:state_focused</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:drawable</span>=<span class="string">"@drawable/button_focused"</span> /&gt;</span> <span class="comment">&lt;!-- focused --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:state_hovered</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">android:drawable</span>=<span class="string">"@drawable/button_focused"</span> /&gt;</span> <span class="comment">&lt;!-- hovered --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:drawable</span>=<span class="string">"@drawable/button_normal"</span> /&gt;</span> <span class="comment">&lt;!-- default --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">selector</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>但是有时候我们需要动态改变图标颜色，而这个图标颜色又比较多，当然把每种颜色都切出来很显然不显示。只能通过写代码给图标着色来解决。</p>
+<h2 id="3-实践"><a href="#3-实践" class="headerlink" title="3.实践"></a>3.实践</h2><p>提起着色，Android SDK给我们提供了一个这样的类：ColorStateList，它用来设置在不同状态下对应的颜色，经常做法如下：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">selector</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:state_focused</span>=<span class="string">"true"</span> <span class="attr">android:color</span>=<span class="string">"@color/testcolor1"</span>/&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:state_pressed</span>=<span class="string">"true"</span> <span class="attr">android:state_enabled</span>=<span class="string">"false"</span> <span class="attr">android:color</span>=<span class="string">"@color/testcolor2"</span> /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:state_enabled</span>=<span class="string">"false"</span> <span class="attr">android:color</span>=<span class="string">"@color/testcolor3"</span> /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:color</span>=<span class="string">"@color/testcolor5"</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">selector</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>我们可以以此入手：</p>
+<ol>
+<li>继承ImageView。</li>
+<li><p>自定义属性colorStateList，写selector文件。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">selector</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:color</span>=<span class="string">"@color/colorPrimary"</span> <span class="attr">android:state_selected</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:color</span>=<span class="string">"@color/colorAccent"</span>  /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">selector</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重写drawableStateChanged()方法：官网上说当drawable的状态在改变时会调用此方法。</p>
+</li>
+<li>调用setColorFilter()方法为图片着色</li>
+</ol>
+<h2 id="4-附上代码："><a href="#4-附上代码：" class="headerlink" title="4. 附上代码："></a>4. 附上代码：</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TintStateImage</span> <span class="keyword">extends</span> <span class="title">ImageView</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> IMAGE_DEFAULT_COLOR = Color.GRAY;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ColorStateList mColorStateList;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TintStateImage</span><span class="params">(Context context)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(context,<span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TintStateImage</span><span class="params">(Context context, AttributeSet attrs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(context, attrs, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TintStateImage</span><span class="params">(Context context, AttributeSet attrs, <span class="keyword">int</span> defStyleAttr)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(context, attrs, defStyleAttr);</span><br><span class="line">        TypedArray ta = context.obtainStyledAttributes(attrs,R.styleable.TintStateImage);</span><br><span class="line"></span><br><span class="line">        mColorStateList = ta.getColorStateList(R.styleable.TintStateImage_colorStateList);</span><br><span class="line">        ta.recycle();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">drawableStateChanged</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.drawableStateChanged();</span><br><span class="line">        <span class="keyword">if</span> (mColorStateList != <span class="keyword">null</span> &amp;&amp; mColorStateList.isStateful())&#123;</span><br><span class="line">            <span class="keyword">int</span> color = mColorStateList.getColorForState(getDrawableState(),</span><br><span class="line">                    IMAGE_DEFAULT_COLOR);</span><br><span class="line">            <span class="keyword">super</span>.setColorFilter(color, PorterDuff.Mode.SRC_IN);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后我们在用的时候：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;com.yuxingxin.library.TintStateImage</span><br><span class="line">    android:<span class="attribute">id</span>=<span class="string">"@+id/selected_state"</span></span><br><span class="line">    android:<span class="attribute">layout_width</span>=<span class="string">"wrap_content"</span></span><br><span class="line">    android:<span class="attribute">layout_height</span>=<span class="string">"wrap_content"</span></span><br><span class="line">    app:<span class="attribute">colorStateList</span>=<span class="string">"@drawable/image_style"</span></span><br><span class="line">    android:<span class="attribute">src</span>=<span class="string">"@mipmap/ic_home_black_24dp"</span></span><br><span class="line">    /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>别忘了给你的view设置状态就可以了。附上<a href="https://github.com/yuxingxin/TintStateImage" target="_blank" rel="noopener">demo</a>地址。</p>
+
+        
+            
+        
+        <!--MOB SHARE BEGIN-->
+        <div class="-hoofoo-share-title">分享到：</div>
+        <div class="-hoofoo-share-buttons">
+            <div class="-mob-share-weibo -hoofoo-share-weibo -hoofoo-share-ui-button"><i class="fa fa-weibo" aria-hidden="true"></i></div>
+            <div class="-mob-share-weixin -hoofoo-share-weixin -hoofoo-share-ui-button"><i class="fa fa-weixin" aria-hidden="true"></i></div>
+            <div class="-mob-share-qq -hoofoo-share-qq -hoofoo-share-ui-button"><i class="fa fa-qq" aria-hidden="true"></i></div>
+            <div class="-mob-share-twitter -hoofoo-share-twitter -hoofoo-share-ui-button"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+            <div class="-hoofoo-share-more -hoofoo-share-ui-button -mob-share-open"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+        </div>
+        <div class="-mob-share-ui -mob-share-ui-theme" style="display: none; left: 0px; top: 0px;">
+            <ul class="-mob-share-list">
+                <li class="-mob-share-weibo" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>新浪微博</p></li>
+                <li class="-mob-share-weixin" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>微信</p></li>
+                <li class="-mob-share-qzone" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>QQ空间</p></li>
+                <li class="-mob-share-qq" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>QQ好友</p></li>
+                
+                <li class="-mob-share-douban" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>豆瓣</p></li>
+                <li class="-mob-share-youdao" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>有道云笔记</p></li>
+                
+                <li class="-mob-share-facebook" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Facebook</p></li>
+                <li class="-mob-share-twitter" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Twitter</p></li>
+                <li class="-mob-share-pocket" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Pocket</p></li>
+                <li class="-mob-share-google" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Google+</p></li>
+                <li class="-mob-share-tumblr" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Tumblr</p></li>
+                <li class="-mob-share-instapaper" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Instapaper</p></li>
+                <li class="-mob-share-linkedin" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Linkedin</p></li>
+            </ul>
+            <div class="-mob-share-close">取消</div>
+        </div>
+        <div class="-mob-share-ui-bg"></div>
+        <script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=23a3d44c6690c"></script>
+<!--MOB SHARE END-->
+            
+        <div style="background-color: #2E7D32;height: 3px;margin-bottom: 15px;margin-top: 15px;"></div>
+        <span>移动开发者/技术爱好者/喜欢开源与分享，你也可以关注微信公众号MobDevGroup，移动开发在线分享：<a href="http://mobdevgroup.com">MobDevGroup</a></span>
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/ColorState/">ColorState</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/05/DrawablePadding/" data-tooltip="Android技巧之drawablePadding的那些事">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/10/26/AndroidLog/" data-tooltip="Android技巧之Log实践篇">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+        
+    </div>
+</article>
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 Sean Liu. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div class="post-bottom-bar">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/05/DrawablePadding/" data-tooltip="Android技巧之drawablePadding的那些事">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/10/26/AndroidLog/" data-tooltip="Android技巧之Log实践篇">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/user.jpg">
+        
+            <h4 id="about-card-name">Sean Liu</h4>
+        
+            <h5 id="about-card-bio">Just Keep Sharing 移动开发在线分享：http://mobdevgroup.com</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                Mobile Developer
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br>
+                Xi&#39;an, Shaanxi, China
+            </h5>
+        
+    </div>
+</div>
+        <div id="cover" style="background-color:#2196f3"></div>
+
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.fancybox.js"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js"></script>
+<script src="/assets/js/tranquilpeak.js"></script>
+<!--SCRIPTS END-->
+
+
+</html>

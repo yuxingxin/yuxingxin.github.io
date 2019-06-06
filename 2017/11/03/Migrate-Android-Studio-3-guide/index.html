@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="宇信同行">
+    <title>Android Studio 和Gradle Plugin 3.0 迁移不完全指南 - 宇信同行</title>
+    <meta name="author" content="Sean Liu">
+    <meta name="description" content="宇信同行">
+    <link rel="icon" href="/assets/images/fav.ico">
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+    <!--STYLES END-->
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-77096739-2']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?fdaa18e768db90bb9e82a9db3aec9d3d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="https://yuxingxin.com">宇信同行</a>
+    </h1>
+    
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="/assets/images/user.jpg">
+        </a>
+    
+</header>
+            <nav id="sidebar">
+    
+    <div class="sidebar-profile">
+        <a href="/#about">
+            
+            <img class="sidebar-profile-picture" src="/assets/images/user.jpg">
+            
+        </a>
+        <span class="sidebar-profile-name hide-md">Sean Liu</span>
+    </div>
+    
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc hide-md">主页</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-categories">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc hide-md">分类</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-tags">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc hide-md">标签</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-archives">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc hide-md">归档</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/#about">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc hide-md">关于宇行信</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="http://weibo.com/lx8909" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-weibo"></i>
+                    <span class="sidebar-button-desc hide-md">weibo</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://github.com/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc hide-md">GitHub</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="http://stackoverflow.com/users/4866682/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+                    <span class="sidebar-button-desc hide-md">Stack Overflow</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://twitter.com/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc hide-md">Twitter</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://www.facebook.com/profile.php?id=100004716995168" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+                    <span class="sidebar-button-desc hide-md">Facebook</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="mailto:lx8909@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc hide-md">Mail</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/atom.xml">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc hide-md">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+            <div id="main">
+                
+<style type="text/css">
+
+.-hoofoo-share-buttons {
+  display: inline-block;
+}
+.-hoofoo-share-title {
+  font-size: 1.1em;
+  font-weight: 200;
+}
+.-hoofoo-share-ui-button {
+  cursor: pointer;
+  background-color: #555;
+  color: #fff;
+  font-size: 24px;
+  line-height: 40px;
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  border-radius: 25px;
+  float: left;
+  transition: background 0.4s;
+  -moz-transition: background 0.4s; /* Firefox 4 */
+  -webkit-transition: background 0.4s; /* Safari å’Œ Chrome */
+  -o-transition: background 0.4s;
+  text-align: center;
+}
+.-hoofoo-share-weibo:hover {
+  background-color: #cf3f41;
+}
+.-hoofoo-share-weixin:hover {
+  background-color: #18a01a;
+}
+.-hoofoo-share-qq:hover {
+  background-color: #5593d9;
+}
+.-hoofoo-share-twitter:hover {
+  background-color: #2ab3e6;
+}
+.-hoofoo-share-more:hover {
+  background-color: #777;
+}
+.-mob-share-weixin-qrcode-content {
+  border-radius: 4px;
+  -webkit-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  -o-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+.-mob-share-weixin-qrcode {
+  margin: 5% !important;
+  width: 90% !important;
+  height: auto !important;
+}
+.-mob-share-weixin-qrcode-close {
+  background-image: url("/assets/images/fancybox_sprite.png") !important;
+}
+.-mob-share-weixin-qrcode-close {
+  overflow: hidden;
+  line-height: 100px !important;
+  position: absolute !important;
+  top: -18px !important;
+  right: -18px !important;
+  width: 36px !important;
+  height: 36px !important;
+  cursor: pointer !important;
+  z-index: 8040 !important;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  .-mob-share-weixin-qrcode-close {
+    background-image: url("/assets/images/fancybox_sprite@2x.png") !important;
+    background-size: 44px 152px !important; /*The size of the normal image, half the size of the hi-res image*/
+  }
+}
+.-mob-share-close {
+  height: 4em !important;
+  font-size: 0.8em !important;
+  line-height: 4em !important;
+  background: #555 !important;
+  color: #fff !important;
+}
+</style>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">Android Studio 和Gradle Plugin 3.0 迁移不完全指南</h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" content="Fri Nov 03 2017 00:00:00 GMT+0800">
+        Nov 03, 2017
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Android/">Android</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <p>Android Studio 3.0 默认Gradle版本为4.1，如果你需要手动升级版本的话，记得修改gradle/wrapper/gradle-wrapper.properties文件的URL地址：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">distributionUrl=https\<span class="symbol">://services</span>.gradle.org/distributions/gradle-<span class="number">4.1</span>-all.zip</span><br></pre></td></tr></table></figure>
+<p>对应的Gradle插件版本为3.0.0，手动修改的话，需要修改项目级的build.gradle文件：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">buildscript</span> &#123;</span><br><span class="line">    <span class="keyword">repositories</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment">// You need to add the following repository to download the</span></span><br><span class="line">        <span class="comment">// new plugin.</span></span><br><span class="line">        google()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">dependencies</span> &#123;</span><br><span class="line">        <span class="keyword">classpath</span> <span class="string">'com.android.tools.build:gradle:3.0.0'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意上面记得添加google这个repository，某些官方依赖需要下载</p>
+<p>对应我们的构建工具buildToolsVersion版本为26.0.2，对应Module级项目build.gradle文件：</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    compileSdkVersion <span class="number">26</span></span><br><span class="line">    ...</span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">      ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用变体感知（variant-aware）依赖管理机制"><a href="#使用变体感知（variant-aware）依赖管理机制" class="headerlink" title="使用变体感知（variant-aware）依赖管理机制"></a>使用变体感知（variant-aware）依赖管理机制</h2><p>Android 3.0的插件使用一种新的依赖机制，这种机制能自动的匹配我们项目中依赖库的变体，即app变体debug会自动消费它所依赖的library的debug变体。当然了，我们在给产品定制不同的风味时，它依然能够适用。所以呢为了保证能够准确的匹配这些变体，我们需要为所有的产品风味声明风味维度（flavor dimensions），以及不可能直接匹配的需要我们提供matching fallbacks（PS：不知道怎么翻译了…）</p>
+<p>好了，上面说了那么多”废话”，其实只是想说明一点，如果你项目中用了build type 或者product flavor一种或一种以上， 那么你就需要注意了，这里可能需要做相应的适配：</p>
+<h3 id="添加风味维度的声明"><a href="#添加风味维度的声明" class="headerlink" title="添加风味维度的声明"></a>添加风味维度的声明</h3><p>当我们在配置文件中配置产品风味的时候，现在需要声明风味维度，然后在每个产品风味中指定你前面所声明的某一个风味维度，如下：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">//定义两个风味维度</span><br><span class="line">flavorDimensions <span class="string">"api"</span>, <span class="string">"mode"</span></span><br><span class="line"></span><br><span class="line">productFlavors &#123;</span><br><span class="line">    demo &#123;</span><br><span class="line">        //指定风味维度</span><br><span class="line">        dimension <span class="string">"mode"</span></span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    full &#123;</span><br><span class="line">        dimension <span class="string">"mode"</span></span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    minApi24 &#123;</span><br><span class="line">        dimension <span class="string">"api"</span></span><br><span class="line">        minSDKVersion <span class="string">'24'</span></span><br><span class="line">        versionNameSuffix <span class="string">"-minApi24"</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    minApi23 &#123;</span><br><span class="line">        dimension <span class="string">"api"</span></span><br><span class="line">        minSDKVersion <span class="string">'23'</span></span><br><span class="line">        versionNameSuffix <span class="string">"-minApi23"</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    minApi21 &#123;</span><br><span class="line">        dimension <span class="string">"api"</span></span><br><span class="line">        minSDKVersion <span class="string">'21'</span></span><br><span class="line">        versionNameSuffix <span class="string">"-minApi21"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如上，配置完后，Gradle创建的构建变体数量等于每个风味维度中的风味数量与你配置的构建类型数量的乘积，在 Gradle 为每个构建变体或对应 APK 命名时，属于较高优先级风味维度的产品风味首先显示，之后是较低优先级维度的产品风味，再之后是构建类型。以上面的构建配置为例，Gradle 可以使用以下命名方案创建总共 12 个构建变体：<br>构建变体：[minApi24, minApi23, minApi21][Demo, Full][Debug, Release]<br>对应 APK：app-[minApi24, minApi23, minApi21]-[demo, full]-[debug, release].apk<br>例如构建变体：minApi24DemoDebug，对应 APK：app-minApi24-demo-debug.apk<br>当然如果有些特定的变体不是你需要的，你也可以过滤：</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">android&#123;</span><br><span class="line">    <span class="function"><span class="title">variantFilter</span> &#123; variant -&gt;</span></span><br><span class="line">        def names = variant.flavors*.<span class="keyword">name</span></span><br><span class="line">        <span class="comment">// To check for a certain build type, use variant.buildType.name == "&lt;buildType&gt;"</span></span><br><span class="line">        <span class="keyword">if</span> (names.<span class="built_in">contains</span>(<span class="string">"minApi21"</span>) &amp;&amp; names.<span class="built_in">contains</span>(<span class="string">"demo"</span>)) &#123;</span><br><span class="line">        <span class="comment">// Gradle ignores any variants that satisfy the conditions above.</span></span><br><span class="line">        setIgnore(<span class="literal">true</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果组合多个产品风味，产品风味之间的优先级将由它们所属的风味维度决定。上面所列示的第一个风味维度中的产品风味比第二个维度中的产品风味拥有更高的优先级，以此类推。此外，与属于各个产品风味的源集相比，你为产品风味组合创建的源集拥有更高的优先级。</p>
+<p>如果不同源集包含同一文件的不同版本，Gradle 将按以下优先顺序决定使用哪一个文件（左侧源集替换右侧源集的文件和设置）：</p>
+<p>构建变体 &gt; 构建类型 &gt; 产品风味 &gt; 主源集 &gt; 库依赖项</p>
+<p>如以下优先级顺序：</p>
+<ul>
+<li>src/demoDebug/（构建变体源集）</li>
+<li>src/debug/（构建类型源集）</li>
+<li>src/demo/（产品风味源集）</li>
+<li>src/main/（主源集）</li>
+</ul>
+<p>这里说下源集的概念，Android Studio 按逻辑关系将每个模块的源代码和资源分组称为源集，默认情况下，Android Studio 会创建 main/源集和目录，用于存储要在所有构建变体之间共享的一切资源。然而，我们也可以创建新的源集来控制 Gradle 要为特定的构建类型、产品风味（以及使用风味维度时的产品风味组合）和构建变体编译和打包的确切文件。例如，可以在 main/ 源集中定义基本的功能，使用产品风味源集针对不同的客户更改应用的品牌，或者仅针对使用调试构建类型的构建变体包含特殊的权限和日志记录功能等。</p>
+<ul>
+<li><code>src/main/</code>：此源集包括所有构建变体共用的代码和资源。</li>
+<li><code>src/&lt;buildType&gt;/</code>：创建此源集可加入特定构建类型专用的代码和资源。</li>
+<li><code>src/&lt;productFlavor&gt;/</code>：创建此源集可加入特定产品风味专用的代码和资源。</li>
+<li><code>src/&lt;productFlavorBuildType&gt;/</code>：创建此源集可加入特定构建变体专用的代码和资源。</li>
+</ul>
+<p>配置完后我们可以通过Android Studio窗口右侧Gradle，导航至YourApplication&gt;Tasks&gt;android下双击sourceSets，在Android Studio底部右下角 Gradle Console处查看项目是如何组织源集的</p>
+<h3 id="关于构建类型的配置"><a href="#关于构建类型的配置" class="headerlink" title="关于构建类型的配置"></a>关于构建类型的配置</h3><p>假设App中配置了一个叫做”jniDebug”的构建类型，但是该App所依赖的库中没有配置，这时候当我们构建”jniDebug”的时候，插件就不知道库该使用什么构建类型，这时候就会给报出下面的错误：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">Error:</span>Failed to <span class="string">resolve:</span> Could not resolve <span class="string">project :</span>mylibrary.</span><br><span class="line">Required <span class="string">by:</span><span class="string">project :</span>app</span><br></pre></td></tr></table></figure>
+<p>这类问题就是由于上面的依赖管理机制变化导致的，我们可以下面的几种情况来分别解决：</p>
+<h4 id="你的-Module-App-包含了它所依赖的库没有的构建类型"><a href="#你的-Module-App-包含了它所依赖的库没有的构建类型" class="headerlink" title="你的 Module App 包含了它所依赖的库没有的构建类型"></a>你的 Module App 包含了它所依赖的库没有的构建类型</h4><p>例如，我们的App包含了一个jniDebug的构建类型，但是它所依赖的库中没有这个，而是有debug和release这两个构建类型，这时候我们就可以在Module App的build.gradle文件中使用matchingFallbacks 来指定可以替换的匹配项，如下：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    buildTypes &#123;</span><br><span class="line">        debug &#123;&#125;</span><br><span class="line">        release &#123;&#125;</span><br><span class="line">        jniDebug &#123;</span><br><span class="line">            <span class="comment">// Specifies a sorted list of fallback build types that the</span></span><br><span class="line">            <span class="comment">// plugin should try to use when a dependency does not include a</span></span><br><span class="line">            <span class="comment">// "jniDebug" build type. You may specify as many fallbacks as you</span></span><br><span class="line">            <span class="comment">// like, and the plugin selects the first build type that's</span></span><br><span class="line">            <span class="comment">// available in the dependency.</span></span><br><span class="line">            matchingFallbacks = ['debug', 'release']</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>值得一提的是插件会选择matchingFallbacks列表中第一个可用的构建类型来替换匹配项。</p>
+<blockquote>
+<p>注意当依赖的库中包含了Module App没有的构建类型，则不会出现上述问题。</p>
+</blockquote>
+<h4 id="对于一个给定的存在于App和它所依赖的库中的风味维度，我们的主Module-App包含了库中没有的风味"><a href="#对于一个给定的存在于App和它所依赖的库中的风味维度，我们的主Module-App包含了库中没有的风味" class="headerlink" title="对于一个给定的存在于App和它所依赖的库中的风味维度，我们的主Module App包含了库中没有的风味"></a>对于一个给定的存在于App和它所依赖的库中的风味维度，我们的主Module App包含了库中没有的风味</h4><p>例如，主Module App和库中都包含了一个mode的风味维度，我们的App中指定mode维度的是free和paid风味，而库中指定mode维度的是demo和paid风味，这时候我们就可以用`matchingFallbacks 来为App中的free指定可以替换的匹配项。如下：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    defaultConfig&#123;</span><br><span class="line">    <span class="comment">// Do not configure matchingFallbacks in the defaultConfig block.</span></span><br><span class="line">    <span class="comment">// Instead, you must specify fallbacks for a given product flavor in the</span></span><br><span class="line">    <span class="comment">// productFlavors block, as shown below.</span></span><br><span class="line">    &#125;</span><br><span class="line">    flavorDimensions 'mode'</span><br><span class="line">    productFlavors &#123;</span><br><span class="line">        paid &#123;</span><br><span class="line">            dimension 'mode'</span><br><span class="line">            <span class="comment">// Because the dependency already includes a "paid" flavor in its</span></span><br><span class="line">            <span class="comment">// "mode" dimension, you don't need to provide a list of fallbacks</span></span><br><span class="line">            <span class="comment">// for the "paid" flavor.</span></span><br><span class="line">        &#125;</span><br><span class="line">        free &#123;</span><br><span class="line">            dimension 'mode'</span><br><span class="line">            <span class="comment">// Specifies a sorted list of fallback flavors that the plugin</span></span><br><span class="line">            <span class="comment">// should try to use when a dependency's matching dimension does</span></span><br><span class="line">            <span class="comment">// not include a "free" flavor. You may specify as many</span></span><br><span class="line">            <span class="comment">// fallbacks as you like, and the plugin selects the first flavor</span></span><br><span class="line">            <span class="comment">// that's available in the dependency's "mode" dimension.</span></span><br><span class="line">            matchingFallbacks = ['demo', 'trial']</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>值得注意的是，上述情况中，如果说库中包含了一个主Module App没有的产品风味，则不会出现上述问题。</p>
+<h4 id="库中包含了一个主Module-App没有的风味维度"><a href="#库中包含了一个主Module-App没有的风味维度" class="headerlink" title="库中包含了一个主Module App没有的风味维度"></a>库中包含了一个主Module App没有的风味维度</h4><p>例如，库中声明了一个minApi的风味维度，但是你的App中只有mode维度，因此当你要构建freeDebug这个变种版本的App时，插件就不知道你是想用minApi23Debug还是用minApi25Debug变种版本的库，这时候我们可以在主Module App中的defaultConfig代码块通过配置missingDimensionStrategy来让插件从丢失的维度中指定默认的风味，当然你也可以在productFlavors代码块中覆盖先前的选择，因此每一个风味都可以为丢失的维度指定一个不同的匹配策略。</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    defaultConfig&#123;</span><br><span class="line">        <span class="comment">// Specifies a sorted list of flavors that the plugin should try to use from</span></span><br><span class="line">        <span class="comment">// a given dimension. The following tells the plugin that, when encountering</span></span><br><span class="line">        <span class="comment">// a dependency that includes a "minApi" dimension, it should select the</span></span><br><span class="line">        <span class="comment">// "minApi23" flavor. You can include additional flavor names to provide a</span></span><br><span class="line">        <span class="comment">// sorted list of fallbacks for the dimension.</span></span><br><span class="line">        missingDimensionStrategy 'minApi', 'minApi23', 'minApi25'</span><br><span class="line">        <span class="comment">// You should specify a missingDimensionStrategy property for each</span></span><br><span class="line">        <span class="comment">// dimension that exists in a local dependency but not in your app.</span></span><br><span class="line">        missingDimensionStrategy 'abi', 'x86', 'arm64'</span><br><span class="line">    &#125;</span><br><span class="line">    flavorDimensions 'mode'</span><br><span class="line">    productFlavors &#123;</span><br><span class="line">        free &#123;</span><br><span class="line">            dimension 'mode'</span><br><span class="line">            <span class="comment">// You can override the default selection at the product flavor</span></span><br><span class="line">            <span class="comment">// level by configuring another missingDimensionStrategy property</span></span><br><span class="line">            <span class="comment">// for the "minApi" dimension.</span></span><br><span class="line">            missingDimensionStrategy 'minApi', 'minApi25', 'minApi23'</span><br><span class="line">        &#125;</span><br><span class="line">        paid &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>值得注意的是，当你的主Module App中包含了一个库中依赖项没有的风味维度时，则不会出现上述问题。例如，当库中依赖项不包含abi这个维度时，freeX86Debug版本将会使用freeDebug版本的依赖。</p>
+</blockquote>
+<h2 id="使用新的依赖配置"><a href="#使用新的依赖配置" class="headerlink" title="使用新的依赖配置"></a>使用新的依赖配置</h2><p>先来看下以前的配置：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">android &#123;...&#125;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">dependencies</span> &#123;</span><br><span class="line">    <span class="comment">// The 'compile' configuration tells Gradle to add the dependency to the</span></span><br><span class="line">    <span class="comment">// compilation classpath and include it in the final package.</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Dependency on the "mylibrary" module from this project</span></span><br><span class="line">    <span class="keyword">compile</span> <span class="keyword">project</span>(<span class="string">":mylibrary"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Remote binary dependency</span></span><br><span class="line">    <span class="keyword">compile</span> <span class="string">'com.android.support:appcompat-v7:26.1.0'</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Local binary dependency</span></span><br><span class="line">    <span class="keyword">compile</span> <span class="keyword">fileTree</span>(dir: <span class="string">'libs'</span>, <span class="keyword">include</span>: [<span class="string">'*.jar'</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面也是我们常见的三种依赖项声明：</p>
+<ol>
+<li>模块依赖项<br>compile project(‘:mylibrary’) 行声明了一个名为“mylibrary”的本地 Android 库模块作为依赖项，并要求构建系统在构建应用时编译并包含该本地模块。</li>
+<li>远程二进制依赖项<br>compile ‘com.android.support:appcompat-v7:26.1.0’ 行会通过指定其 JCenter 坐标，针对 Android 支持库的 26.1.0 版本声明一个依赖项。</li>
+<li>本地二进制依赖项<br>compile fileTree(dir: ‘libs’, include: [‘*.jar’]) 行告诉构建系统在编译类路径和最终的应用软件包中包含 app/libs/ 目录内的任何 JAR 文件。</li>
+</ol>
+<p>先来看下以前配置的关键字：</p>
+<ul>
+<li><p>compile<br>指定编译时依赖项。Gradle 将此配置的依赖项添加到类路径和应用的 APK。这是默认配置。</p>
+</li>
+<li><p>apk<br>指定 Gradle 需要将其与应用的 APK 一起打包的仅运行时依赖项。我们可以将此配置与 JAR 二进制依赖项一起使用，而不能与其他库模块依赖项或 AAR 二进制依赖项一起使用。</p>
+</li>
+<li><p>provided<br>指定 Gradle 不与应用的 APK 一起打包的编译时依赖项。如果运行时无需此依赖项，这将有助于缩减 APK 的大小。我们可以将此配置与 JAR 二进制依赖项一起使用，而不能与其他库模块依赖项或 AAR 二进制依赖项一起使用。</p>
+</li>
+<li><p>使用构建变体或者测试源集的名称配置关键字<br>这种方式可以为特定的构建变体或者测试源集配置依赖项，如：</p>
+</li>
+</ul>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">// Adds specific library module dependencies as compile time dependencies</span></span><br><span class="line">    <span class="comment">// to the fullRelease and fullDebug build variants.</span></span><br><span class="line">    fullReleaseCompile project(<span class="string">path:</span> <span class="string">':library'</span>, <span class="string">configuration:</span> <span class="string">'release'</span>)</span><br><span class="line">    fullDebugCompile project(<span class="string">path:</span> <span class="string">':library'</span>, <span class="string">configuration:</span> <span class="string">'debug'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Adds a compile time dependency for local tests.</span></span><br><span class="line">    testCompile <span class="string">'junit:junit:4.12'</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Adds a compile time dependency for the test APK.</span></span><br><span class="line">    androidTestCompile <span class="string">'com.android.support.test.espresso:espresso-core:2.2.2'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们再来看下新的配置项：</p>
+<ul>
+<li><p>implementation</p>
+<p> 原有compile已经废弃掉，新增了implementation，用它来配置模块时，它是用来告诉Gradle该Module不会在编译时暴露其依赖给其他Module，而仅仅是在运行时才会暴露出来，即对其他Module可用。因此它也常常用在该模块不需要有别的模块依赖时声明使用，例如我们的App Module或者test Module。这样做的好处是减少了我们构建的时间。</p>
+</li>
+<li><p>api</p>
+<p> 同原有compile，它和上面的区别就是它在编译器和运行期都会暴露它所配置的模块，因此也常常用在                                library module中。这是因为一旦我们api配置的这个Module有变化，Gradle会在编译期重新编译那个依赖项的所有依赖。所以，如果我们项目中有大量的api配置项依赖，那么无形中就增加了构建的时间，除非你想暴露这个模块的API给其他Module使用，否则，我们应尽可能使用implementation来代替。</p>
+</li>
+<li><p>compileOnly</p>
+<p> 同上面的provided，只在编译时用，不会打包到我们的APK中</p>
+</li>
+<li><p>runtimeOnly</p>
+<p> 同上面的apk</p>
+</li>
+</ul>
+<h2 id="一些API的变化"><a href="#一些API的变化" class="headerlink" title="一些API的变化"></a>一些API的变化</h2><p>尤其注意的是我们重命名打包的APK文件，以及输出路径。<br>变化前：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">applicationVariants.all &#123; variant -&gt;</span><br><span class="line">    variant.outputs.<span class="keyword">each</span> &#123; output -&gt;</span><br><span class="line">        <span class="keyword">def</span> outputFile = output.outputFile</span><br><span class="line">        <span class="keyword">if</span> (outputFile != <span class="keyword">null</span> &amp;&amp; outputFile.name.endsWith(<span class="string">'.apk'</span>)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (variant.buildType.name == <span class="string">'lotteryTest'</span>) &#123;</span><br><span class="line">                <span class="keyword">def</span> fileName = <span class="string">"myApp_v$&#123;defaultConfig.versionName&#125;_$&#123;releaseTime()&#125;.apk"</span></span><br><span class="line">                output.outputFile = <span class="keyword">new</span> <span class="keyword">File</span>(outputFile.parent, fileName)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>变化后：</p>
+<figure class="highlight xl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">applicationVariants</span>.all &#123; variant -&gt;</span></span><br><span class="line">    <span class="function"><span class="title">variant</span>.outputs.all &#123; output -&gt;</span></span><br><span class="line">        def outputFile = output.outputFile</span><br><span class="line">        <span class="keyword">if</span> (outputFile != null &amp;&amp; outputFile.<span class="keyword">name</span>.endsWith(<span class="string">'.apk'</span>)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (variant.buildType.<span class="keyword">name</span> == <span class="string">'lotteryTest'</span>) &#123;</span><br><span class="line">                def fileName = <span class="string">"myApp_v$&#123;defaultConfig.versionName&#125;_$&#123;releaseTime()&#125;.apk"</span></span><br><span class="line">                outputFileName = new File(fileName)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>即我们需要修改each() 和 outputFile() 方法为 all() 和 outputFileName</p>
+<h2 id="默认启用AAPT2"><a href="#默认启用AAPT2" class="headerlink" title="默认启用AAPT2"></a>默认启用AAPT2</h2><p>  在迁移的过程中，如果发现由于aapt2导致的异常，可以在gradle.properties中加入：</p>
+  <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.<span class="attribute">enableAapt2</span>=<span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h2 id="支持Java8新特性"><a href="#支持Java8新特性" class="headerlink" title="支持Java8新特性"></a>支持Java8新特性</h2><h3 id="Gradle带来全新的Java8支持方案desugar"><a href="#Gradle带来全新的Java8支持方案desugar" class="headerlink" title="Gradle带来全新的Java8支持方案desugar"></a>Gradle带来全新的Java8支持方案desugar</h3><p>该方案启用十分简单，只需要配置下面代码：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">compileOptions &#123;</span><br><span class="line">    sourceCompatibility JavaVersion.VERSION_1_8</span><br><span class="line">    targetCompatibility JavaVersion.VERSION_1_8</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果你不想使用，也可以禁用，可以在gradle.properties中加入：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">android.<span class="attribute">enableDesugar</span>=<span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>记得删除上面的兼容Java8代码。</p>
+<h3 id="移除Jack工具链，不再支持"><a href="#移除Jack工具链，不再支持" class="headerlink" title="移除Jack工具链，不再支持"></a>移除Jack工具链，不再支持</h3><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class">android </span>&#123;</span><br><span class="line">...</span><br><span class="line"><span class="class">defaultConfig </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">// Remove this block.</span></span><br><span class="line">    <span class="class">jackOptions </span>&#123;</span><br><span class="line">        enabled true</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// Keep the following configuration in order to target Java 8.</span></span><br><span class="line"><span class="class">compileOptions </span>&#123;</span><br><span class="line">    sourceCompatibility JavaVersion.VERSION_1_8</span><br><span class="line">    targetCompatibility JavaVersion.VERSION_1_8</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="移除Retrolambda插件"><a href="#移除Retrolambda插件" class="headerlink" title="移除Retrolambda插件"></a>移除Retrolambda插件</h3><p>项目级build.gradle 文件：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">buildscript</span> &#123;</span><br><span class="line">...</span><br><span class="line"><span class="keyword">dependencies</span> &#123;</span><br><span class="line">    <span class="comment">// Remove the following dependency.</span></span><br><span class="line">    <span class="keyword">classpath</span> <span class="string">'me.tatarka:gradle-retrolambda:&lt;version_number&gt;'</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Module级build.gradle文件：</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Remove the following plugin.</span></span><br><span class="line">apply plugin: <span class="string">'me.tatarka.retrolambda'</span></span><br><span class="line">...</span><br><span class="line"><span class="comment">// Remove this block after migrating useful configurations.</span></span><br><span class="line">retrolambda &#123;</span><br><span class="line">...</span><br><span class="line"><span class="comment">// If you have arguments for the Java VM you want to keep,</span></span><br><span class="line"><span class="comment">// move them to your project's gradle.properties file.</span></span><br><span class="line">jvmArgs <span class="string">'-Xmx2048m'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="目前兼容支持的功能特性有："><a href="#目前兼容支持的功能特性有：" class="headerlink" title="目前兼容支持的功能特性有："></a>目前兼容支持的功能特性有：</h3><ul>
+<li>Lambda expressions</li>
+<li>Method References</li>
+<li>Type Annotations</li>
+<li>Default and static interface methods</li>
+<li>Repeating annotations</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://developer.android.com/studio/write/java8-support.html#migrate" target="_blank" rel="noopener">https://developer.android.com/studio/write/java8-support.html#migrate</a></li>
+<li><a href="https://android-developers.googleblog.com/2017/10/android-studio-30.html" target="_blank" rel="noopener">https://android-developers.googleblog.com/2017/10/android-studio-30.html</a></li>
+<li><a href="https://developer.android.com/studio/build/gradle-plugin-3-0-0.html#known_issues" target="_blank" rel="noopener">https://developer.android.com/studio/build/gradle-plugin-3-0-0.html#known_issues</a></li>
+<li><a href="https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration.html" target="_blank" rel="noopener">https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration.html</a></li>
+</ul>
+
+        
+            
+        
+        <!--MOB SHARE BEGIN-->
+        <div class="-hoofoo-share-title">分享到：</div>
+        <div class="-hoofoo-share-buttons">
+            <div class="-mob-share-weibo -hoofoo-share-weibo -hoofoo-share-ui-button"><i class="fa fa-weibo" aria-hidden="true"></i></div>
+            <div class="-mob-share-weixin -hoofoo-share-weixin -hoofoo-share-ui-button"><i class="fa fa-weixin" aria-hidden="true"></i></div>
+            <div class="-mob-share-qq -hoofoo-share-qq -hoofoo-share-ui-button"><i class="fa fa-qq" aria-hidden="true"></i></div>
+            <div class="-mob-share-twitter -hoofoo-share-twitter -hoofoo-share-ui-button"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+            <div class="-hoofoo-share-more -hoofoo-share-ui-button -mob-share-open"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+        </div>
+        <div class="-mob-share-ui -mob-share-ui-theme" style="display: none; left: 0px; top: 0px;">
+            <ul class="-mob-share-list">
+                <li class="-mob-share-weibo" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>新浪微博</p></li>
+                <li class="-mob-share-weixin" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>微信</p></li>
+                <li class="-mob-share-qzone" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>QQ空间</p></li>
+                <li class="-mob-share-qq" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>QQ好友</p></li>
+                
+                <li class="-mob-share-douban" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>豆瓣</p></li>
+                <li class="-mob-share-youdao" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>有道云笔记</p></li>
+                
+                <li class="-mob-share-facebook" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Facebook</p></li>
+                <li class="-mob-share-twitter" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Twitter</p></li>
+                <li class="-mob-share-pocket" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Pocket</p></li>
+                <li class="-mob-share-google" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Google+</p></li>
+                <li class="-mob-share-tumblr" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Tumblr</p></li>
+                <li class="-mob-share-instapaper" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Instapaper</p></li>
+                <li class="-mob-share-linkedin" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Linkedin</p></li>
+            </ul>
+            <div class="-mob-share-close">取消</div>
+        </div>
+        <div class="-mob-share-ui-bg"></div>
+        <script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=23a3d44c6690c"></script>
+<!--MOB SHARE END-->
+            
+        <div style="background-color: #2E7D32;height: 3px;margin-bottom: 15px;margin-top: 15px;"></div>
+        <span>移动开发者/技术爱好者/喜欢开源与分享，你也可以关注微信公众号MobDevGroup，移动开发在线分享：<a href="http://mobdevgroup.com">MobDevGroup</a></span>
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/Android-Studio/">Android Studio</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/11/10/ArchitectureComponentsCodelab/" data-tooltip="西安GDG上关于Architecture Components的Codelab">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/08/16/NodeVersionManage/" data-tooltip="Node版本管理">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+        
+    </div>
+</article>
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 Sean Liu. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div class="post-bottom-bar">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/11/10/ArchitectureComponentsCodelab/" data-tooltip="西安GDG上关于Architecture Components的Codelab">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/08/16/NodeVersionManage/" data-tooltip="Node版本管理">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/user.jpg">
+        
+            <h4 id="about-card-name">Sean Liu</h4>
+        
+            <h5 id="about-card-bio">Just Keep Sharing 移动开发在线分享：http://mobdevgroup.com</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                Mobile Developer
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br>
+                Xi&#39;an, Shaanxi, China
+            </h5>
+        
+    </div>
+</div>
+        <div id="cover" style="background-color:#2196f3"></div>
+
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.fancybox.js"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js"></script>
+<script src="/assets/js/tranquilpeak.js"></script>
+<!--SCRIPTS END-->
+
+
+</html>

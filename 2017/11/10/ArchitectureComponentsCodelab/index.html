@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="宇信同行">
+    <title>西安GDG上关于Architecture Components的Codelab - 宇信同行</title>
+    <meta name="author" content="Sean Liu">
+    <meta name="description" content="宇信同行">
+    <link rel="icon" href="/assets/images/fav.ico">
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+    <!--STYLES END-->
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-77096739-2']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?fdaa18e768db90bb9e82a9db3aec9d3d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="https://yuxingxin.com">宇信同行</a>
+    </h1>
+    
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="/assets/images/user.jpg">
+        </a>
+    
+</header>
+            <nav id="sidebar">
+    
+    <div class="sidebar-profile">
+        <a href="/#about">
+            
+            <img class="sidebar-profile-picture" src="/assets/images/user.jpg">
+            
+        </a>
+        <span class="sidebar-profile-name hide-md">Sean Liu</span>
+    </div>
+    
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc hide-md">主页</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-categories">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc hide-md">分类</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-tags">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc hide-md">标签</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-archives">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc hide-md">归档</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/#about">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc hide-md">关于宇行信</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="http://weibo.com/lx8909" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-weibo"></i>
+                    <span class="sidebar-button-desc hide-md">weibo</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://github.com/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc hide-md">GitHub</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="http://stackoverflow.com/users/4866682/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+                    <span class="sidebar-button-desc hide-md">Stack Overflow</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://twitter.com/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc hide-md">Twitter</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://www.facebook.com/profile.php?id=100004716995168" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+                    <span class="sidebar-button-desc hide-md">Facebook</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="mailto:lx8909@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc hide-md">Mail</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/atom.xml">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc hide-md">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+            <div id="main">
+                
+<style type="text/css">
+
+.-hoofoo-share-buttons {
+  display: inline-block;
+}
+.-hoofoo-share-title {
+  font-size: 1.1em;
+  font-weight: 200;
+}
+.-hoofoo-share-ui-button {
+  cursor: pointer;
+  background-color: #555;
+  color: #fff;
+  font-size: 24px;
+  line-height: 40px;
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  border-radius: 25px;
+  float: left;
+  transition: background 0.4s;
+  -moz-transition: background 0.4s; /* Firefox 4 */
+  -webkit-transition: background 0.4s; /* Safari å’Œ Chrome */
+  -o-transition: background 0.4s;
+  text-align: center;
+}
+.-hoofoo-share-weibo:hover {
+  background-color: #cf3f41;
+}
+.-hoofoo-share-weixin:hover {
+  background-color: #18a01a;
+}
+.-hoofoo-share-qq:hover {
+  background-color: #5593d9;
+}
+.-hoofoo-share-twitter:hover {
+  background-color: #2ab3e6;
+}
+.-hoofoo-share-more:hover {
+  background-color: #777;
+}
+.-mob-share-weixin-qrcode-content {
+  border-radius: 4px;
+  -webkit-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  -o-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+.-mob-share-weixin-qrcode {
+  margin: 5% !important;
+  width: 90% !important;
+  height: auto !important;
+}
+.-mob-share-weixin-qrcode-close {
+  background-image: url("/assets/images/fancybox_sprite.png") !important;
+}
+.-mob-share-weixin-qrcode-close {
+  overflow: hidden;
+  line-height: 100px !important;
+  position: absolute !important;
+  top: -18px !important;
+  right: -18px !important;
+  width: 36px !important;
+  height: 36px !important;
+  cursor: pointer !important;
+  z-index: 8040 !important;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  .-mob-share-weixin-qrcode-close {
+    background-image: url("/assets/images/fancybox_sprite@2x.png") !important;
+    background-size: 44px 152px !important; /*The size of the normal image, half the size of the hi-res image*/
+  }
+}
+.-mob-share-close {
+  height: 4em !important;
+  font-size: 0.8em !important;
+  line-height: 4em !important;
+  background: #555 !important;
+  color: #fff !important;
+}
+</style>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">西安GDG上关于Architecture Components的Codelab</h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" content="Fri Nov 10 2017 00:00:00 GMT+0800">
+        Nov 10, 2017
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Android/">Android</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <h3 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h3><h4 id="为什么要学习Architecture-Components？"><a href="#为什么要学习Architecture-Components？" class="headerlink" title="为什么要学习Architecture Components？"></a>为什么要学习Architecture Components？</h4><p>Architecture Components是一组构建可健壮的，可测试的，并可维护的Android库，另外，这里也有一份<a href="https://developer.android.com/topic/libraries/architecture/guide.html" target="_blank" rel="noopener">App架构指南</a>，介绍了使用Architecture Components构建App的一套方法。</p>
+<p>通过学习使用Architecture Components，你应用将会写更少的模板代码，并且你也会看到处理与生命周期以及持久化相关的诡异问题的策略方法。</p>
+<h4 id="要做什么？"><a href="#要做什么？" class="headerlink" title="要做什么？"></a>要做什么？</h4><p>在这次的codelab中你将使用不同的组件来构建一个叫做Sunshine的天气应用，它从远程获取数据，存储到本地，并展示给用户。</p>
+<h4 id="构建App的注意事项"><a href="#构建App的注意事项" class="headerlink" title="构建App的注意事项"></a>构建App的注意事项</h4><ul>
+<li>遵循<a href="https://developer.android.com/topic/libraries/architecture/guide.html" target="_blank" rel="noopener">App 架构指南</a>的原则</li>
+<li>使用包含<a href="https://developer.android.com/topic/libraries/architecture/livedata.html" target="_blank" rel="noopener">LiveData</a>和<a href="https://developer.android.com/topic/libraries/architecture/viewmodel.html" target="_blank" rel="noopener">ViewModel</a>的Lifecycle库</li>
+<li>使用<a href="https://developer.android.com/topic/libraries/architecture/room.html" target="_blank" rel="noopener">Room持久化库</a></li>
+<li>从远程获取数据，存储到本地，并以响应式UI的方式展示给用户</li>
+</ul>
+<h4 id="你需要具备的条件"><a href="#你需要具备的条件" class="headerlink" title="你需要具备的条件"></a>你需要具备的条件</h4><ul>
+<li>Android Studio 3.0或更新版本</li>
+<li>熟悉如何构建Android App以及avtivity 生命周期</li>
+<li>基本的SQLite，例如，能够写select语句和where从句</li>
+<li>熟悉线程并会处理Android的异步任务</li>
+</ul>
+<h3 id="搭建环境"><a href="#搭建环境" class="headerlink" title="搭建环境"></a>搭建环境</h3><h4 id="获取代码"><a href="#获取代码" class="headerlink" title="获取代码"></a>获取代码</h4><ul>
+<li>从<a href="https://drive.google.com/drive/folders/0B3MhUM7KgEEBQXptdF9IYld6Rkk" target="_blank" rel="noopener">这里</a>下载代码</li>
+<li>解压到文件夹</li>
+<li>导入Android Studio 3.0，这可能需要花费几分钟</li>
+</ul>
+<h3 id="介绍Sunshine"><a href="#介绍Sunshine" class="headerlink" title="介绍Sunshine"></a>介绍Sunshine</h3><p>Sunshine是使用Google在优达学城上面的<a href="https://www.udacity.com/course/new-android-fundamentals--ud851" target="_blank" rel="noopener">开发Android应用</a>课程实现的天气应用，在这次的codelab中，你将会学到App代码的骨架，加上Architecture Components库以及<a href="https://developer.android.com/topic/libraries/architecture/guide.html" target="_blank" rel="noopener">App架构指南</a>的架构模式。</p>
+<p>需要注意的地方：</p>
+<ul>
+<li>App应该模块化，每个类负责一个定义好的功能</li>
+<li>不应该有<strong>上帝对象</strong>，即内部引用其他许多类，后者被划分了许多的责任。</li>
+<li>App应该是可测试的。</li>
+</ul>
+<p>我们的App有两屏，一屏展示了14天的天气预报，另外一屏给出某一天详细的天气预报情况</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1flcq5ugu6aj31320wydrb.jpg" alt></p>
+<h4 id="App架构指南"><a href="#App架构指南" class="headerlink" title="App架构指南"></a>App架构指南</h4><p>遵循<a href="https://developer.android.com/topic/libraries/architecture/guide.html" target="_blank" rel="noopener">这里</a>推荐的App架构方式，下面是会涉及到各个类的一张表，如果之前你不熟悉这些组件也不用担心，在这次的codelab中你将会了解它。</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79ly1fld3nhjibnj30f30d3dgp.jpg" alt></p>
+<p>下面是对上图中不同的类做一个概述：</p>
+<p><strong>UI Controllers</strong>：UI Controllers是activities或者fragments，它的唯一任务是知道如何展示数据以及传递UI事件，例如用户按了一个按钮，UI Controllers既不包含UI数据，也不直接操作数据。</p>
+<p><strong>ViewModels 和 LiveData</strong>：这些类代表着所有需要展示在UI上的数据，你将在这次的codelab中学到如何将这两个类结合在一起。</p>
+<p><strong>Repository</strong>：这个类是我们数据唯一的真实来源，它在和UI交互中扮演着API的角色。ViewModels从repository中请求数据，他们不用关心repository是数据从磁盘加载的还是从网络加载的，再或者如何以及什么时候持久化这些数据，而是repository管理这些。作为这项责任的一部分，repository是不同数据源的一个中介者，当你在这些的codelab中做完一个后你就会学到更多。</p>
+<p><strong>Remote Network Data Source</strong>：管理来自远程的数据，例如网络。</p>
+<p><strong>Model </strong>：管理存储在本地数据库的数据。</p>
+<h3 id="Sunshine之旅"><a href="#Sunshine之旅" class="headerlink" title="Sunshine之旅"></a>Sunshine之旅</h3><p>开始的代码包含两个activity，<code>MainActivity</code>和<code>DetailActivity</code></p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1flcqjqee22j31320wuaj3.jpg" alt></p>
+<p><code>DetailActivity</code>是我们要做的第一个Activity，所有需要恰当的展示列表条目属性的UI代码以及图片资源都在起始的工程里面，app还没有连接数据源。</p>
+<p>也可以在<a href="https://github.com/googlecodelabs/android-build-an-app-architecture-components" target="_blank" rel="noopener">README</a>看到找出更多App中的类。</p>
+<h4 id="Sunshine：架构"><a href="#Sunshine：架构" class="headerlink" title="Sunshine：架构"></a>Sunshine：架构</h4><p>快速过一下最终App的架构：</p>
+<p>两个activity（<code>MainActivity</code> 和 <code>DetailActivity</code>），各自的 <a href="https://developer.android.com/reference/android/arch/lifecycle/ViewModel.html" target="_blank" rel="noopener"><code>ViewModel</code></a>（<code>MainActivityViewModel</code> 和 <code>DetailActivityViewModel</code>）以及相关的LiveData，他们将会使用一个repository类（SunshineRepository），来管理SQLite数据库和网络数据源之间的通信。<code>WeatherNetworkDataSource</code>使用两个service（<code>SunshineSyncIntentService</code> 和 <code>SunshineFirebaseJobService</code>）从 <a href="https://andfun-weather.udacity.com/weather" target="_blank" rel="noopener">mock weather server</a>请求天气数据，<code>mock weather server</code>返回随机的JSON数据。</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1fld3o2g5o1j30hw0bl75j.jpg" alt></p>
+<p>上面绿色圈住的是我们需要完成的，让我们先以应用程序的数据库部分开始，并了解ROOM，它是一个针对Android的SQLite对象映射库。</p>
+<h3 id="介绍ROOM"><a href="#介绍ROOM" class="headerlink" title="介绍ROOM"></a>介绍ROOM</h3><h4 id="为什么需要缓存天气数据"><a href="#为什么需要缓存天气数据" class="headerlink" title="为什么需要缓存天气数据"></a>为什么需要缓存天气数据</h4><p>大多数情况下，并不是所有，App都和数据打交道，在Sunshine中，你拥有<code>WeatherEntry</code>对象，表示天气预报的数据，你可以决定每次从Sunshine中创建一个activity，从服务器下载最新的数据，这种方式保证了每个用户都可以看到最新更新的天气，但是效率极低，每次你切屏或者旋转手机，它将会重新请求天气数据，并且大多数次这些数据是不会变化的。另外，如果用户离线了，那么他们就没办法使用你的应用改了。</p>
+<p>这也是大多数App为什么将数据保存在手机的本地数据缓存中的原因，Android提供了本地SQLite 全部支持，所以，SQLite用来做缓存的一种常见的数据库。</p>
+<h4 id="介绍ROOM-1"><a href="#介绍ROOM-1" class="headerlink" title="介绍ROOM"></a>介绍ROOM</h4><h5 id="ROOM的好处"><a href="#ROOM的好处" class="headerlink" title="ROOM的好处"></a>ROOM的好处</h5><p>和SQLite打交道，意味着使用像 <a href="https://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html" target="_blank" rel="noopener"><code>SQLiteOpenHelper</code></a>, <a href="https://developer.android.com/reference/android/database/sqlite/SQLiteDatabase.html" target="_blank" rel="noopener"><code>SQLiteDatabase</code></a> and <a href="https://developer.android.com/reference/android/database/sqlite/SQLiteQueryBuilder.html" target="_blank" rel="noopener"><code>SQLiteQueryBuilder</code></a>这样的API，尽管他们很强大，但是也仍面临许多开发阶段的挑战，这包含了许多模板代码，无法在编译期间校验SQLite语句的合法性。</p>
+<p>对于Sunshine，你应使用新的SQLite对象映射库， <a href="https://developer.android.com/reference/android/arch/persistence/room/package-summary.html" target="_blank" rel="noopener">Room</a>. <code>Room</code>相比内置的API有许多优点，包含：</p>
+<ul>
+<li>和内置API相比减少了模板代码，尤其是，它将数据库对象映射为Java对象，这意味着你不需要使用<a href="https://developer.android.com/reference/android/content/ContentValues.html" target="_blank" rel="noopener"><code>ContentValues</code></a> or <a href="https://developer.android.com/reference/android/database/Cursor.html" target="_blank" rel="noopener"><code>Cursor</code></a></li>
+<li>编译期间的SQL查询验证，因此不正确的SQL语句将会在编译期间被发现，而不是运行期间。</li>
+<li>通过 <a href="https://developer.android.com/reference/android/arch/lifecycle/LiveData.html" target="_blank" rel="noopener"><code>LiveData</code></a>(这次codelab你会了解) and <a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="noopener">RxJava</a>来允许数据的监听。</li>
+</ul>
+<h5 id="ROOM组件"><a href="#ROOM组件" class="headerlink" title="ROOM组件"></a>ROOM组件</h5><p>Room使用注解来定义数据库结构，它有三大主要组件：</p>
+<ul>
+<li><a href="https://developer.android.com/reference/android/arch/persistence/room/Entity.html" target="_blank" rel="noopener"><strong>@Entity</strong></a>：定义了数据库表结构，Model对象可以容易的转换为Entity对象</li>
+<li><a href="https://developer.android.com/reference/android/arch/persistence/room/Dao.html" target="_blank" rel="noopener"><strong>@DAO</strong></a>：表示一个可以作为数据库访问对象（DAO）的类或者接口，DAO负责定义访问数据库的方法，它们提供读写数据库中数据的API</li>
+<li><a href="https://developer.android.com/reference/android/arch/persistence/room/Database.html" target="_blank" rel="noopener"><strong>@Database</strong></a>：表示数据库持有者，这个类中定义一系列数据库相关的实体和DAO方法，然后你可以使用这个类创建一个新的数据库或者在运行期获取一个数据库连接。</li>
+</ul>
+<h4 id="轮到你了：添加ROOM到Sunshine"><a href="#轮到你了：添加ROOM到Sunshine" class="headerlink" title="轮到你了：添加ROOM到Sunshine"></a>轮到你了：添加ROOM到Sunshine</h4><p>添加ROOM到你的工程</p>
+<ol>
+<li><p>打开项目的<code>build.gradle</code>文件（不是app或者module的），添加如下：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">allprojects &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        jcenter()</span><br><span class="line">        maven &#123; url <span class="string">'https://maven.google.com'</span> &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打开app或者module的<code>build.gradle</code>文件，添加下面依赖：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">implementation</span> "<span class="selector-tag">android</span><span class="selector-class">.arch</span><span class="selector-class">.persistence</span><span class="selector-class">.room</span><span class="selector-pseudo">:runtime</span><span class="selector-pseudo">:1.0.0"</span></span><br><span class="line"><span class="selector-tag">annotationProcessor</span> "<span class="selector-tag">android</span><span class="selector-class">.arch</span><span class="selector-class">.persistence</span><span class="selector-class">.room</span><span class="selector-pseudo">:compiler</span><span class="selector-pseudo">:1.0.0"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>同步gradle</p>
+</li>
+</ol>
+<p>这些依赖提供Room和注解处理器，你将通过它们来创建一个<code>Entity</code>。</p>
+<h3 id="创建一个Entity"><a href="#创建一个Entity" class="headerlink" title="创建一个Entity"></a>创建一个Entity</h3><h4 id="如何创建实例"><a href="#如何创建实例" class="headerlink" title="如何创建实例"></a>如何创建实例</h4><p>要理解如何创建实例，先看一下<a href="https://developer.android.com/topic/libraries/architecture/room.html" target="_blank" rel="noopener">Room documentation</a>的例子，然后将其应用到Sunshine中。</p>
+<p>Room使用注解来为生成的表定义表结构和列约束，假设你想创建下面一张user表：</p>
+<table>
+<thead>
+<tr>
+<th><strong>id </strong>(Primary Key for table)</th>
+<th><strong>firstName</strong></th>
+<th><strong>lastName</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Florina</td>
+<td>Muntenescu</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Lyla</td>
+<td>Fujiwara</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Yigit</td>
+<td>Boyar</td>
+</tr>
+</tbody>
+</table>
+<p>这是创建表的代码：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Creates a table named users. </span></span><br><span class="line"><span class="comment">// tableName is the property name, users is the value</span></span><br><span class="line"><span class="meta">@Entity</span>(tableName = <span class="string">"users"</span>) </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> &#123;</span></span><br><span class="line">    <span class="meta">@PrimaryKey</span> <span class="comment">// Denotes id as the primary key</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">public</span> String firstName;</span><br><span class="line">    <span class="keyword">public</span> String lastName;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Ignore</span> <span class="comment">// Tells Room to ignore this field</span></span><br><span class="line">    Bitmap picture;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面例子中有这样几样东西是需要有的：</p>
+<ul>
+<li>必须使用注解<code>@Entity</code>定义类</li>
+<li>至少有一个字段来作为主键，用<code>@PrimaryKey</code>来标识</li>
+<li>Room需要能访问所有字段，有两种方法可以做到，声明public或者提供getters 和 setters.</li>
+<li>字段需要有某种方法可以转换为能够存储在SQLite中的值，Room为原生和包装替代者提供内置支持，你将在后面了解到 <a href="https://developer.android.com/reference/android/arch/persistence/room/TypeConverter.html" target="_blank" rel="noopener"><code>TypeConverters</code></a>，如果你有不存储到数据库的数据，例如例子中的Bitmap，你可以使用<code>@Ignore</code>注解，来告诉Room来忽略字段或者方法。</li>
+</ul>
+<p>默认情况下，表名会以class名来命名，列名会以字段名来命名，Room也提供了其他的注解和属性来支持，在这个例子中，你可以看到<code>@Entity</code>注解有属性<code>tableName</code>，代表着用<code>users</code>来代替<code>user</code>（类名）作为表名。</p>
+<h4 id="轮到你了：为某一天的天气预报创建实体"><a href="#轮到你了：为某一天的天气预报创建实体" class="headerlink" title="轮到你了：为某一天的天气预报创建实体"></a>轮到你了：为某一天的天气预报创建实体</h4><p>我们的数据库用一张表来存储天气数据：</p>
+<table>
+<thead>
+<tr>
+<th><strong>id </strong>(Primary Key)</th>
+<th><strong>weatherIconId</strong></th>
+<th><strong>date</strong></th>
+<th><strong>min</strong></th>
+<th><strong>max</strong></th>
+<th><strong>humidity</strong></th>
+<th><strong>pressure</strong></th>
+<th><strong>wind</strong></th>
+<th><strong>degrees</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>500</td>
+<td>1502668800000</td>
+<td>13.32</td>
+<td>18.27</td>
+<td>96</td>
+<td>996.68</td>
+<td>1.2</td>
+<td>0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>501</td>
+<td>1502755200000</td>
+<td>12.66</td>
+<td>17.34</td>
+<td>97</td>
+<td>996.12</td>
+<td>4.8</td>
+<td>45</td>
+</tr>
+<tr>
+<td>3</td>
+<td>800</td>
+<td>1502841600000</td>
+<td>12.07</td>
+<td>16.48</td>
+<td>90</td>
+<td>995.7</td>
+<td>8.2</td>
+<td>90</td>
+</tr>
+</tbody>
+</table>
+<p>开始，你需要创建一个对象来存储在表中，starter开始的应用中已经有一个model类<code>WeatherEntry</code>，来看下：</p>
+<p>让<code>data.database.WeatherEntry</code> model转换为Room中的实体：</p>
+<ol>
+<li><p><strong>将<code>WeatherEntry</code>用<code>@Entity</code>注解，并改表名为”weather”</strong>：在WeatherEntry类的正上方，添加<code>@Entity</code>注解，添加<code>tableName</code>属性并设置值为<code>weather</code>，没有这个的话，表名将会是<code>weatherentry</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">Entity</span>(<span class="keyword">tableName</span> = <span class="string">"weather"</span>)</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p><strong>定义id为自增主键</strong>：在<code>id</code>字段的上方，添加<code>@PrimaryKey</code>注解，Sunshine代码针对每个<code>WeatherEntry</code>没有一个独一无二的数据库id，因为服务器那边没返回，因此可以让Room帮你做这个，在<code>@PrimaryKey</code>中添加<code>autoGenerate</code>属性并设置其值为<code>true</code></p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PrimaryKey</span>(autoGenerate = <span class="keyword">true</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>date字段应该是独一无二的</strong>：因为我们队一个位置只存储天气，因此一天不可能有两个天气预报数据，在<code>@Entity</code>中添加<code>indices</code>属性，值为<code>date</code>列，并且<code>unique</code>应该设置为<code>true</code></p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@Entity</span>(tableName = <span class="string">"weather"</span>, indices = &#123;<span class="variable">@Index</span>(value = &#123;<span class="string">"date"</span>&#125;, unique = true)&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>让Room可以访问字段</strong>：这种情况，让 <code>WeatherEntry</code> 类只读，Sunshine只下载并展示天气数据，不应该修改天气数据。</p>
+<p>为了实现这个，让字段声明为private，并提供getter方法，另外需要<strong>创建一个额外的构造器</strong>，来允许Room为每一个单独的 <code>WeatherEntry</code>字段设置值，这让Room来构造<code>WeatherEntity</code>，并保护这些已经构造好的字段免于被修改成为了可能。</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> WeatherEntry(<span class="built_in">int</span> id, <span class="built_in">int</span> weatherIconId, Date date, <span class="keyword">double</span> <span class="built_in">min</span>, <span class="keyword">double</span> <span class="built_in">max</span>, <span class="keyword">double</span> humidity, <span class="keyword">double</span> pressure, <span class="keyword">double</span> wind, <span class="keyword">double</span> <span class="built_in">degrees</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.id = id;</span><br><span class="line">    <span class="keyword">this</span>.weatherIconId = weatherIconId;</span><br><span class="line">    <span class="keyword">this</span>.date = date;</span><br><span class="line">    <span class="keyword">this</span>.<span class="built_in">min</span> = <span class="built_in">min</span>;</span><br><span class="line">    <span class="keyword">this</span>.<span class="built_in">max</span> = <span class="built_in">max</span>;</span><br><span class="line">    <span class="keyword">this</span>.humidity = humidity;</span><br><span class="line">    <span class="keyword">this</span>.pressure = pressure;</span><br><span class="line">    <span class="keyword">this</span>.wind = wind;</span><br><span class="line">    <span class="keyword">this</span>.<span class="built_in">degrees</span> = <span class="built_in">degrees</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p><strong>只有一个构造器应该暴露给Room</strong>：Room不能用两个构造器编译一个实体，因为他不知道该用哪个，由于Room不需要没有<code>int id</code>的构造器，因此你可以使用<code>@Ignore</code>来让它对Room不可见。</p>
+</li>
+</ol>
+<h3 id="创建一个数据库访问对象"><a href="#创建一个数据库访问对象" class="headerlink" title="创建一个数据库访问对象"></a>创建一个数据库访问对象</h3><h4 id="如何创建一个DAO（数据库访问对象）"><a href="#如何创建一个DAO（数据库访问对象）" class="headerlink" title="如何创建一个DAO（数据库访问对象）"></a>如何创建一个DAO（数据库访问对象）</h4><p>接下来，你将为<code>WeatherEntry</code> 创建一个<code>@Dao</code>，数据库访问对象的简写，DAO可以是定义读写数据库数据操作的抽象类或者接口，看下面这个例子：<code>User.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Dao</span> <span class="comment">// Required annotation for Dao to be recognized by Room</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Returns a list of all users in the database</span></span><br><span class="line">    <span class="meta">@Query</span>(<span class="string">"SELECT * FROM user"</span>)</span><br><span class="line">    <span class="function">List&lt;User&gt; <span class="title">getAll</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Inserts multiple users</span></span><br><span class="line">    <span class="meta">@Insert</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">insertAll</span><span class="params">(User... users)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Deletes a single user</span></span><br><span class="line">    <span class="meta">@Delete</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">delete</span><span class="params">(User user)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>DAO需要一个<code>@Dao</code>注解，为了让DAO起作用，你需要声明方法并添加 <code>@Insert</code>,<code>@Delete</code>, <code>@Update</code>和<code>@Query</code>. <code>@Insert</code>, <code>@Delete</code> and <code>@Update</code> 顾名思义，是为创建方法提供方便的注解。</p>
+<p> 例子中的<code>void insertAll(User... users);</code>展示了如何插入多个Users，这个方法接受多个User对象或者数组来插入数据库。</p>
+<p>正如你看到的，你可以传递User实体对象作为一个参数或者从一个Dao方法中返回一个User实体 对象，你可以用任何实体类做这个。</p>
+<h4 id="带参的-Query"><a href="#带参的-Query" class="headerlink" title="带参的@Query"></a>带参的@Query</h4><p>如果你想做的事情在上面的三个方便的注解里面没有，那就使用<code>@Query</code>, <code>@Query</code> 让你写SQLite来读写数据库操作，尤其是，你可以通过在查询字符串中添加冒号<code>：</code>使用注解将参数传递到方法里，例如：你定义一个方法是通过名字查用户的，如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@Query("<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">user</span> <span class="keyword">WHERE</span> first_name <span class="keyword">LIKE</span> :<span class="keyword">first</span> <span class="keyword">AND</span> <span class="string">"</span></span><br><span class="line"><span class="string">           + "</span>last_name <span class="keyword">LIKE</span> :<span class="keyword">last</span> <span class="keyword">LIMIT</span> <span class="number">1</span><span class="string">")</span></span><br><span class="line"><span class="string">User findByName(String first, String last);</span></span><br></pre></td></tr></table></figure>
+<p>第一个和最后一个参数作为<code>:first</code>和<code>:last</code>被包含在查询字符串中，因此你可以这样调用方法：<code>findByName(&quot;Jane&quot;, &quot;Doe&quot;)</code>,查询语句会被调用<code>SELECT * FROM user WHERE first_name LIKE Jane AND last_name LIKE Doe LIMIT 1</code>并返回自动转成User对象的一列数据。</p>
+<h4 id="轮到你了：为WeatherEntry创建DAO"><a href="#轮到你了：为WeatherEntry创建DAO" class="headerlink" title="轮到你了：为WeatherEntry创建DAO"></a>轮到你了：为WeatherEntry创建DAO</h4><p>创建一个叫做<code>WeatherDao</code>的DAO类，步骤如下：</p>
+<ol>
+<li><p><code>data.database</code>包下（包同 <code>WeatherEntry</code>)，新建一个叫做<code>WeatherDao.java</code>的接口</p>
+</li>
+<li><p>给接口<code>WeatherDao</code>添加 <code>@Dao</code>注解</p>
+</li>
+<li><p>定义<code>bulkInsert</code>方法，它可以插入多个<code>WeatherEntry</code>对象，当App从服务器接收到数据时，它会用这个方法将接收到的数据插入数据库</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Insert</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bulkInsert</span><span class="params">(WeatherEntry... weather)</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>另外,对于 <code>bulkInsert</code>,你应使用 <a href="https://developer.android.com/reference/android/arch/persistence/room/OnConflictStrategy.html#REPLACE" target="_blank" rel="noopener"><strong>OnConflictStrategy.REPLACE</strong></a> ，以至于当Sunshine重新下载天气数据时，旧的数据可以被新的数据替代，你可以使用一个注解的属性来做这个：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@<span class="keyword">Insert</span>(<span class="keyword">onConflict</span> = OnConflictStrategy.REPLACE)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定义<code>getWeatherByDate</code>方法，传递<code>Java.util.Date</code>参数并返回天气数据，出于查询的目的，<code>Date</code>不能转换成字符串<code>String</code>值，接下来你将了解到类型转换，现在知道有一种方法让Room自动将<code>Date</code>转成<code>long</code>，假设你可以使用<code>Date</code>参数作为<code>long</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Query("<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> weather <span class="keyword">WHERE</span> <span class="built_in">date</span> = :<span class="built_in">date</span><span class="string">")</span></span><br><span class="line"><span class="string">WeatherEntry getWeatherByDate(Date date);</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><h4 id="如何创建一个数据库"><a href="#如何创建一个数据库" class="headerlink" title="如何创建一个数据库"></a>如何创建一个数据库</h4><p>你已经有了<code>@Entity</code>和<code>@Dao</code>，现在是时候创建<code>@Database</code>类了，下面这个例子使用User实体：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Database</span>(entities = &#123;<span class="type">User</span>.<span class="keyword">class</span>&#125;, version = <span class="number">1</span>) <span class="comment">//Entities listed here</span></span><br><span class="line">public <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">AppDatabase</span> <span class="keyword">extends</span> <span class="title">RoomDatabase</span> </span>&#123;</span><br><span class="line">    public <span class="keyword">abstract</span> <span class="type">UserDao</span> userDao(); <span class="comment">//Getters for Dao</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>要创建数据库，你需要：</p>
+<ul>
+<li>继承<strong>RoomDatabase</strong>类</li>
+<li>添加<code>@Database</code>注解，并使用<code>entities</code> 和 <code>version</code>属性，<code>entities</code> 需要列出你所有的实体类， <code>version</code>是数据库版本号</li>
+<li>针对每一个Dao定义一个方法返回Dao对象：用这种方式来暴露你的Dao,来处理app数据库中的数据。</li>
+</ul>
+<p>生成数据库的代码如下：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">AppDatabase database</span> = Room.databaseBuilder(getApplicationContext(),</span><br><span class="line">        AppDatabase.class, <span class="string">"database-name"</span>).build();</span><br></pre></td></tr></table></figure>
+<p>有多个数据库实例容易引起数据一致性问题，例如，你可以在用一个实例读数据库的同时，并用另外一个实例来写数据库，为了保证只创建一个<code>RoomDatabase</code>实例，你的数据库类应该被设计成单例。</p>
+<p>为了在数据库上执行查询，你将通过调用<code>RoomDatabase</code>的子类里的方法来访问DAO：</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List<span class="variable">&lt;User&gt;</span> <span class="literal">all</span>Users = database.<span class="keyword">user</span>Dao().getAll();</span><br></pre></td></tr></table></figure>
+<h4 id="轮到你了：创建Sunshine数据库"><a href="#轮到你了：创建Sunshine数据库" class="headerlink" title="轮到你了：创建Sunshine数据库"></a>轮到你了：创建Sunshine数据库</h4><p>要创建Sunshine数据库需要完成下面步骤：</p>
+<ol>
+<li><p>在<code>data.database</code>包下新建<code>SunshineDatabase.java</code>类。</p>
+</li>
+<li><p>让<code>SunshineDatabase</code>声明为抽象类，并继承<code>RoomDatabase</code>。</p>
+</li>
+<li><p>用<code>@Database</code>来注解。</p>
+</li>
+<li><p>添加属性<code>entities</code> 和 <code>version</code>到注解<code>@Database</code>上，并将<code>WeatherEntry.class</code>作为属性<code>entities</code> 的值，属性 <code>version</code>的值设为1。</p>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@Database</span>(entities = &#123;WeatherEntry.<span class="keyword">class</span>&#125;, <span class="keyword">version</span> = <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>给WeatherDao添加抽象方法：定义一个名为weatherDao的方法并返回一个<code>WeatherDao</code>的实例。</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="function">WeatherDao <span class="title">weatherDao</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>让<code>SunshineDatabase</code>实现为单例模式：你可以查看<code>WeatherNetworkDataSource</code> 这个类中的实现，它是另外一个只允许一个实例运行的类，创建一个<code>SunshineDatabase</code> 类型的静态变量，叫做<code>sInstance</code>，另外还有一个锁对象来保证线程安全，创建一个叫做<code>getInstance</code>的实例方法，返回<code>sInstance</code>，如果存在就返回，不存在就创建，代码如下：</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">String</span> DATABASE_NAME = <span class="string">"weather"</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// For Singleton instantiation</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">Object</span> LOCK = <span class="keyword">new</span> <span class="keyword">Object</span>();</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">volatile</span> SunshineDatabase sInstance;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> SunshineDatabase getInstance(Context context) &#123;</span><br><span class="line">    <span class="keyword">if</span> (sInstance == <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (LOCK) &#123;</span><br><span class="line">           <span class="keyword">if</span> (sInstance == <span class="keyword">null</span>) &#123;</span><br><span class="line">                sInstance = Room.databaseBuilder(context.getApplicationContext(),</span><br><span class="line">                    SunshineDatabase.class, SunshineDatabase.DATABASE_NAME).build();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sInstance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>数据库是一个抽象类，继承于<strong>RoomDatabase</strong>，注解为 <strong>@Database</strong>, 定义了<strong>entities</strong>.,并且为每个DAO提供了抽象的getter方法，当然它也是一个单例。</p>
+</li>
+</ol>
+<h4 id="TypeConverters"><a href="#TypeConverters" class="headerlink" title="TypeConverters"></a>TypeConverters</h4><p> <code>WeatherEntry</code> 类有一个 <code>java.util.Date</code>对象，但是你不能将其存储在数据库中，那是因为<a href="https://sqlite.org/datatype3.html" target="_blank" rel="noopener">SQLite没有Date这样一个数据类型</a>,要将其转换为能存储到库中的类型，你需要一个TypeConverter.</p>
+<p>要完成Java类型和SQLite支持的类型转换，你需要通过注解定一个方法：</p>
+<ul>
+<li>新建一个包含TypeConverter的类</li>
+<li>在这个类中，将方法用 <code>@TypeConverter</code>注解</li>
+<li>用转换类添加注解 <code>@TypeConverters</code> 到你的数据库类中</li>
+</ul>
+<h4 id="轮到你了：实现一个TypeConverter"><a href="#轮到你了：实现一个TypeConverter" class="headerlink" title="轮到你了：实现一个TypeConverter"></a>轮到你了：实现一个TypeConverter</h4><ol>
+<li><p>去掉<code>data.database.DateConverter.java</code>类的注释,代码已经在类中写好了，它包含两个注解有 <code>@TypeConverter</code>的方法，来实现Date类型到long类型和long类型到Date类型的转换</p>
+</li>
+<li><p>添加 <code>@TypeConverters</code>到<code>SunshineDatebase</code>类中:你需要让<code>SunshineDatebase</code>知道转换类，如下:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Database</span>(entities = &#123;<span class="type">WeatherEntry</span>.<span class="keyword">class</span>&#125;, version = <span class="number">1</span>)</span><br><span class="line"><span class="meta">@TypeConverters</span>(<span class="type">DateConverter</span>.<span class="keyword">class</span>)</span><br><span class="line">public <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">SunshineDatabase</span> <span class="keyword">extends</span> <span class="title">RoomDatabase</span> </span>&#123; ...</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行代码保证没有错误</p>
+</li>
+</ol>
+<h4 id="轮到你了：Room编译期验证"><a href="#轮到你了：Room编译期验证" class="headerlink" title="轮到你了：Room编译期验证"></a>轮到你了：Room编译期验证</h4><p>现在你已经把DAO加入到数据库中了，你可以看到Room一个强大的功能：编译期对SQLite代码的验证。</p>
+<ol>
+<li><p>修改<code>WeatherDAO</code>中的<code>getWeatherByDate</code>方法，刻意的造成一个拼写错误，将<code>date = :date</code>写成</p>
+<p><code>date = :data</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Query("<span class="keyword">SELECT</span> * <span class="keyword">FROM</span> weather <span class="keyword">WHERE</span> <span class="keyword">data</span> = :<span class="built_in">date</span><span class="string">")</span></span><br><span class="line"><span class="string">WeatherEntry getWeatherByDate(Date date);</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行你的代码：App跑不起来，你将会看到下面一条错误的帮助信息：</p>
+<p><img src="https://codelabs.developers.google.com/codelabs/build-app-with-arch-components/img/29ad49e42863c706.png" alt></p>
+</li>
+</ol>
+<h3 id="介绍LiveData和ViewModels"><a href="#介绍LiveData和ViewModels" class="headerlink" title="介绍LiveData和ViewModels"></a>介绍LiveData和ViewModels</h3><h3 id="接下来"><a href="#接下来" class="headerlink" title="接下来"></a>接下来</h3><p>你已经创建了一个数据库以及DAO来访问该库，现在要做的是创建<code>DetailActivityViewModel</code> and <code>LiveData</code>.</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79ly1fld3ok40atj30ia0bnmyd.jpg" alt></p>
+<h4 id="ViewModels"><a href="#ViewModels" class="headerlink" title="ViewModels"></a>ViewModels</h4><p>ViewModel是设计用来以生命周期的方式来持有和管理和UI相关的数据。这允许数据在屏幕旋转等配置更改中依然可以保存。通过从UI controllers中分离出UI数据，你可以实现责任的分离：ViewModels处理提供，操作和存储UI状态，而UI Controllers处理状态的展示。</p>
+<p>ViewModels通常与给他们提供的数据的UI控制器相关联，通过使用 <a href="https://developer.android.com/reference/android/arch/lifecycle/LifecycleOwner.html" target="_blank" rel="noopener">LifecycleOwner</a>和 <a href="https://developer.android.com/reference/android/arch/lifecycle/Lifecycle.html" target="_blank" rel="noopener">Lifecycle</a> 类来实现:</p>
+<ul>
+<li><a href="https://developer.android.com/reference/android/arch/lifecycle/Lifecycle.html" target="_blank" rel="noopener">Lifecycle</a> - 定义Android生命周期的对象</li>
+<li><a href="https://developer.android.com/reference/android/arch/lifecycle/LifecycleOwner.html" target="_blank" rel="noopener">LifecycleOwner</a> - 拥有生命周期的对象，如UI Controller </li>
+</ul>
+<p>当你获得一个ViewModel时，你需要用<a href="https://developer.android.com/reference/android/arch/lifecycle/LifecycleOwner.html" target="_blank" rel="noopener"><code>LifecycleOwner</code></a>提供一个组件，它通常是activity或者fragment，通过提供<code>LifecycleOwner</code>，你建立了ViewModel和LifecycleOwner之前的联系。</p>
+<h4 id="ViewModel生命周期"><a href="#ViewModel生命周期" class="headerlink" title="ViewModel生命周期"></a>ViewModel生命周期</h4><p>ViewModel和它相关的UI 控制器有着不同的生命周期作用域。这是因为UI控制器会在配置发生变化时销毁和重建，而ViewModels并不会。</p>
+<p>下图展示了当activity创建，旋转，然后销毁掉时，ViewModel生命周期和activity声明周期做的对比。</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1fld3oubuwkj30b50e7gms.jpg" alt></p>
+<p>ViewModel一直会存在直到activity销毁掉，想更进一步的讨论和了解ViewModel，可以参考在<a href="https://medium.com/google-developers/viewmodels-a-simple-example-ed5ac416317e" target="_blank" rel="noopener">这篇博文</a></p>
+<p>ViewModels通常包含LiveData对象，稍后我们会讨论它。</p>
+<h4 id="该你了：DetailActivityViewModel"><a href="#该你了：DetailActivityViewModel" class="headerlink" title="该你了：DetailActivityViewModel"></a>该你了：DetailActivityViewModel</h4><p>这个部分通过去掉注释和拷贝代码来看下<code>ViewModel</code>，<code>activity</code>，以及<code>LiveData</code>之间是如何工作的。</p>
+<p><code>DetailActivity</code>展示了一天的天气预报，这有一个与它相关联的UI状态数据：<code>WeatherEntry</code></p>
+<ol>
+<li><p>打开app或module的<code>build.gradle</code>文件，添加下面依赖：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">implementation</span> "<span class="selector-tag">android</span><span class="selector-class">.arch</span><span class="selector-class">.lifecycle</span><span class="selector-pseudo">:runtime</span><span class="selector-pseudo">:1.0.3"</span></span><br><span class="line"><span class="selector-tag">implementation</span> "<span class="selector-tag">android</span><span class="selector-class">.arch</span><span class="selector-class">.lifecycle</span><span class="selector-pseudo">:extensions</span><span class="selector-pseudo">:1.0.0"</span></span><br><span class="line"><span class="selector-tag">annotationProcessor</span> "<span class="selector-tag">android</span><span class="selector-class">.arch</span><span class="selector-class">.lifecycle</span><span class="selector-pseudo">:compiler</span><span class="selector-pseudo">:1.0.0"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>同步gradle</p>
+</li>
+<li><p>打开<code>ui.detail.DetailActivityViewModel</code>去掉整个文件的注释，如下：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">DetailActivityViewModel</span> <span class="keyword">extends</span> <span class="title">ViewModel</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// Weather forecast the user is looking at</span></span><br><span class="line">   <span class="keyword">private</span> <span class="type">WeatherEntry</span> mWeather;</span><br><span class="line"></span><br><span class="line">   public <span class="type">DetailActivityViewModel</span>() &#123;</span><br><span class="line">       </span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public <span class="type">WeatherEntry</span> getWeather() &#123;</span><br><span class="line">       <span class="keyword">return</span> mWeather;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public void setWeather(<span class="type">WeatherEntry</span> weatherEntry) &#123;</span><br><span class="line">       mWeather = weatherEntry;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个类继承自ViewModel，来给到ViewModel的生命周期作用域。单个<code>WeatherEntry</code>对象包含了所有需要在<code>DetailActivity</code>中展示的数据。</p>
+</li>
+<li><p>打开<code>ui.detail.DetailActivity</code>，让其继承于<code>AppCompatActivity.</code>  </p>
+<blockquote>
+<p>1.0.0稳定版本，已经将Lifecycle组件移入support库，我们可以直接继承v7包中的AppCompatActivity</p>
+</blockquote>
+</li>
+<li><p><code>DetailActivity</code> 中添加一个类型为<code>DetailActivityViewModel</code>，变量名为 <code>mViewModel</code>的变量</p>
+</li>
+<li><p>添加下面代码到<code>DetailActivity</code>的<code>onCreate</code>方法中：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mViewModel = ViewModelProviders.of(<span class="keyword">this</span>).<span class="keyword">get</span>(DetailActivityViewModel.<span class="keyword">class</span>);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意这里在后面引入Repository后有变化</p>
+</blockquote>
+<p>通过在<code>onCreate</code>方法中调用 <a href="https://developer.android.com/reference/android/arch/lifecycle/ViewModelProviders.html#of%28android.support.v4.app.Fragment%29" target="_blank" rel="noopener"><code>ViewModelProviders.of</code></a>来创建一个<code>DetailActivityViewModel</code>实例。</p>
+<p>然后当配置发生变化时，activity重建， <a href="https://developer.android.com/reference/android/arch/lifecycle/ViewModelProviders.html#of%28android.support.v4.app.Fragment%29" target="_blank" rel="noopener"><code>ViewModelProviders.of</code></a>再次被<code>onCreate</code>调用,这次它返回之前存在的和<code>DetailActivity</code>相关联的<code>ViewModel</code>实例</p>
+<p>你这时候可以调用<code>mViewModel.getWeather()</code>来访问数据，无论配置如何变化都会将其保存起来。</p>
+<p>当你将ViewModels和LiveData结合起来会得到更多好处。</p>
+</li>
+</ol>
+<h4 id="LiveData"><a href="#LiveData" class="headerlink" title="LiveData"></a>LiveData</h4><p><code>LiveData</code>是一个生命周期感知的数据持有类，它持有值并让其可以被监听。</p>
+<p>说它可以持有数据，如下：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">MutableLiveData&lt;<span class="keyword">String</span>&gt; name = <span class="keyword">new</span> <span class="type">MutableLiveData</span>&lt;<span class="keyword">String</span>&gt;();</span><br><span class="line">name.setValue(<span class="string">"Lyla"</span>);</span><br></pre></td></tr></table></figure>
+<p>这是一个持有<code>String</code>类型的<code>LiveData</code>实例，当前值为<code>Lyla</code></p>
+<p><strong>Observation</strong>参考自观察者模式，也叫主体，有一系列相关联的对象，叫做观察者，当主题的状态发生变化时，它会通知所有的观察者，通常是调用他们的方法。</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1fld3p4hyk5j30ft093jru.jpg" alt></p>
+<p>上面这种情况，主体是<code>LiveData</code>，观察者是<a href="https://developer.android.com/reference/android/arch/lifecycle/Observer.html" target="_blank" rel="noopener"><code>Observer</code></a>的子类，无论何时<code>setValue</code>方法被调用，主体状态发生了改变，都会触发<code>Observers</code>。</p>
+<p>LiveData持有一系列相关的观察者和<code>LifecycleOwner</code>s,<code>LifecycleOwner</code>s通常是activity或者fragment，大部分情况下，与他们相关联的<code>LifecycleOwner</code>只要在当前屏幕下，这些<code>Observers</code>就被认为是处于活跃状态，即<code>STARTED</code>或者是<code>RESUMED</code>状态。LiveData追踪<code>LifecycleOwner</code>s这样的一个事实也是<code>LiveData</code>被称作感知生命周期的原因。</p>
+<p>为<code>LiveData</code>创建一个<code>Observers</code>的一般方法是：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name.observe(&lt;LIFECYCLE OWNER&gt;, <span class="keyword">new</span><span class="type">Name</span> -&gt; &#123;</span><br><span class="line">   <span class="comment">// Do something when the observer is triggered; usually updating the UI</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p> <code>LifecycleOwner</code>被传进observe方法，这也是与<code>Observer</code>相关联的 <code>LifecycleOwner</code></p>
+<h4 id="轮到你了：添加LiveData"><a href="#轮到你了：添加LiveData" class="headerlink" title="轮到你了：添加LiveData"></a>轮到你了：添加LiveData</h4><p><code>DetailActivity</code>将监听一个<code>MutableLiveData</code>，这个<code>MutableLiveData</code>将会持有<code>WeatherEntry</code>对象，当MutableLiveData通过<code>postValue()</code>方法更新时，<code>DetailActivity</code>的<code>Observer</code>将会被通知到.然后<code>DetailActivity</code>将会更新UI</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79ly1fld3pcw1uuj30cv0bt0tf.jpg" alt></p>
+<p>创建你的第一个<code>LiveData</code></p>
+<ol>
+<li><p>在<code>DetailActivityViewModel</code>文件中，修改<code>mWeather</code>,将其从<code>WeatherEntry</code>类型变为<code>MutableLiveData&lt;WeatherEntry&gt;</code>，Mutable LiveData会改变。</p>
+</li>
+<li><p>在<code>DetailActivityViewModel</code>文件中，在构造器初始化你新建的<code>MutableLiveData&lt;WeatherEntry&gt;</code>对象</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">DetailActivityViewModel</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    mWeather = <span class="keyword">new</span> MutableLiveData&lt;&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>DetailActivityViewModel</code>文件中，更新<code>mWeather</code>的getter方法，让其返回新的<code>MutableLiveData</code>对象</p>
+</li>
+<li><p>在<code>DetailActivityViewModel</code>文件中，修改<code>setWeather()</code>方法体为<code>mWeather.postValue(weatherEntry);</code></p>
+</li>
+<li><p>在<code>DetailActivity</code>的<code>onCreate</code>方法中，监听<code>LiveData</code></p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">mViewModel</span><span class="selector-class">.getWeather</span>()<span class="selector-class">.observe</span>(this, weatherEntry -&gt; &#123;</span><br><span class="line">   <span class="comment">// Update the UI</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在新的观察者中，更新不同的UI元素，这有一个<code>bindWeatherToUI()</code>方法通过传入<code>WeatherEntry</code>来做这件事情</p>
+<p>最后一步意思是无论何时<code>mViewModel.setWeather()</code>被调用，<code>MutableLiveData</code>的<code>postValue</code>方法也会被调用，<code>postValue</code>触发所有的观察者监听LiveData，这种情况下，只有一个观察者监听LiveData，也是你刚刚创建的用来更新<code>DetailActivity</code>UI 那一个。</p>
+<p>简而言之，当<code>DetailActivityViewModel</code>的<code>setValue</code>方法被调用后，它将会触发UI更新。</p>
+<blockquote>
+<p>注意LiveData和它的子类都包含一个<code>setValue</code>方法和一个<code>postValue()</code>方法，不同是<code>setValue</code>方法只能用在主线程中，而<code>postValue()</code>则不用，它可以在子线程中使用</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="介绍Repositories"><a href="#介绍Repositories" class="headerlink" title="介绍Repositories"></a>介绍Repositories</h3><p>我们已经介绍了Room,ViewModel,LiveData,但是还没有看到他们如何协同工作。UI是完全与刚刚创建的网络和数据库相隔离的，现在我们要做的是如何将网络与数据库数据暴露给UI，这就是<strong>repository</strong>的工作。</p>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79ly1fld3plaug1j30i90begmt.jpg" alt></p>
+<h4 id="Repository类"><a href="#Repository类" class="headerlink" title="Repository类"></a><strong>Repository</strong>类</h4><p><strong>Repository</strong>负责处理数据操作。他们为应用提供简洁的rest API ，知道数据是从哪里来的并且当数据更新时也知道该调用什么接口。他们是不同数据源的中介器（持久化model，web服务，缓存等等）</p>
+<p>不像Room,LiveData或者ViewModels，Repository类不继承或实现任何一个Architecture Components库的组件。这是一种在你的App中组织数据的简单方式，可以看<a href="https://developer.android.com/topic/libraries/architecture/guide.html" target="_blank" rel="noopener">这里</a>的介绍.</p>
+<p>在这种情况下，Repository类将会管理你新建的<code>WeatherDao</code>之间的通信，这些DAO可以访问数据库的所有东西， <code>WeatherNetworkDataSource</code>通过控制Service类来从我们的mock server上拉取数据。</p>
+<p>Repository类是唯一与数据库和网络包通信的类，数据和网络包将不与他们各自包外的类通信。因此Repository类将会是获取数据来展示屏幕上的UI API。</p>
+<h4 id="惯用思路"><a href="#惯用思路" class="headerlink" title="惯用思路"></a>惯用思路</h4><p>通过下载天气数据并保存在数据库中，将涉及的几个类一起协同工作，每个执行不同的功能：</p>
+<p><strong>SunshineRepository</strong>： 协调所有与数据相关的指令，代理给<code>WeatherNetworkDataSource</code>和<code>WeatherDao</code>，监听<code>WeatherNetworkDataSource</code>，当它获取完数据时，就知道该更新数据库了。</p>
+<p><strong>WeatherNetworkDataSource</strong>：执行所有的网络操作。为最近下载的网络数据提供最真实的数据。通过包含存储有最新下载的数据的LiveData对象，无论何时成功请求到数据，它都会被更新。</p>
+<p><strong>SunshineSyncIntentService</strong>：使用<code>IntentService</code>来执行同步操作，以至于应用关闭时，服务器有额外的时间来下载完数据并保存在数据库中。</p>
+<p><strong>WeatherDao</strong>：用来在weather表中执行所有的数据库操作。</p>
+<p>下面是网络同步被触发的四个部分：</p>
+<p><strong>Observation</strong></p>
+<ol>
+<li><p><strong>SunshineRepository</strong>:监听<code>WeatherNetworkDataSource</code>提供的LiveData对象。</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79ly1fld3pycwesj30g806ot92.jpg" alt></p>
+</li>
+</ol>
+<p><strong>开启服务</strong></p>
+<ol>
+<li><p><strong>SunshineRepository</strong>：检查是否有足够的数据</p>
+</li>
+<li><p><strong>WeatherNetworkDataSource</strong>：创建并立即执行<code>SunshineSyncIntentService</code></p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79ly1fld3q5ccmzj30i005a0t0.jpg" alt></p>
+</li>
+</ol>
+<p><strong>请求数据</strong></p>
+<ol>
+<li><p><strong>SunshineSyncIntentService</strong>：获取<code>WeatherNetworkDataSource</code>实例，并用它来开启数据请求。</p>
+</li>
+<li><p><strong>WeatherNetworkDataSource</strong>：获取数据后传递给<code>OpenWeatherJsonParser</code> 和 <code>NetworkUtils</code>. 一旦完成，将更新的数据传递给存储最新数据的LiveData</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79ly1fld3qedmqqj30in07474q.jpg" alt></p>
+</li>
+</ol>
+<p><strong>保存数据库</strong></p>
+<ol>
+<li><p>最后由于<strong>SunshineRepository</strong>是一直在监听<code>LiveData</code>,因此<code>SunshineRepository</code> 将会更新数据库</p>
+<p><img src="https://ws1.sinaimg.cn/large/006tNc79ly1fld3qlj4yqj30iy06z3z0.jpg" alt></p>
+</li>
+</ol>
+<h3 id="创建Repository来获取并存储数据"><a href="#创建Repository来获取并存储数据" class="headerlink" title="创建Repository来获取并存储数据"></a>创建Repository来获取并存储数据</h3><h4 id="轮到你了：创建Repository"><a href="#轮到你了：创建Repository" class="headerlink" title="轮到你了：创建Repository"></a>轮到你了：创建Repository</h4><ol>
+<li><p>你无须拷贝和粘贴，这里已经有了一个<code>SunshineRepository.java</code>文件，去掉代码注释，它包含有：</p>
+<p>一个<code>getInstance()</code>的构造器方法，就像SunshineDatabase一样，<code>SunshineRepository</code> 也是一个单例。</p>
+<p>几个空方法：<code>initializeData(), deleteOldData(), isFetchNeeded()</code> 和 <code>startFetchWeatherService()</code></p>
+</li>
+</ol>
+<h4 id="轮到你了：创建LiveData"><a href="#轮到你了：创建LiveData" class="headerlink" title="轮到你了：创建LiveData"></a>轮到你了：创建LiveData</h4><p>你将使用LiveData来存储最新在网络上下载的数据。</p>
+<ol>
+<li><p>在<code>WeatherNetworkDataSource</code>文件中，创建一个 <code>MutableLiveData</code>的成员变量，叫做<code>mDownloadedWeatherForecasts</code>. 它应该被声明为private，存储一个<code>WeatherEntry</code> 类型的数组对象，这也是数据同步操作返回的。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// LiveData storing the latest downloaded weather forecasts</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> MutableLiveData&lt;WeatherEntry[]&gt; mDownloadedWeatherForecasts;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>WeatherNetworkDataSource</code>构造器中，初始化<code>mDownloadedWeatherForecasts</code></p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">mDownloadedWeatherForecasts</span> = new MutableLiveData&lt;WeatherEntry[]&gt;()<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>WeatherNetworkDataSource</code>文件中,为<code>mDownloadedWeatherForecasts</code>创建一个getter方法，叫做<code>getCurrentWeatherForecasts</code>.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> LiveData&lt;WeatherEntry[]&gt; getCurrentWeatherForecasts() &#123;</span><br><span class="line">    <span class="keyword">return</span> mDownloadedWeatherForecasts;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="轮到你了：开启服务"><a href="#轮到你了：开启服务" class="headerlink" title="轮到你了：开启服务"></a>轮到你了：开启服务</h4><p>现在是时候开启<code>IntentService</code>了：</p>
+<ol>
+<li><p>在<code>SunshineRepository</code>中，完成<code>startFetchWeatherService()</code>方法，让它调用<code>WeatherNetworkDataSource</code>中的<code>startFetchWeatherService()</code>方法，并创建开启<code>IntentService</code></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">startFetchWeatherService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    mWeatherNetworkDataSource.startFetchWeatherService();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>SunshineRepository</code>中,添加<code>initalizeData()</code>方法。当 <code>ViewModel</code>获取数据时<code>initalizeData()</code>方法会被调用。现在，调用<code>startFetchWeatherService()</code>方法。在将来你还需要添加是否有必要开启同步的验证。</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="function"><span class="keyword">void</span> <span class="title">initializeData</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Only perform initialization once per app lifetime. If initialization has already been</span></span><br><span class="line">    <span class="comment">// performed, we have nothing to do in this method.</span></span><br><span class="line">    <span class="keyword">if</span> (mInitialized) <span class="keyword">return</span>;</span><br><span class="line">    mInitialized = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">    startFetchWeatherService();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="轮到你了：完成获取数据的逻辑"><a href="#轮到你了：完成获取数据的逻辑" class="headerlink" title="轮到你了：完成获取数据的逻辑"></a>轮到你了：完成获取数据的逻辑</h4><p>现在你有一个service在跑，让其获取数据并存储在<code>mDownloadedWeatherForecasts</code>中</p>
+<ol>
+<li><p>在<code>InjectorUtils</code>中，去掉<code>provideRepository()</code>和<code>provideNetworkDataSource()</code>的注释，<code>InjectorUtils</code>的目的是提供依赖注入的静态方法。</p>
+</li>
+<li><p>在<code>SunshineSyncIntentService</code>文件中，方法 <code>onHandleIntent()</code>中调用 <code>InjectorUtils.provideNetworkDataSource()</code>来得到<code>WeatherNetworkDataSource</code>的引用</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">onHandleIntent</span><span class="params">(Intent intent)</span> </span>&#123;</span><br><span class="line">    Log.d(LOG_TAG, <span class="string">"Intent service started"</span>);</span><br><span class="line">    WeatherNetworkDataSource networkDataSource = InjectorUtils.provideNetworkDataSource(<span class="keyword">this</span>.getApplicationContext());</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>SunshineSyncIntentService</code>文件中，方法 <code>onHandleIntent()</code>中调用 <code>InjectorUtils.fetchWeather()</code>方法：</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">networkDataSource.fetchWeather()<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>WeatherNetworkDataSource</code>调用方法 <code>fetchWeather()</code>的结尾处，用最新的天气数据来更新<code>mDownloadedWeatherForecasts</code> 持有的值。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">mDownloadedWeatherForecasts</span><span class="selector-class">.postValue</span>(<span class="selector-tag">response</span><span class="selector-class">.getWeatherForecast</span>());</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>轮到你了：监听LiveData</p>
+<p>当<code>initalizeData()</code>被调用后，它开启一系列连锁事件，执行<code>SunshineSyncIntentService</code>来保存结果数据到<code>mDownloadedWeatherForecasts</code> 中，最后一步是让<code>SunshineRepository</code> 监听<code>mDownloadedWeatherForecasts</code>并更新数据库。</p>
+<ol>
+<li><p>在<code>SunshineRepository</code>类的构造函数中获取到<code>mDownloadedWeatherForecasts</code>,用你之前写的 <code>getCurrentWeatherForecasts</code> 方法获取，这个和在activity中用getter来从ViewModel中获取一个LiveData很像。</p>
+<figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LiveData&lt;WeatherEntry[]&gt; networkData = mWeatherNetworkDataSource.getCurrentWeatherForecasts()<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>SunshineRepository</code>类中监听<code>mDownloadedWeatherForecasts</code>。在<code>SunshineRepository</code>类的构造函数中使用<a href="https://developer.android.com/reference/android/arch/lifecycle/LiveData.html#observeForever(android.arch.lifecycle.Observer%3CT%3E" target="_blank" rel="noopener"><code>observeForever</code></a>) 方法来监听 <code>mDownloadedWeatherForecasts</code>.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">networkData</span><span class="selector-class">.observeForever</span>(<span class="selector-tag">newForecastsFromNetwork</span> <span class="selector-tag">-</span>&gt; &#123;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当<code>mDownloadedWeatherForecasts</code>发生改变时，触发数据库保存数据。在<code>SunshineRepository</code>的观察者中调用 <code>WeatherDao</code>‘s <code>bulkInsert()</code>方法。注意数据库操作不要在主线程操作。使用<code>AppExecutor</code>‘的disk I/O来提供合适的线程。</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">networkData.observeForever(<span class="keyword">new</span><span class="type">ForecastsFromNetwork</span> -&gt; &#123;</span><br><span class="line">        mExecutors.diskIO().execute(() -&gt; &#123;</span><br><span class="line">            <span class="comment">// Insert our new weather data into Sunshine's database</span></span><br><span class="line">            mWeatherDao.bulkInsert(<span class="keyword">new</span><span class="type">ForecastsFromNetwork</span>);</span><br><span class="line">            Log.d(LOG_TAG, <span class="string">"New values inserted"</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>如果你这时候想运行代码，在 <code>DetailActivity</code>‘s <code>onCreate</code>:中调用：</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// THIS IS JUST TO RUN THE CODE; REPOSITORY SHOULD NEVER BE CREATED IN</span></span><br><span class="line"><span class="comment">// DETAILACTIVITY</span></span><br><span class="line">InjectorUtils.provideRepository(this).initializeData();</span><br></pre></td></tr></table></figure>
+<p>当第一次运行时你会看到下面输出的日志：</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79ly1fld3qwnyqqj30ha07btdf.jpg" alt></p>
+<p>注意<code>DetailActivity</code>并不是一个和 <code>SunshineRepository</code>打交道的地方。activity和其他UI控制器都不应该直接和repository交互，那是ViewModel的工作。接下来你会看到。</p>
+<blockquote>
+<p>为什么使用<code>observeForever()</code>?</p>
+<p><code>observeForever()</code>和observe很像，一个主要的区别是。他总是被认为处于活跃状态，因为，它不携带有生命周期 的对象。那么为什么在这使用它呢？<code>SunshineRepository</code> 在一直监听 <code>WeatherNetworkDataSource</code>，这些都和UI控制的声明周期无关，而且，他们存在于整个app的声明周期中，因此，你可以安全的使用<code>observeForever()</code></p>
+</blockquote>
+</li>
+</ol>
+<h3 id="展示数据"><a href="#展示数据" class="headerlink" title="展示数据"></a>展示数据</h3><p>当你与服务器同步，由于监听的作用，你的repository会自动的更新你的数据库，现在你需要将你的ViewModel从repository中获取天气数据。</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79ly1fld3r3f2xej30ih0bimyf.jpg" alt></p>
+<h4 id="轮到你了：通过日期来暴露出WeatherEntry"><a href="#轮到你了：通过日期来暴露出WeatherEntry" class="headerlink" title="轮到你了：通过日期来暴露出WeatherEntry"></a>轮到你了：通过日期来暴露出WeatherEntry</h4><p> <code>DetailActivityViewModel</code> 需要来自数据库的数据，顾名思义，它需要一天的天气信息来作为LiveData对象，在<code>WeatherDao</code>中，你有一个返回<code>WeatherEntry</code>对象的方法<code>getWeatherByDate()</code>.这样几乎是完美的。</p>
+<p>Room里有一个非常方便的功能，当你想有一个和数据库保持同步的livedata对象，Room可以返回livedata包装对象。数据库数据改变时，LiveData可以触发它的观察者，在子线程中加载数据库的数据。</p>
+<p>从Room获取LiveData:</p>
+<ol>
+<li><p>在<code>WeatherDao</code>中，更新<strong>getWeatherbyDate()</strong>让其返回<strong>LiveData<weatherentry>.</weatherentry></strong></p>
+<p>原本可以让 <code>DetailActivityViewModel</code>直接与 <code>WeahterDao</code>.通信，但是这违背了之前说的让repository作为其唯一数据来源，因此<code>DetailActivityViewModel</code>应该从<code>SunshineRepository</code>.中获取数据，<code>SunshineRepository</code>反过来调用<code>WeatherDao</code>来获取<code>LiveData</code></p>
+</li>
+<li><p>在<code>SunshineRepository</code>中，添加<strong>getWeatherbyDate()</strong>方法，该方法需穿进去Date对象，返回一个<code>LiveData&lt;WeatherEntry&gt;</code>.它将用存储在<code>SunshineRepository</code>中的<code>WeatherDao</code>对象来获取LiveData对象。</p>
+</li>
+<li><p>在<code>SunshineRepository</code>的<code>getWeatherByDate</code>方法中调用<code>initializeData()</code>,您将对数据进行“懒”实例化。即当</p>
+</li>
+</ol>
+<p>被请求时，才会从网络中加载，这也展示了repository中有用的一面：由于它是所有数据请求的API。你要保证每次请求 <code>getWeatherByDate()</code>方法，数据初始化都会被触发。如果你能直接访问<code>WeatherDao</code>，这将是不可能的。</p>
+<p>你可以更改 <code>initalizeData()</code>方法的修饰符为<code>private</code>，这是因为它只在repository中使用。</p>
+<h4 id="ViewModelProvider-Factories"><a href="#ViewModelProvider-Factories" class="headerlink" title="ViewModelProvider Factories"></a>ViewModelProvider Factories</h4><p>接下来你需要使用repository来获取数据。这有一个问题，<code>ViewModel</code>还没有<code>SunshineRepository</code>的引用</p>
+<p>一种可测试的代码设计方法是传递一个<code>SunshineRepository</code>的实例到<code>DetailActivityViewModel</code> 中，这将会在你测试view model的时候让你很容易的mock repository。</p>
+<p>被 <code>ViewModelProvider</code>自动调用的构造器是默认的那一个，他没有参数，如果你想为View model创建一个不同的构造器，你需要创建一个View model provider factory。去掉<code>DetailViewModelFactory</code>中的代码注释：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">DetailViewModelFactory</span> <span class="keyword">extends</span> <span class="title">ViewModelProvider</span>.<span class="title">NewInstanceFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">SunshineRepository</span> mRepository;</span><br><span class="line"></span><br><span class="line">   public <span class="type">DetailViewModelFactory</span>(<span class="type">SunshineRepository</span> repository) &#123;</span><br><span class="line">       <span class="keyword">this</span>.mRepository = repository;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   public &lt;<span class="type">T</span> <span class="keyword">extends</span> <span class="type">ViewModel</span>&gt; <span class="type">T</span> create(<span class="type">Class</span>&lt;<span class="type">T</span>&gt; modelClass) &#123;</span><br><span class="line">       <span class="comment">//noinspection unchecked</span></span><br><span class="line">       <span class="keyword">return</span> (<span class="type">T</span>) <span class="keyword">new</span> <span class="type">DetailActivityViewModel</span>(mRepository);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>要创建一个View model provider factory，你需要：</p>
+<ol>
+<li>继承 <code>ViewModelProvider.NewInstanceFactory</code></li>
+<li>将你想要的参数传进<code>DetailViewModelFactory</code>中，当前是传Repository</li>
+<li>重写<code>create()</code>方法，来调用你自定义的view model构造器</li>
+</ol>
+<p>然后使用factory：</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Get the ViewModel from the factory</span></span><br><span class="line">DetailViewModelFactory <span class="keyword">factory</span> = <span class="keyword">new</span> DetailViewModelFactory(repository);</span><br><span class="line"></span><br><span class="line">mViewModel = ViewModelProviders.of(<span class="keyword">this</span>, <span class="keyword">factory</span>).<span class="keyword">get</span>(DetailActivityViewModel.<span class="keyword">class</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="轮到你了：创建DetailViewModelFactory"><a href="#轮到你了：创建DetailViewModelFactory" class="headerlink" title="轮到你了：创建DetailViewModelFactory"></a>轮到你了：创建DetailViewModelFactory</h4><p>写完了<code>DetailViewModelFactory</code>,使用 <code>InjectorUtils</code> 来创建它。骨架代码已经给你了，但你还需要将Date和repository一起传递进去。</p>
+<ol>
+<li><p>在 <code>DetailActivityViewModel</code>中修改构造器，让其传递两个参数：<code>SunshineRepository</code> 和<code>java.util.Date</code>:</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> DetailActivityViewModel(SunshineRepository repository, <span class="built_in">Date</span> <span class="built_in">date</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果你还没有做的话，去掉 <code>DetailViewModelFactory</code>骨干代码的注释</p>
+</li>
+<li><p>在 <code>DetailViewModelFactory</code>中，添加向构造函数传递日期的能力。使用你在repository中传递的作为其引用。</p>
+</li>
+<li><p>在 <code>InjectorUtils</code>中，去掉注释 <code>provideDetailViewModelFactory</code>，构造器的声明需要与新添加的参数匹配</p>
+</li>
+<li><p>在 <code>DetailActivity</code> ‘s <code>onCreate()</code>中用下面代码创建今天日期：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Date</span> <span class="keyword">date</span> = SunshineDateUtils.getNormalizedUtcDateForToday();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>DetailActivity</code>中使用<code>InjectorUtils.provideDetailViewModelFactory()</code>获取 <code>DetailViewModelFactory</code>的引用。</p>
+</li>
+<li><p><code>DetailActivity</code>中，使用 <code>DetailViewModelFactory</code> 来获取View model</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ViewModelProviders.of(<span class="keyword">this</span>, <span class="keyword">factory</span>).<span class="keyword">get</span>(DetailActivityViewModel.<span class="keyword">class</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="轮到你了：通过日期获取WeatherEntry"><a href="#轮到你了：通过日期获取WeatherEntry" class="headerlink" title="轮到你了：通过日期获取WeatherEntry"></a>轮到你了：通过日期获取WeatherEntry</h4><p>现在你可以访问<code>Date</code>和 <code>SunshineRepository</code>了:</p>
+<ol>
+<li>在 <code>DetailActivityViewModel</code>中，使用date从repository中获取weather entry LiveData,</li>
+<li>清理代码，需要做的几件事情：<ul>
+<li>第一，view model中的LiveDate将不再被app所修改，因此将<code>MutableLiveData</code>改为<code>`LiveData</code>.</li>
+<li>同样，移除setWeather方法，你已经不再需要它了</li>
+<li>在<code>DetailActivity</code>中，移除模拟网络请求的代码<code>thread.sleep()</code></li>
+<li>如果在activity中仍旧有 <code>initalizeData</code>的调用或者直接和<code>SunshineRepository</code>,的通信，则移除它。</li>
+</ul>
+</li>
+<li>运行你的代码你将会看到随机的天气数据</li>
+</ol>
+<h3 id="正确的获取"><a href="#正确的获取" class="headerlink" title="正确的获取"></a>正确的获取</h3><p>Sunshine现在已经完成了从网络中加载数据，保存在数据库，并展示它。在开始下一个新功能前先解决两个低效的问题：</p>
+<ol>
+<li><code>DetailActivityViewModel</code>每次创建时都会重新查询网络，在你开启<code>SunshineSyncIntentService</code>之前，你应该检测本地缓存中是否有，毕竟，本地缓存的目的是避免不必要地重新下载数据。这也展示了sunshinerepository是如何协调应用程序中的数据流-一个完整的同步包括检查DAO是否有数据，如果没有，执行网络同步，然后更新DAO。</li>
+<li>该应用程序不是用来显示历史气象数据的，只有未来的天气数据。是的，这里还没有删除旧数据的过程！如果你的用户喜欢Sunshine并使用它一年了，那么将有365个的无用的历史气象数据存储在用户的手机上。</li>
+</ol>
+<h4 id="轮到你了：需要时再获取"><a href="#轮到你了：需要时再获取" class="headerlink" title="轮到你了：需要时再获取"></a>轮到你了：需要时再获取</h4><p>这有许多不同的方法来决定是否要下载数据，对于Sunshine，如下：</p>
+<ol>
+<li>计算数据库中当前日期过去的天数</li>
+<li>如果少于两周（14天），则下载更多的数据</li>
+</ol>
+<p>我们使用两周的原因是两周是我们想展示在 <code>MainActivity</code>中的数量，这是接下来主要做的事情，为了实现它：</p>
+<ol>
+<li><p>在WeatherDao中，声明方法<code>countAllFutureWeather</code>，这是一个使用 <code>SQL COUNTd</code>的查询方法，来获取一张未来天气日期的列表清单。</p>
+</li>
+<li><p>在<code>SunshineRepository</code>中完成<code>isFetchNeeded()</code>方法，这里应该检查是否至少有14天，如果少于14天就返回true</p>
+</li>
+<li><p>在<code>SunshineRepository</code>中<code>nitalizeData()</code>方法中，使用<code>isFetchNeeded()</code>方法来决定是否开启<code>SunshineSyncIntentService</code> ,你将会在disk I/O线程中这样做：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mExecutors.diskIO().execute(<span class="function"><span class="params">()</span> -&gt;</span> &#123;<span class="regexp">//</span>CODE ON DISK I/O THREAD HERE&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>您现在应该注意到，当您第一次运行该应用程序后重新打开该应用程序时，它将不会捕获新的随机气象数据。</p>
+<h4 id="轮到你了：删除旧数据"><a href="#轮到你了：删除旧数据" class="headerlink" title="轮到你了：删除旧数据"></a>轮到你了：删除旧数据</h4><p>现在删除过时的数据：</p>
+<ol>
+<li><p>在weatherDao中，声明方法<code>deleteOldData()</code>,这个方法应该删除所有给定日期之前的日期，虽然名称包含“删除”，但仍希望使用<code>@Query</code>注解，而不是<code>@Delete</code>注解，这是因为你需要写SQL语句来定义where从句</p>
+</li>
+<li><p>在<code>SunshineRepository</code>中，完善<code>deleteOldData()</code>方法，你需要为<code>deleteOldData()</code>获取到当前日期，你可以 使用<code>isFetchNeeded()</code>中相同的代码：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Date today</span> = SunshineDateUtils.getNormalizedUtcDateForToday();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在<code>SunshineRepository</code>网络数据观察者中，在插入新的数据之前调用 <code>deleteOldData()</code>删除旧的天气数据。</p>
+</li>
+</ol>
+<p>这将在您保存到数据库时删除所有旧数据。因为App使用 <code>OnConflictReplace</code>策略来保证日期的唯一。如果它获得新的天气信息，它也会更新数据库中已有的信息。</p>
+<h3 id="接下来我们可以按照同样的方法来完善MainActivity模块，这个留给大家做了。"><a href="#接下来我们可以按照同样的方法来完善MainActivity模块，这个留给大家做了。" class="headerlink" title="接下来我们可以按照同样的方法来完善MainActivity模块，这个留给大家做了。"></a>接下来我们可以按照同样的方法来完善MainActivity模块，这个留给大家做了。</h3><h3 id="资料"><a href="#资料" class="headerlink" title="资料"></a>资料</h3><ol>
+<li>起始工程：<a href="https://github.com/yuxingxin/Architecture-Components-App" target="_blank" rel="noopener">https://github.com/yuxingxin/Architecture-Components-App</a></li>
+<li>完整代码参考：<a href="https://github.com/yuxingxin/Architecture-Component-App-Finished" target="_blank" rel="noopener">https://github.com/yuxingxin/Architecture-Component-App-Finished</a></li>
+</ol>
+
+        
+            
+        
+        <!--MOB SHARE BEGIN-->
+        <div class="-hoofoo-share-title">分享到：</div>
+        <div class="-hoofoo-share-buttons">
+            <div class="-mob-share-weibo -hoofoo-share-weibo -hoofoo-share-ui-button"><i class="fa fa-weibo" aria-hidden="true"></i></div>
+            <div class="-mob-share-weixin -hoofoo-share-weixin -hoofoo-share-ui-button"><i class="fa fa-weixin" aria-hidden="true"></i></div>
+            <div class="-mob-share-qq -hoofoo-share-qq -hoofoo-share-ui-button"><i class="fa fa-qq" aria-hidden="true"></i></div>
+            <div class="-mob-share-twitter -hoofoo-share-twitter -hoofoo-share-ui-button"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+            <div class="-hoofoo-share-more -hoofoo-share-ui-button -mob-share-open"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+        </div>
+        <div class="-mob-share-ui -mob-share-ui-theme" style="display: none; left: 0px; top: 0px;">
+            <ul class="-mob-share-list">
+                <li class="-mob-share-weibo" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>新浪微博</p></li>
+                <li class="-mob-share-weixin" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>微信</p></li>
+                <li class="-mob-share-qzone" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>QQ空间</p></li>
+                <li class="-mob-share-qq" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>QQ好友</p></li>
+                
+                <li class="-mob-share-douban" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>豆瓣</p></li>
+                <li class="-mob-share-youdao" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>有道云笔记</p></li>
+                
+                <li class="-mob-share-facebook" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Facebook</p></li>
+                <li class="-mob-share-twitter" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Twitter</p></li>
+                <li class="-mob-share-pocket" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Pocket</p></li>
+                <li class="-mob-share-google" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Google+</p></li>
+                <li class="-mob-share-tumblr" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Tumblr</p></li>
+                <li class="-mob-share-instapaper" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Instapaper</p></li>
+                <li class="-mob-share-linkedin" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Linkedin</p></li>
+            </ul>
+            <div class="-mob-share-close">取消</div>
+        </div>
+        <div class="-mob-share-ui-bg"></div>
+        <script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=23a3d44c6690c"></script>
+<!--MOB SHARE END-->
+            
+        <div style="background-color: #2E7D32;height: 3px;margin-bottom: 15px;margin-top: 15px;"></div>
+        <span>移动开发者/技术爱好者/喜欢开源与分享，你也可以关注微信公众号MobDevGroup，移动开发在线分享：<a href="http://mobdevgroup.com">MobDevGroup</a></span>
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/Architecture-Components/">Architecture Components</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/12/29/RubyVersionManage/" data-tooltip="Ruby相关环境配置">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/11/03/Migrate-Android-Studio-3-guide/" data-tooltip="Android Studio 和Gradle Plugin 3.0 迁移不完全指南">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+        
+    </div>
+</article>
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 Sean Liu. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div class="post-bottom-bar">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/12/29/RubyVersionManage/" data-tooltip="Ruby相关环境配置">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/11/03/Migrate-Android-Studio-3-guide/" data-tooltip="Android Studio 和Gradle Plugin 3.0 迁移不完全指南">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/user.jpg">
+        
+            <h4 id="about-card-name">Sean Liu</h4>
+        
+            <h5 id="about-card-bio">Just Keep Sharing 移动开发在线分享：http://mobdevgroup.com</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                Mobile Developer
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br>
+                Xi&#39;an, Shaanxi, China
+            </h5>
+        
+    </div>
+</div>
+        <div id="cover" style="background-color:#2196f3"></div>
+
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.fancybox.js"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js"></script>
+<script src="/assets/js/tranquilpeak.js"></script>
+<!--SCRIPTS END-->
+
+
+</html>

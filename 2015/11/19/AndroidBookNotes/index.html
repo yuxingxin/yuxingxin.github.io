@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="宇信同行">
+    <title>App研发录读后总结 - 宇信同行</title>
+    <meta name="author" content="Sean Liu">
+    <meta name="description" content="宇信同行">
+    <link rel="icon" href="/assets/images/fav.ico">
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+    <!--STYLES END-->
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-77096739-2']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?fdaa18e768db90bb9e82a9db3aec9d3d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="https://yuxingxin.com">宇信同行</a>
+    </h1>
+    
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="/assets/images/user.jpg">
+        </a>
+    
+</header>
+            <nav id="sidebar">
+    
+    <div class="sidebar-profile">
+        <a href="/#about">
+            
+            <img class="sidebar-profile-picture" src="/assets/images/user.jpg">
+            
+        </a>
+        <span class="sidebar-profile-name hide-md">Sean Liu</span>
+    </div>
+    
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc hide-md">主页</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-categories">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc hide-md">分类</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-tags">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc hide-md">标签</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-archives">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc hide-md">归档</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/#about">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc hide-md">关于宇行信</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="http://weibo.com/lx8909" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-weibo"></i>
+                    <span class="sidebar-button-desc hide-md">weibo</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://github.com/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc hide-md">GitHub</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="http://stackoverflow.com/users/4866682/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+                    <span class="sidebar-button-desc hide-md">Stack Overflow</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://twitter.com/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc hide-md">Twitter</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://www.facebook.com/profile.php?id=100004716995168" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+                    <span class="sidebar-button-desc hide-md">Facebook</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="mailto:lx8909@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc hide-md">Mail</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/atom.xml">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc hide-md">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+            <div id="main">
+                
+<style type="text/css">
+
+.-hoofoo-share-buttons {
+  display: inline-block;
+}
+.-hoofoo-share-title {
+  font-size: 1.1em;
+  font-weight: 200;
+}
+.-hoofoo-share-ui-button {
+  cursor: pointer;
+  background-color: #555;
+  color: #fff;
+  font-size: 24px;
+  line-height: 40px;
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  border-radius: 25px;
+  float: left;
+  transition: background 0.4s;
+  -moz-transition: background 0.4s; /* Firefox 4 */
+  -webkit-transition: background 0.4s; /* Safari å’Œ Chrome */
+  -o-transition: background 0.4s;
+  text-align: center;
+}
+.-hoofoo-share-weibo:hover {
+  background-color: #cf3f41;
+}
+.-hoofoo-share-weixin:hover {
+  background-color: #18a01a;
+}
+.-hoofoo-share-qq:hover {
+  background-color: #5593d9;
+}
+.-hoofoo-share-twitter:hover {
+  background-color: #2ab3e6;
+}
+.-hoofoo-share-more:hover {
+  background-color: #777;
+}
+.-mob-share-weixin-qrcode-content {
+  border-radius: 4px;
+  -webkit-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  -o-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+.-mob-share-weixin-qrcode {
+  margin: 5% !important;
+  width: 90% !important;
+  height: auto !important;
+}
+.-mob-share-weixin-qrcode-close {
+  background-image: url("/assets/images/fancybox_sprite.png") !important;
+}
+.-mob-share-weixin-qrcode-close {
+  overflow: hidden;
+  line-height: 100px !important;
+  position: absolute !important;
+  top: -18px !important;
+  right: -18px !important;
+  width: 36px !important;
+  height: 36px !important;
+  cursor: pointer !important;
+  z-index: 8040 !important;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  .-mob-share-weixin-qrcode-close {
+    background-image: url("/assets/images/fancybox_sprite@2x.png") !important;
+    background-size: 44px 152px !important; /*The size of the normal image, half the size of the hi-res image*/
+  }
+}
+.-mob-share-close {
+  height: 4em !important;
+  font-size: 0.8em !important;
+  line-height: 4em !important;
+  background: #555 !important;
+  color: #fff !important;
+}
+</style>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">App研发录读后总结</h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" content="Thu Nov 19 2015 00:00:00 GMT+0800">
+        Nov 19, 2015
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Android/">Android</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <h2 id="1-题外话"><a href="#1-题外话" class="headerlink" title="1.题外话"></a>1.题外话</h2><p>赶着双十一京东的优惠活动，买了《App研发录》这本书，看了下目录很感兴趣，就花了一周的时间看完了，这算是来写篇读后感吧，这本书整体和其他类开发的书还是有许多不同的地方，它没有系统的介绍Android的知识点，更多的是作者站在一个项目经理的角度对自己的经历所做的一个总结，所以对于项目的Team Leader来讲，这是一本很不错的书，或许你从中可以找到共鸣的地方。附上作者<a href="http://jax.cnblogs.com/" target="_blank" rel="noopener">博客</a></p>
+<p><img src="/assets/images/app.jpg" alt="image"></p>
+<h2 id="2-书中内容"><a href="#2-书中内容" class="headerlink" title="2.书中内容"></a>2.书中内容</h2><p>拿到书翻开的第一页就能看到360董事长周鸿祎做的序，当然了周董对书寄予很多，另外就是美团技术学院院长和大众点评首席架构师的作序（话说这两家公司现在合并了）。</p>
+<h4 id="重构"><a href="#重构" class="headerlink" title="重构"></a>重构</h4><p>这个对于新手来说还是不错的内容，作者的思路很清晰，站在整个项目全局来看，从整体项目结构到内部统一规范实现。</p>
+<h4 id="网络框架封装"><a href="#网络框架封装" class="headerlink" title="网络框架封装"></a>网络框架封装</h4><p>这个在现在看来虽然从技术上有些显得过时，尤其是Android6.0出来之后，谷歌把HttpClient从SDK包中移除了，所以这里我个人还是建议考虑当下流行的一些开源库来做，比如Volley、Retrofit、OKHttp、RxJava等，可以在此基础上做封装来适合我们的需求。但这里面还是有一些很不错的思想值得我们借鉴，尤其是提到的网络优化工作：onFail的统一处理，进度条的处理等。此外，作者提到了网络请求的缓存设计，具体思想就是：</p>
+<ol>
+<li>尽可能的减少API的调用次数；如页面需要调用多次才能拿到全部数据的可以设计成一个。</li>
+<li>缓存请求到的数据；对于即时性很低的接口可以通过配置缓存时间来形成不同的缓存策略，作者也提到这种适合GET请求，不适合POST，一个是请求数据，一个是修改数据。</li>
+<li>根据缓存时间是否过期来判断数据是否有用，最后就是加入强制更新策略。</li>
+</ol>
+<p>这一章还提到一个就是模拟数据，因为在App开发过程中，后端往往没有数据可供我们测试，这时候我们只能自己造数据，作者呢也实现了一个MockService，来帮助我们产生假数据，其实这个GitHub上面也有不错的开源库，关键词搜索<a href="https://github.com/search?o=desc&amp;q=Mock&amp;ref=searchresults&amp;s=stars&amp;type=Repositories&amp;utf8=%E2%9C%93" target="_blank" rel="noopener">Mock</a>,就会出来很多。<br>最后也提到了会话的保持，换句话说会话过期如何处理，以及时间校准问题和开启gzip压缩。</p>
+<h4 id="Android中经典的场景设计"><a href="#Android中经典的场景设计" class="headerlink" title="Android中经典的场景设计"></a>Android中经典的场景设计</h4><p>如图片缓存设计，像这些都有不错的实现库，像Volley、UIL、picasso、Fresco、Glide等等，另外一个是对网络流量的优化，作者提到了几点：</p>
+<ol>
+<li>MobileAPI接口返回的数据使用gzip进行压缩。</li>
+<li>传统App和MobileAPI即后端交互数据传递一般是走JSON,这里作者提到了谷歌发起的ProtoBuffer协议，这个协议是二进制格式的，所以在表示大数据时，空间比JSON更小。</li>
+<li>解决频繁调用API的问题。</li>
+<li>改变接口的连接方式；传统的都是HTTP无状态短连接，速度远不如TCP协议，因为后者是长连接，提高了速度，不过也加重服务器的负担。</li>
+<li>建立取消网络请求的机制，如果一个页面销毁了，那么就可以让这个页面的所有请求都取消掉，因为这些是没有意义的，完全可以不再等待，也不再接受数据。</li>
+<li>增加重试机制，针对POST增加仿重机制。</li>
+</ol>
+<p>针对图片的策略优化，尽可能的保证图片下载的宽高符合控件的大小，另外就是低流量模式的引入，比如可以适当降低图片的质量或者说大小，另外也可以针对2G或3G用户提供极速模式，不加载图片，只显示文字，这点最好做成配置项设计到App设置里面。另外一点就是提到App与HTML5的交互问题，为后面更新做技术铺垫。</p>
+<p>####命名规范以及编码规范<br>从文件命名，变量命名到编码规范，代码风格统一等，这样就可以保证团队的统一性。</p>
+<h4 id="Crash异常的收集与统计"><a href="#Crash异常的收集与统计" class="headerlink" title="Crash异常的收集与统计"></a>Crash异常的收集与统计</h4><p>我们都知道一个重要类就是UncaughtExceptionHandler类，通过实现它来做三件事情：发错误日志到服务器，给用户崩溃前的友好提示，错误日志记录SD卡。另外就是还可以使用第三方的一些服务，有很多就不在多说。我想最精彩的或许对有些人来说也最无聊的就是crash的异常分析，作者整理了他几年当中遇到的频率很高的一些异常，然后分别从语法相关、Activity相关、序列化相关、列表相关、窗体相关、资源相关、系统碎片化相关、Sqlite相关、一起其他异常等几个方面来归类和分析原因，我觉得这个也是写这本书最花时间的地方，也是我看的最过瘾的地方。</p>
+<h4 id="ProGuard混淆及打包与渠道发布"><a href="#ProGuard混淆及打包与渠道发布" class="headerlink" title="ProGuard混淆及打包与渠道发布"></a>ProGuard混淆及打包与渠道发布</h4><p>这个无须多说，本书介绍的还是基于ant的打包方法，这里我个人还是建议开发者都切换到Android Studio上面来，尽可能的熟悉新的构建工具Gradle，以及如何使用它来打包和进行渠道发布。</p>
+<h4 id="竞品分析"><a href="#竞品分析" class="headerlink" title="竞品分析"></a>竞品分析</h4><p>这个词还是来自产品这个领域，据说作者分析了市场上几百款App来写这一章，并且以技术的角度研究了以下几个方面：</p>
+<ol>
+<li>为什么他们的App体积比我们小</li>
+<li>为什么他们的App访问速度比我们快</li>
+<li>为什么他们的App不发版本也能上新功能</li>
+<li>为什么他们的App基本就不怎么崩溃</li>
+<li>为什么同样的产品，我们的价格更有优势，却竞争不过对手</li>
+</ol>
+<p>从HTML5页面打开速度、安装包大小、性能优化、数据采集工具、热修补、模块化拆分、版本策略等几个方面展开分析。</p>
+<h4 id="项目管理和团队建设"><a href="#项目管理和团队建设" class="headerlink" title="项目管理和团队建设"></a>项目管理和团队建设</h4><p>作者是站在一个项目管理者的角度来谈项目开发，详细的介绍了测试团队、产品经理的职责、开发人员和项目经理的角色，以及敏捷开发的流程,大致有4类开发迭代周期：</p>
+<ol>
+<li>四周时间的开发流程</li>
+<li>两周时间的开发流程</li>
+<li>一周时间的开发流程</li>
+<li>即时更新策略</li>
+</ol>
+<p>以及强调了项目经理的几个重要的工具：</p>
+<ol>
+<li>任务评估表</li>
+<li>迭代阶段贴小纸条来标识项目进度，形成一个时间轴</li>
+<li>会议纪要</li>
+<li>开站例会</li>
+<li>确保项目不延期</li>
+<li>迭代风险管理</li>
+</ol>
+<p>于此同时，也提到了高层对这一流程的干预等不可避免的问题。最后也讲到了日常工作的一些问题的解决方法，以及无线团队的组建和管理，从面试、文档、沟通、技术分析、代码评审、Android团队leader定位、Android开发自我评测、学习路线等方面来介绍如何打造一个无线团队。</p>
+<h2 id="3-最后"><a href="#3-最后" class="headerlink" title="3. 最后"></a>3. 最后</h2><p>总之呢这是一本很有特点的书，没有系统的知识介绍，如果你是一个项目的Team Leader ,那么我想它或许还是很适合你的。</p>
+
+        
+            
+        
+        <!--MOB SHARE BEGIN-->
+        <div class="-hoofoo-share-title">分享到：</div>
+        <div class="-hoofoo-share-buttons">
+            <div class="-mob-share-weibo -hoofoo-share-weibo -hoofoo-share-ui-button"><i class="fa fa-weibo" aria-hidden="true"></i></div>
+            <div class="-mob-share-weixin -hoofoo-share-weixin -hoofoo-share-ui-button"><i class="fa fa-weixin" aria-hidden="true"></i></div>
+            <div class="-mob-share-qq -hoofoo-share-qq -hoofoo-share-ui-button"><i class="fa fa-qq" aria-hidden="true"></i></div>
+            <div class="-mob-share-twitter -hoofoo-share-twitter -hoofoo-share-ui-button"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+            <div class="-hoofoo-share-more -hoofoo-share-ui-button -mob-share-open"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+        </div>
+        <div class="-mob-share-ui -mob-share-ui-theme" style="display: none; left: 0px; top: 0px;">
+            <ul class="-mob-share-list">
+                <li class="-mob-share-weibo" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>新浪微博</p></li>
+                <li class="-mob-share-weixin" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>微信</p></li>
+                <li class="-mob-share-qzone" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>QQ空间</p></li>
+                <li class="-mob-share-qq" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>QQ好友</p></li>
+                
+                <li class="-mob-share-douban" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>豆瓣</p></li>
+                <li class="-mob-share-youdao" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>有道云笔记</p></li>
+                
+                <li class="-mob-share-facebook" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Facebook</p></li>
+                <li class="-mob-share-twitter" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Twitter</p></li>
+                <li class="-mob-share-pocket" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Pocket</p></li>
+                <li class="-mob-share-google" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Google+</p></li>
+                <li class="-mob-share-tumblr" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Tumblr</p></li>
+                <li class="-mob-share-instapaper" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Instapaper</p></li>
+                <li class="-mob-share-linkedin" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Linkedin</p></li>
+            </ul>
+            <div class="-mob-share-close">取消</div>
+        </div>
+        <div class="-mob-share-ui-bg"></div>
+        <script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=23a3d44c6690c"></script>
+<!--MOB SHARE END-->
+            
+        <div style="background-color: #2E7D32;height: 3px;margin-bottom: 15px;margin-top: 15px;"></div>
+        <span>移动开发者/技术爱好者/喜欢开源与分享，你也可以关注微信公众号MobDevGroup，移动开发在线分享：<a href="http://mobdevgroup.com">MobDevGroup</a></span>
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/notes/">notes</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/23/LruCache/" data-tooltip="Android内存缓存">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/11/AndroidDesigner/" data-tooltip="Android开发者与设计师协作之最佳实践">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+        
+    </div>
+</article>
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 Sean Liu. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div class="post-bottom-bar">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/23/LruCache/" data-tooltip="Android内存缓存">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/11/11/AndroidDesigner/" data-tooltip="Android开发者与设计师协作之最佳实践">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/user.jpg">
+        
+            <h4 id="about-card-name">Sean Liu</h4>
+        
+            <h5 id="about-card-bio">Just Keep Sharing 移动开发在线分享：http://mobdevgroup.com</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                Mobile Developer
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br>
+                Xi&#39;an, Shaanxi, China
+            </h5>
+        
+    </div>
+</div>
+        <div id="cover" style="background-color:#2196f3"></div>
+
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.fancybox.js"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js"></script>
+<script src="/assets/js/tranquilpeak.js"></script>
+<!--SCRIPTS END-->
+
+
+</html>

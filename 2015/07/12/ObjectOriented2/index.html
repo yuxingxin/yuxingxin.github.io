@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="宇信同行">
+    <title>移动开发之面向对象下篇 - 宇信同行</title>
+    <meta name="author" content="Sean Liu">
+    <meta name="description" content="宇信同行">
+    <link rel="icon" href="/assets/images/fav.ico">
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+    <!--STYLES END-->
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-77096739-2']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?fdaa18e768db90bb9e82a9db3aec9d3d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="https://yuxingxin.com">宇信同行</a>
+    </h1>
+    
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="/assets/images/user.jpg">
+        </a>
+    
+</header>
+            <nav id="sidebar">
+    
+    <div class="sidebar-profile">
+        <a href="/#about">
+            
+            <img class="sidebar-profile-picture" src="/assets/images/user.jpg">
+            
+        </a>
+        <span class="sidebar-profile-name hide-md">Sean Liu</span>
+    </div>
+    
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc hide-md">主页</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-categories">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc hide-md">分类</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-tags">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc hide-md">标签</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-archives">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc hide-md">归档</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/#about">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc hide-md">关于宇行信</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="http://weibo.com/lx8909" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-weibo"></i>
+                    <span class="sidebar-button-desc hide-md">weibo</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://github.com/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc hide-md">GitHub</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="http://stackoverflow.com/users/4866682/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+                    <span class="sidebar-button-desc hide-md">Stack Overflow</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://twitter.com/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc hide-md">Twitter</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://www.facebook.com/profile.php?id=100004716995168" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+                    <span class="sidebar-button-desc hide-md">Facebook</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="mailto:lx8909@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc hide-md">Mail</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/atom.xml">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc hide-md">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+            <div id="main">
+                
+<style type="text/css">
+
+.-hoofoo-share-buttons {
+  display: inline-block;
+}
+.-hoofoo-share-title {
+  font-size: 1.1em;
+  font-weight: 200;
+}
+.-hoofoo-share-ui-button {
+  cursor: pointer;
+  background-color: #555;
+  color: #fff;
+  font-size: 24px;
+  line-height: 40px;
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  border-radius: 25px;
+  float: left;
+  transition: background 0.4s;
+  -moz-transition: background 0.4s; /* Firefox 4 */
+  -webkit-transition: background 0.4s; /* Safari å’Œ Chrome */
+  -o-transition: background 0.4s;
+  text-align: center;
+}
+.-hoofoo-share-weibo:hover {
+  background-color: #cf3f41;
+}
+.-hoofoo-share-weixin:hover {
+  background-color: #18a01a;
+}
+.-hoofoo-share-qq:hover {
+  background-color: #5593d9;
+}
+.-hoofoo-share-twitter:hover {
+  background-color: #2ab3e6;
+}
+.-hoofoo-share-more:hover {
+  background-color: #777;
+}
+.-mob-share-weixin-qrcode-content {
+  border-radius: 4px;
+  -webkit-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  -o-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+.-mob-share-weixin-qrcode {
+  margin: 5% !important;
+  width: 90% !important;
+  height: auto !important;
+}
+.-mob-share-weixin-qrcode-close {
+  background-image: url("/assets/images/fancybox_sprite.png") !important;
+}
+.-mob-share-weixin-qrcode-close {
+  overflow: hidden;
+  line-height: 100px !important;
+  position: absolute !important;
+  top: -18px !important;
+  right: -18px !important;
+  width: 36px !important;
+  height: 36px !important;
+  cursor: pointer !important;
+  z-index: 8040 !important;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  .-mob-share-weixin-qrcode-close {
+    background-image: url("/assets/images/fancybox_sprite@2x.png") !important;
+    background-size: 44px 152px !important; /*The size of the normal image, half the size of the hi-res image*/
+  }
+}
+.-mob-share-close {
+  height: 4em !important;
+  font-size: 0.8em !important;
+  line-height: 4em !important;
+  background: #555 !important;
+  color: #fff !important;
+}
+</style>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">移动开发之面向对象下篇</h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" content="Sun Jul 12 2015 00:00:00 GMT+0800">
+        Jul 12, 2015
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Android/">Android</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <h1 id="面向对象下篇"><a href="#面向对象下篇" class="headerlink" title="面向对象下篇"></a>面向对象下篇</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上篇我们总结了面向对象中最基本的概念，针对封装、继承、多态也都做了解释，接下里我们进一步看下面向对象中其他的知识点。</p>
+<h2 id="Java抽象类-VS-Object-c类别"><a href="#Java抽象类-VS-Object-c类别" class="headerlink" title="Java抽象类 VS Object-c类别"></a>Java抽象类 VS Object-c类别</h2><ul>
+<li>抽象类的引入：我们都知道一般的方法都有具体的方法体，但是有时候某个父类只是知道子类应该包含什么方法，但无法确定这些子类如果实现的这些方法，这时候就用到了抽象类，用关键字abstract来修饰，他可以有抽象方法。有几点说明：</li>
+</ul>
+<ol>
+<li>类和方法都用abstract来修饰，其中方法不能有方法体。</li>
+<li>抽象类不能被实例化，无法使用new关键字来调用构造函数创建实例。</li>
+<li>抽象类可以包含属性、方法（普通方法和抽象方法）、构造器、初始化块、内部类、枚举  等。</li>
+<li>含有抽象方法的类只能被定义成抽象类。</li>
+<li>抽象类体现着一种模板的设计思想，很好的将面向对象抽象的特征展现出来，我们可以把大多数子类的公共部分提取出来作为一个抽象类，然后对其进行改造。</li>
+</ol>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">Base</span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">baseMethod</span>(<span class="params"></span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>类别的引入：因为Object-c中没有引入Java的抽象类，但是有时候需要这一需求，Object-c的做法是在不创建子类的情况下，给现有类额外添加新方法，用来扩展类的能力。：如你不想继承，但是又想给这个类添加新功能，就可以考虑用类别。</li>
+</ul>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@interface</span> 已有类 (类别名)</span><br><span class="line"><span class="comment">//方法定义</span></span><br><span class="line">...</span><br><span class="line"><span class="variable">@end</span></span><br></pre></td></tr></table></figure>
+<p>需要说明几点：</p>
+<ol>
+<li>类别通常只能定义方法，如果需要添加变量，可以考虑创建子类。</li>
+<li>一个类，可以拥有多个分类。</li>
+<li>和一般接口不同的是，不必实现类别所有的方法，这个对程序的扩展很有用，因为可以在该类类别的声明所有的方法，然后在一段时间后再来实现它。</li>
+<li>通过类别添加新的方法来扩展该类，不仅仅会影响该类，还会影响该类所有的子类，因此他的所有的子类都会继承这个类别，而不管这些子类愿意不愿意。</li>
+<li>类别可以重载该类的另一个方法，但是通常不建议这么做。第一：重载一个方法后，再也不能访问原来的方法，因此，必须小心将被重载方法中的所有功能复制到替换方法中，如果确实需要重载方法，可以考虑创建子类，如果在子类中重载方法，仍然可以通过向super发送消息类来引用父类的方法。因此不必了解重载方法的内容就能够调用父类的方法，并向子类的方法添加自己的功能。</li>
+<li>还有一点要说明的就是如果你用类别的方式重载了Cocoa类，那么你的App就有可能通不过苹果的作品审核，因为苹果对这些自定义的修改的要求是极其严格，甚至说是苛刻的。</li>
+<li>类别的接口文件命名为“类名+类别名.h”，而实现文件命名为“类名+类别名.m”。</li>
+<li>关于类别，我感觉使用在扩展那些你无法看到类的实现代码的类的，你可以为这些类添加扩展函数，可以重载源类中的成员函数，来满足自己的实际需求，但是对于那些你可以看到类的实现、访问的类来说，你则完全没有必要写类别。另外对于那些需要分工合作的工作，也是适合写分类的地方。</li>
+<li>要注意的是Objective-c和Java一样只支持单继承，如果要实现多继承的话，可以通过类别和协议的方式来实现。Java可以用接下来的接口</li>
+<li>类别有3种用法：<ul>
+<li>利用类别对类进行模块化设计。</li>
+<li>使用类别来定义前向引用来调用私有方法。<br>上篇文章中提到没有在接口部分定义而在类实现部分定义的方法可以相当于私有方法，通常不允许被调用，但Object-c通常没有真正意义上面的私有方法，可以使用NSObject的performSelector:方法来执行动态调用，但这又完全避开了编译器的检查，也不太好，这里就用上类别了。如上篇文章开头代码中的grade存取方法，我们在其他类中直接调用就会报错，这时我们可以定义一个SLStudent类的类别在它被调用的地方的前面，然后声明这些方法即可。</li>
+<li>使用类别来实现非正式协议（后面提到）。</li>
+</ul>
+</li>
+<li>还有一种就是扩展，相当于匿名类别。<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@interface</span> 已有类 ()</span><br><span class="line">&#123;</span><br><span class="line">  实例变量</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//方法定义</span></span><br><span class="line">...</span><br><span class="line"><span class="variable">@end</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>做几点说明：</p>
+<ol>
+<li>类别通常有单独的.h和.m文件，扩展用于临时对某个类接口进行扩展，类实现部分同时实现类接口部分定义的方法和扩展中定义的方法。记得在类实现部分不要忘记导入类扩展部分的.h文件</li>
+<li>类别不可定义属性或成员变量；但扩展可以在类扩展中声明属性和实例变量。</li>
+</ol>
+<p>关于类别和类扩展的区别：</p>
+<ol>
+<li><p>类别中只能增加方法；</p>
+</li>
+<li><p>是的，你没看错，类扩展不仅可以增加方法，还可以增加实例变量（或者合成属性），只是该实例变量默认是@private类型的（作用范围只能在自身类，而不是子类或其他地方）；</p>
+</li>
+<li><p>类扩展中声明的方法没被实现，编译器会报警，但是类别中的方法没被实现编译器是不会有任何警告的。这是因为类扩展是在编译阶段被添加到类中，而类别是在运行时添加到类中。</p>
+</li>
+<li><p>类扩展不能像类别那样拥有独立的实现部分（@implementation部分），也就是说，类扩展所声明的方法必须依托对应类的实现部分来实现。</p>
+</li>
+<li><p>定义在 .m 文件中的类扩展方法为私有的，定义在 .h 文件（头文件）中的类扩展方法为公有的。类扩展是在 .m 文件中声明私有方法的非常好的方式。</p>
+</li>
+</ol>
+<h2 id="Java更彻底的抽象：接口-VS-Object-c中的协议"><a href="#Java更彻底的抽象：接口-VS-Object-c中的协议" class="headerlink" title="Java更彻底的抽象：接口 VS Object-c中的协议"></a>Java更彻底的抽象：接口 VS Object-c中的协议</h2><p>Java接口定义：接口更多的时定义一种规范，因此不能包含构造器或者初始化块。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[修饰符] interface 接口名 <span class="keyword">extends</span> 父接口<span class="number">1</span>,父接口<span class="number">2.</span>..</span><br><span class="line">&#123;</span><br><span class="line">  <span class="number">0</span>到多个常量定义...</span><br><span class="line">  <span class="number">0</span>到多个抽象方法定义...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用</span></span><br><span class="line">[修饰符] <span class="class"><span class="keyword">class</span> <span class="title">类名</span> <span class="keyword">extends</span> <span class="title">父类</span> <span class="title">implements</span> <span class="title">接口1</span>,<span class="title">接口2</span>...</span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">  类体部分</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>修饰符可以用public修饰或者省略（以包访问控制符）</li>
+<li>接口可以多继承，这也是为单继承灵活性不足所做的补充，即只能继承接口，不能继承类</li>
+<li>接口里的属性只能是常量（static final两个修饰符修饰），方法只能是抽象方法。</li>
+</ol>
+<p>这里我们拿抽象类与接口做个总结：</p>
+<ol>
+<li>接口和抽象类都不能被实例化。</li>
+<li>接口和抽象类都可以包含抽象方法。</li>
+<li>接口里只能包含抽象方法，不包含已经提供实现的方法，抽象类则可以包含普通方法。</li>
+<li>接口里不能定义静态方法，抽象类里可以定义静态方法。</li>
+<li>接口里只能定义静态常量属性，不能定义普通属性，抽象类里两者都可以。</li>
+<li>接口不包含构造器，抽象类包含，抽象类里的构造器并不是用来创建对象，而让其子类调用这些构造器来完成属于抽象类的初始化操作。</li>
+<li>接口里不能包含初始化块，但抽象类可以。</li>
+<li>一个类最多只有一个直接父类，包括抽象类，但一个类可以实现多个接口，可以实现多个接口来弥补Java单继承的不足。</li>
+</ol>
+<p>很多软件设计思想都强调面向接口编程，这样可以降低程序之间的耦合性，我们举个例子：<br>下面看一个网上流传最广泛的例子：门和警报的例子：门都有open()和close()两个动作，此时我们可以定义通过抽象类和接口来定义这个抽象概念：</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//抽象类</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title">Door</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">open</span>(<span class="params"></span>)</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">close</span>(<span class="params"></span>)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//或者接口</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title">Door</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">open</span>(<span class="params"></span>)</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">close</span>(<span class="params"></span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是现在如果我们需要门具有报警alarm( )的功能，那么该如何实现？下面提供两种思路：</p>
+<ol>
+<li>将这三个功能都放在抽象类里面，但是这样一来所有继承于这个抽象类的子类都具备了报警功能，但是有的门并不一定具备报警功能；</li>
+<li>将这三个功能都放在接口里面，需要用到报警功能的类就需要实现这个接口中的open()和close()，也许这个类根本就不具备open()和close()这两个功能，比如火灾报警器。<br>从这里可以看出， Door的open() 、close()和alarm()根本就属于两个不同范畴内的行为，open()和close()属于门本身固有的行为特性，而alarm()属于延伸的附加行为。因此最好的解决办法是单独将报警设计为一个接口，包含alarm()行为,Door设计为单独的一个抽象类，包含open和close两种行为。再设计一个报警门继承Door类和实现Alarm接口。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Alram</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">alarm</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Door</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">open</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">close</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AlarmDoor</span> <span class="keyword">extends</span> <span class="title">Door</span> <span class="keyword">implements</span> <span class="title">Alarm</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">oepn</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="comment">//....</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="comment">//....</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">alarm</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="comment">//....</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Object-c协议定义：类似于接口;前面介绍说用类别可以实现非正式协议，当某个类实现NSObject的该类别时，就需要实现该类别下的所有方法，这种基于NSObject定义的类别即可认为是非正式协议。<br><br>正式协议定义：使用@protocol关键字。<br><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义</span></span><br><span class="line"><span class="class"><span class="keyword">@protocol</span> 协议名 &lt;父协议1,父协议2&gt;</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="number">0</span>到多个方法定义...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//遵守（实现）协议</span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> 类名:父类 &lt;协议1,协议2...&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>协议可以多继承，且只能继承协议，不能继承类</li>
+<li>协议定义的方法只有声明，没有实现。</li>
+<li>父协议继承用&lt;&gt;括号。</li>
+<li>如果程序需要使用协议</li>
+</ol>
+<p>如果程序需要使用协议来定义常量，有如下两种语法：</p>
+<ol>
+<li>NSObject&lt;协议1，协议2…&gt;* 变量;</li>
+<li>id&lt;协议1,协议2…&gt; 变量;<br>通过上面两种方式定义的变量，编译时类型仅仅只是所遵守的协议类型，因此只能调用该协议中的方法。</li>
+</ol>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ProtocolAbility.h文件</span></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">ProtocolAbility</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@required</span></span><br><span class="line">- (<span class="keyword">void</span>) eat;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@optional</span></span><br><span class="line">- (<span class="keyword">void</span>) write;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line">-------------------------------------------</span><br><span class="line"><span class="comment">//定义MyProtocol.h协议，这个协议遵守ProtocolAbility协议</span></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"ProtocolAbility.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">MyProtocol</span> &lt;<span class="title">ProtocolAbility</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@required</span></span><br><span class="line">- (<span class="keyword">void</span>) setName;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@optional</span></span><br><span class="line">- (<span class="keyword">void</span>) setAge;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line">-------------------------------------------</span><br><span class="line"><span class="comment">//定义新的协议NewProtocol.h</span></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">@protocol</span> <span class="title">NewProtocol</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@required</span></span><br><span class="line">-(<span class="built_in">NSString</span> *) getname;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line">-------------------------------------------</span><br><span class="line"><span class="comment">//定义SLStudent类实现协议MyProtocol和NewProtocol</span></span><br><span class="line"><span class="comment">//SLStudent.h文件</span></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;Foundation/Foundation.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"MyProtocol.h"</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"NewProtocol.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">SLStudent</span> : <span class="title">NSObject</span> &lt;<span class="title">MyProtocol</span>,<span class="title">NewProtocol</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line">--------------------------------------------</span><br><span class="line"><span class="comment">//SLStudent.m文件</span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"SLStudent.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">SLStudent</span></span></span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) write&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"write"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) eat&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"eat"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) setAge&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Student---setAge"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>) setName&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Student----setName"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="built_in">NSString</span> *) getname&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">@"宇行信"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<p>关于协议相关约束:<br></p>
+<ol>
+<li>@required 用于表示协议中该方法必须在类中实现,默认[如果不加则默认为@required]</li>
+<li>@optional 用于表示协议中该方法在类中可以选择实现</li>
+</ol>
+<p>关于正式协议和非正式协议的总结：</p>
+<ol>
+<li>非正式协议通过NSObject来创建类别实现，而正式协议则直接使用@protocal创建。</li>
+<li>遵守非正式协议通过带特定类别的NSObject来实现，而遵守正式协议则有专门的Object-c语法。</li>
+<li>遵守非正式协议不要求实现协议中的定义的所有方法，而遵守正式协议则必须实现协议中定义的所有方法。如果协议中使用了以上协议相关约束关键字，则正式协议完全可以代替非正式协议。</li>
+<li>conformsToProtocol 方法用于判断某个类是否遵循某个协议，返回值为bool类型，即使协议是通过”继承”过来的也可以。</li>
+</ol>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> flag=[student conformsToProtocol:<span class="class"><span class="keyword">@protocol</span>(<span class="title">NewProtocol</span>)];</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,flag);</span><br></pre></td></tr></table></figure>
+<ol>
+<li>关于协议不得不说的时委托的使用，协议是一个&lt;协议名&gt;，委托是个带有协议的对象id &lt;协议名&gt;，这部分会放在iOS开发中来做说明：常见的就是两个页面使用委托来传值。</li>
+</ol>
+<h2 id="Java内部类"><a href="#Java内部类" class="headerlink" title="Java内部类"></a>Java内部类</h2><p>通常我们把定义在其他类内部的类叫做内部类，有的也叫做嵌套类 ，包含内部类的类叫外部类，有的也叫宿主类；内部类的类名不需要和文件夹相同。</p>
+<ul>
+<li>内部类可以是静态static的，也可用public，default，protected和private修饰。（而外部顶级类即类名和文件名相同的只能使用public和default）</li>
+<li>内部类是一个编译时的概念，一旦编译成功，就会成为完全不同的两类。对于一个名为outer的外部类和其内部定义的名为inner的内部类。编译完成后出现outer.class和outer$inner.class两类。所以内部类的成员变量/方法名可以和外部类的相同。</li>
+</ul>
+<h3 id="成员内部类"><a href="#成员内部类" class="headerlink" title="成员内部类"></a>成员内部类</h3><p>成员内部类，就是作为外部类的成员，可以直接使用外部类的所有成员和方法，即使是private的。同时外部类要访问内部类的所有成员变量/方法，则需要通过内部类的对象来获取。成员内部类不能含有static的变量和方法。因为成员内部类需要先创建了外部类，才能创建它自己的，在成员内部类要引用外部类对象时，使用outer.this来表示外部类对象；而需要创建内部类对象，可以使用outer.inner  obj = outerobj.new inner();</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> class Outer &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">        Outer outer = <span class="keyword">new</span> Outer();</span><br><span class="line">        Outer.Inner inner = outer.<span class="keyword">new</span> Inner();</span><br><span class="line">        inner.<span class="built_in">print</span>(<span class="string">"Outer.new"</span>);</span><br><span class="line"></span><br><span class="line">        inner = outer.getInner();</span><br><span class="line">        inner.<span class="built_in">print</span>(<span class="string">"Outer.get"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 个人推荐使用getxxx()来获取成员内部类，尤其是该内部类的构造函数无参数时</span></span><br><span class="line">    <span class="keyword">public</span> Inner getInner() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Inner();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> class Inner &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="built_in">print</span>(<span class="keyword">String</span> <span class="built_in">str</span>) &#123;</span><br><span class="line">            System.out.<span class="built_in">println</span>(<span class="built_in">str</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="局部内部类"><a href="#局部内部类" class="headerlink" title="局部内部类"></a>局部内部类</h3><p>是指内部类定义在方法和作用域内。Thinking in Java给了这么两个例子：<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义在方法内</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Parcel4</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> Destination destination(<span class="keyword">String</span> s) &#123;</span><br><span class="line">        <span class="class"><span class="keyword">class</span> <span class="title">PDestination</span> <span class="keyword"><span class="keyword">implements</span> <span class="type">Destination</span></span> </span>&#123;</span><br><span class="line">            <span class="keyword">private</span> <span class="keyword">String</span> label;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">private</span> PDestination(<span class="keyword">String</span> whereTo) &#123;</span><br><span class="line">                label = whereTo;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">String</span> readLabel() &#123;</span><br><span class="line">                <span class="keyword">return</span> label;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="type">PDestination</span>(s);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">        Parcel4 p = <span class="keyword">new</span> <span class="type">Parcel4</span>();</span><br><span class="line">        Destination d = p.destination(<span class="string">"Tasmania"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义在作用域里：</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Parcel5</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> void internalTracking(boolean b) &#123;</span><br><span class="line">        <span class="keyword">if</span> (b) &#123;</span><br><span class="line">            <span class="class"><span class="keyword">class</span> <span class="title">TrackingSlip</span> </span>&#123;</span><br><span class="line">                <span class="keyword">private</span> <span class="keyword">String</span> id;</span><br><span class="line">                TrackingSlip(<span class="keyword">String</span> s) &#123;</span><br><span class="line">                    id = s;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">String</span> getSlip() &#123;</span><br><span class="line">                    <span class="keyword">return</span> id;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            TrackingSlip ts = <span class="keyword">new</span> <span class="type">TrackingSlip</span>(<span class="string">"slip"</span>);</span><br><span class="line">            <span class="keyword">String</span> s = ts.getSlip();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> void track() &#123;</span><br><span class="line">        internalTracking(<span class="literal">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> void main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">        Parcel5 p = <span class="keyword">new</span> <span class="type">Parcel5</span>();</span><br><span class="line">        p.track();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="嵌套内部类"><a href="#嵌套内部类" class="headerlink" title="嵌套内部类"></a>嵌套内部类</h3><ol>
+<li>嵌套内部类，就是修饰为static的内部类。声明为static的内部类，不需要内部类对象和外部类对象之间的联系，就是说我们可以直接引用outer.inner，即不需要创建外部类，也不需要创建内部类。</li>
+<li>嵌套类和普通的内部类还有一个区别：普通内部类不能有static数据和static属性，也不能包含嵌套类，但嵌套类可以。而嵌套类不能声明为private，一般声明为public，方便调用。</li>
+</ol>
+<h3 id="匿名内部类"><a href="#匿名内部类" class="headerlink" title="匿名内部类"></a>匿名内部类</h3><p>有时候我为了免去给内部类命名，便倾向于使用匿名内部类，因为它没有名字,在Android开发中我们会经常见到，匿名内部类是不能加访问修饰符的。要注意的是，new 匿名类，这个类是要先定义的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">((Button) findViewById(R.id.start)).setOnClickListener(<span class="keyword">new</span> View.OnClickListener() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(View v)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> Thread() &#123;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//代码</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Outer</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Outer outer = <span class="keyword">new</span> Outer();</span><br><span class="line">        Inner inner = outer.getInner(<span class="string">"Inner"</span>, <span class="string">"gz"</span>);</span><br><span class="line">        System.out.println(inner.getName());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Inner <span class="title">getInner</span><span class="params">(<span class="keyword">final</span> String name, String city)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Inner(name, city) &#123;</span><br><span class="line">            <span class="keyword">private</span> String nameStr = name;</span><br><span class="line"></span><br><span class="line">            <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> nameStr;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Inner</span> </span>&#123;</span><br><span class="line">    Inner(String name, String city) &#123;</span><br><span class="line">        System.out.println(city);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">abstract</span> String <span class="title">getName</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 同时在这个例子，留意外部类的方法的形参，当所在的方法的形参需要被内部类里面使用时，该形参必须为final。这里可以看到形参name已经定义为final了，而形参city 没有被使用则不用定义为final。设计为final原因：内部类中如果改掉参数的值，但是外部调用的时候又发现值其实没有被改掉，这就让人非常的难以理解和接受，所以编译器设计人员把内部类能够使用的参数设定为必须是final来规避这种莫名其妙错误的存在。<br>(简单理解就是，拷贝引用，为了避免引用值发生改变，例如被外部类的方法修改等，而导致内部类得到的值不一致，于是用final来让该引用不可改变).</p>
+<h2 id="枚举类"><a href="#枚举类" class="headerlink" title="枚举类"></a>枚举类</h2><p>这里比较简单，我们就不多说。</p>
+<h2 id="Java对象的强、软、弱、虚引用"><a href="#Java对象的强、软、弱、虚引用" class="headerlink" title="Java对象的强、软、弱、虚引用"></a>Java对象的强、软、弱、虚引用</h2><ol>
+<li>强引用:<br>以前我们使用的大部分引用实际上都是强引用，这是使用最普遍的引用。如果一个对象具有强引用，那就类似于必不可少的生活用品，垃圾回收器绝不会回收它。当内存空间不足，Java虚拟机宁愿抛出OutOfMemoryError错误，使程序异常终止，也不会靠随意回收具有强引用的对象来解决内存不足问题。</li>
+<li>软引用（SoftReference）:<br>如果一个对象只具有软引用，那就类似于可有可无的生活用品。如果内存空间足够，垃圾回收器就不会回收它，如果内存空间不足了，就会回收这些对象的内存。只要垃圾回收器没有回收它，该对象就可以被程序使用。软引用可用来实现内存敏感的高速缓存。<br>软引用可以和一个引用队列（ReferenceQueue）联合使用，如果软引用所引用的对象被垃圾回收，JAVA虚拟机就会把这个软引用加入到与之关联的引用队列中。</li>
+<li>弱引用（WeakReference）：<br>如果一个对象只具有弱引用，那就类似于可有可无的生活用品。弱引用与软引用的区别在于：只具有弱引用的对象拥有更短暂的生命周期。在垃圾回收器线程扫描它所管辖的内存区域的过程中，一旦发现了只具有弱引用的对象，不管当前内存空间足够与否，都会回收它的内存。不过，由于垃圾回收器是一个优先级很低的线程， 因此不一定会很快发现那些只具有弱引用的对象。<br>弱引用可以和一个引用队列（ReferenceQueue）联合使用，如果弱引用所引用的对象被垃圾回收，Java虚拟机就会把这个弱引用加入到与之关联的引用队列中。</li>
+<li>虚引用（PhantomReference）：<br>“虚引用”顾名思义，就是形同虚设，与其他几种引用都不同，虚引用并不会决定对象的生命周期。如果一个对象仅持有虚引用，那么它就和没有任何引用一样，在任何时候都可能被垃圾回收。<br>虚引用主要用来跟踪对象被垃圾回收的活动。虚引用与软引用和弱引用的一个区别在于：虚引用必须和引用队列（ReferenceQueue）联合使用。当垃圾回收器准备回收一个对象时，如果发现它还有虚引用，就会在回收对象的内存之前，把这个虚引用加入到与之关联的引用队列中。程序可以通过判断引用队列中是否已经加入了虚引用，来了解被引用的对象是否将要被垃圾回收。程序如果发现某个虚引用已经被加入到引用队列，那么就可以在所引用的对象的内存被回收之前采取必要的行动。</li>
+<li>特别注意，在世纪程序设计中一般很少使用弱引用与虚引用，使用软用的情况较多，这是因为软引用可以加速JVM对垃圾内存的回收速度，可以维护系统的运行安全，防止内存溢出（OutOfMemory）等问题的产生。</li>
+</ol>
+
+        
+            
+        
+        <!--MOB SHARE BEGIN-->
+        <div class="-hoofoo-share-title">分享到：</div>
+        <div class="-hoofoo-share-buttons">
+            <div class="-mob-share-weibo -hoofoo-share-weibo -hoofoo-share-ui-button"><i class="fa fa-weibo" aria-hidden="true"></i></div>
+            <div class="-mob-share-weixin -hoofoo-share-weixin -hoofoo-share-ui-button"><i class="fa fa-weixin" aria-hidden="true"></i></div>
+            <div class="-mob-share-qq -hoofoo-share-qq -hoofoo-share-ui-button"><i class="fa fa-qq" aria-hidden="true"></i></div>
+            <div class="-mob-share-twitter -hoofoo-share-twitter -hoofoo-share-ui-button"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+            <div class="-hoofoo-share-more -hoofoo-share-ui-button -mob-share-open"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+        </div>
+        <div class="-mob-share-ui -mob-share-ui-theme" style="display: none; left: 0px; top: 0px;">
+            <ul class="-mob-share-list">
+                <li class="-mob-share-weibo" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>新浪微博</p></li>
+                <li class="-mob-share-weixin" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>微信</p></li>
+                <li class="-mob-share-qzone" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>QQ空间</p></li>
+                <li class="-mob-share-qq" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>QQ好友</p></li>
+                
+                <li class="-mob-share-douban" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>豆瓣</p></li>
+                <li class="-mob-share-youdao" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>有道云笔记</p></li>
+                
+                <li class="-mob-share-facebook" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Facebook</p></li>
+                <li class="-mob-share-twitter" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Twitter</p></li>
+                <li class="-mob-share-pocket" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Pocket</p></li>
+                <li class="-mob-share-google" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Google+</p></li>
+                <li class="-mob-share-tumblr" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Tumblr</p></li>
+                <li class="-mob-share-instapaper" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Instapaper</p></li>
+                <li class="-mob-share-linkedin" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Linkedin</p></li>
+            </ul>
+            <div class="-mob-share-close">取消</div>
+        </div>
+        <div class="-mob-share-ui-bg"></div>
+        <script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=23a3d44c6690c"></script>
+<!--MOB SHARE END-->
+            
+        <div style="background-color: #2E7D32;height: 3px;margin-bottom: 15px;margin-top: 15px;"></div>
+        <span>移动开发者/技术爱好者/喜欢开源与分享，你也可以关注微信公众号MobDevGroup，移动开发在线分享：<a href="http://mobdevgroup.com">MobDevGroup</a></span>
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/object/">object</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/07/15/FrequentlyUsedClass/" data-tooltip="移动开发之常用类篇">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/07/09/ObjectOriented1/" data-tooltip="移动开发之面向对象上篇">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+        
+    </div>
+</article>
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 Sean Liu. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div class="post-bottom-bar">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/07/15/FrequentlyUsedClass/" data-tooltip="移动开发之常用类篇">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2015/07/09/ObjectOriented1/" data-tooltip="移动开发之面向对象上篇">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/user.jpg">
+        
+            <h4 id="about-card-name">Sean Liu</h4>
+        
+            <h5 id="about-card-bio">Just Keep Sharing 移动开发在线分享：http://mobdevgroup.com</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                Mobile Developer
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br>
+                Xi&#39;an, Shaanxi, China
+            </h5>
+        
+    </div>
+</div>
+        <div id="cover" style="background-color:#2196f3"></div>
+
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.fancybox.js"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js"></script>
+<script src="/assets/js/tranquilpeak.js"></script>
+<!--SCRIPTS END-->
+
+
+</html>

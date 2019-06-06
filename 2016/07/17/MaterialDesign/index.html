@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="宇信同行">
+    <title>西安GDG上《以开发者的角度再聊Material Design》的总结 - 宇信同行</title>
+    <meta name="author" content="Sean Liu">
+    <meta name="description" content="宇信同行">
+    <link rel="icon" href="/assets/images/fav.ico">
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+    <!--STYLES END-->
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-77096739-2']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?fdaa18e768db90bb9e82a9db3aec9d3d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="https://yuxingxin.com">宇信同行</a>
+    </h1>
+    
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="/assets/images/user.jpg">
+        </a>
+    
+</header>
+            <nav id="sidebar">
+    
+    <div class="sidebar-profile">
+        <a href="/#about">
+            
+            <img class="sidebar-profile-picture" src="/assets/images/user.jpg">
+            
+        </a>
+        <span class="sidebar-profile-name hide-md">Sean Liu</span>
+    </div>
+    
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc hide-md">主页</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-categories">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc hide-md">分类</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-tags">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc hide-md">标签</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-archives">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc hide-md">归档</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/#about">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc hide-md">关于宇行信</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="http://weibo.com/lx8909" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-weibo"></i>
+                    <span class="sidebar-button-desc hide-md">weibo</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://github.com/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc hide-md">GitHub</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="http://stackoverflow.com/users/4866682/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+                    <span class="sidebar-button-desc hide-md">Stack Overflow</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://twitter.com/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc hide-md">Twitter</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://www.facebook.com/profile.php?id=100004716995168" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+                    <span class="sidebar-button-desc hide-md">Facebook</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="mailto:lx8909@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc hide-md">Mail</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/atom.xml">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc hide-md">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+            <div id="main">
+                
+<style type="text/css">
+
+.-hoofoo-share-buttons {
+  display: inline-block;
+}
+.-hoofoo-share-title {
+  font-size: 1.1em;
+  font-weight: 200;
+}
+.-hoofoo-share-ui-button {
+  cursor: pointer;
+  background-color: #555;
+  color: #fff;
+  font-size: 24px;
+  line-height: 40px;
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  border-radius: 25px;
+  float: left;
+  transition: background 0.4s;
+  -moz-transition: background 0.4s; /* Firefox 4 */
+  -webkit-transition: background 0.4s; /* Safari å’Œ Chrome */
+  -o-transition: background 0.4s;
+  text-align: center;
+}
+.-hoofoo-share-weibo:hover {
+  background-color: #cf3f41;
+}
+.-hoofoo-share-weixin:hover {
+  background-color: #18a01a;
+}
+.-hoofoo-share-qq:hover {
+  background-color: #5593d9;
+}
+.-hoofoo-share-twitter:hover {
+  background-color: #2ab3e6;
+}
+.-hoofoo-share-more:hover {
+  background-color: #777;
+}
+.-mob-share-weixin-qrcode-content {
+  border-radius: 4px;
+  -webkit-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  -o-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+.-mob-share-weixin-qrcode {
+  margin: 5% !important;
+  width: 90% !important;
+  height: auto !important;
+}
+.-mob-share-weixin-qrcode-close {
+  background-image: url("/assets/images/fancybox_sprite.png") !important;
+}
+.-mob-share-weixin-qrcode-close {
+  overflow: hidden;
+  line-height: 100px !important;
+  position: absolute !important;
+  top: -18px !important;
+  right: -18px !important;
+  width: 36px !important;
+  height: 36px !important;
+  cursor: pointer !important;
+  z-index: 8040 !important;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  .-mob-share-weixin-qrcode-close {
+    background-image: url("/assets/images/fancybox_sprite@2x.png") !important;
+    background-size: 44px 152px !important; /*The size of the normal image, half the size of the hi-res image*/
+  }
+}
+.-mob-share-close {
+  height: 4em !important;
+  font-size: 0.8em !important;
+  line-height: 4em !important;
+  background: #555 !important;
+  color: #fff !important;
+}
+</style>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">西安GDG上《以开发者的角度再聊Material Design》的总结</h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" content="Sun Jul 17 2016 00:00:00 GMT+0800">
+        Jul 17, 2016
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Android/">Android</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>谷歌在2014年I/O大会上推出了Material Design,旨在为手机、平板电脑、台式机和“其他平台”提供更一致、更广泛的“外观和感觉”。在国内有好几种版本的翻译：材料设计/材质设计/质感设计（官方文档）/原质设计（国内设计师更倾向于这个）。</p>
+<h2 id="三大设计原则"><a href="#三大设计原则" class="headerlink" title="三大设计原则"></a>三大设计原则</h2><h3 id="隐喻"><a href="#隐喻" class="headerlink" title="隐喻"></a>隐喻</h3><p>通过纸墨做比，光影打造空间层次和符合客观规律的特效来隐喻表面质感、光效以及运动感。</p>
+<h3 id="鲜明、形象、深思熟虑"><a href="#鲜明、形象、深思熟虑" class="headerlink" title="鲜明、形象、深思熟虑"></a>鲜明、形象、深思熟虑</h3><p>借鉴了传统的印刷设计，从排版、网格、空间、比例、配色、图像使用上做了精心处理，尤其对色彩、图像、字体、留白明确了规范，力求构建鲜明的用户界面。</p>
+<h3 id="有意义的动画效果"><a href="#有意义的动画效果" class="headerlink" title="有意义的动画效果"></a>有意义的动画效果</h3><p>通过符合客观运动规律的特效效果，让物体的变化以更连续、更平滑的方式呈现给用户，从而吸引用户的注意。比如转场、触摸反馈、循环揭示等</p>
+<p>关于界面的层次：<br><img src="/assets/images/md1.png" alt="image"></p>
+<p>从下往上依次可以分为：</p>
+<ul>
+<li>界面的内容</li>
+<li>顶部导航条 App Bar</li>
+<li>浮动按钮  FAB</li>
+<li>状态栏&amp;底部虚拟导航键</li>
+<li>抽屉菜单</li>
+<li>通知栏等系统信息</li>
+</ul>
+<h2 id="六大部分"><a href="#六大部分" class="headerlink" title="六大部分"></a>六大部分</h2><p>官方文档分别从动画、样式、布局、组件、模式、可用性六个方面对Material Design的设计规范进行了详细阐释。</p>
+<p>这里主要列一些5.0以后引入的新特性：</p>
+<h3 id="1-触控涟漪"><a href="#1-触控涟漪" class="headerlink" title="1.触控涟漪"></a>1.触控涟漪</h3><p><img src="/assets/images/md2.gif" alt="image"></p>
+<p>首先在视图 XML 中应用此功能</p>
+<ul>
+<li>?android:attr/selectableItemBackground 指定有界的波纹。</li>
+<li>?android:attr/selectableItemBackgroundBorderless 指定越过视图边界的波纹。 它将由一个非空背景的视图的最近父项所绘制和设定边界。注意这个是API21引入的新特性</li>
+</ul>
+<p>如果要改变默认触摸反馈颜色，可以在我们自定义的主题下面主题的添加 android:colorControlHighlight 属性。</p>
+<p>相关类是RippleDrawable。</p>
+<p>在drawable-v21中：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"utf-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="tag">&lt;<span class="name">ripple</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:color</span>=<span class="string">"@android:color/darker_gray"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">shape</span> <span class="attr">android:shape</span>=<span class="string">"rectangle"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">solid</span> <span class="attr">android:color</span>=<span class="string">"@color/colorAccent"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">shape</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ripple</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果要兼容5.0以下版本，我们可以使用第三方开源库<a href="https://github.com/traex/RippleEffect" target="_blank" rel="noopener">RippleEffect</a></p>
+<p>否则可以在drawable中定义selector指定不同的状态即可</p>
+<h3 id="2-View状态改变动画"><a href="#2-View状态改变动画" class="headerlink" title="2. View状态改变动画"></a>2. View状态改变动画</h3><p>StateListAnimator定义当视图的状态改变的时候运行动画，如下代码：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">selector</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:state_pressed</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">objectAnimator</span> <span class="attr">android:propertyName</span>=<span class="string">"translationZ"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:duration</span>=<span class="string">"@android:integer/config_shortAnimTim"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:valueTo</span>=<span class="string">"2dp"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:valueType</span>=<span class="string">"floatType"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:state_enabled</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:state_pressed</span>=<span class="string">"false"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:state_focused</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">set</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">objectAnimator</span> <span class="attr">android:propertyName</span>=<span class="string">"translationZ"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:duration</span>=<span class="string">"100"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:valueTo</span>=<span class="string">"0"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:valueType</span>=<span class="string">"floatType"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">set</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">selector</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>给视图分配动画使用android:stateListAnimator属性,代码实现可以借助AnimationInflater.loadStateListAnimator()和View.setStateListAnimator()方法。</p>
+<ul>
+<li>注意当你的主题是继承的Material主题，按钮默认有一个Z轴动画。如果需要避免这个动画，设置android:stateListAnimator属性为@null即可。</li>
+</ul>
+<p>与此相似的是animated-selector：android5.0的一些系统组件默认使用这些动画。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">animated-selector</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- provide a different drawable for each state--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:id</span>=<span class="string">"@+id/pressed"</span> <span class="attr">android:drawable</span>=<span class="string">"@drawable/drawable_pressed"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:state_pressed</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:id</span>=<span class="string">"@+id/focused"</span> <span class="attr">android:drawable</span>=<span class="string">"@drawable/drawable_focused"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:state_focused</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:id</span>=<span class="string">"@id/default"</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:drawable</span>=<span class="string">"@drawable/drawable_default"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- specify a transition --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">transition</span> <span class="attr">android:fromId</span>=<span class="string">"@+id/default"</span> <span class="attr">android:toId</span>=<span class="string">"@+id/pressed"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">animation-list</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:duration</span>=<span class="string">"15"</span> <span class="attr">android:drawable</span>=<span class="string">"@drawable/drawable1"</span>/&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">item</span> <span class="attr">android:duration</span>=<span class="string">"15"</span> <span class="attr">android:drawable</span>=<span class="string">"@drawable/drawable2"</span>/&gt;</span></span><br><span class="line">            ...</span><br><span class="line">        <span class="tag">&lt;/<span class="name">animation-list</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line"><span class="tag">&lt;/<span class="name">animated-selector</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-循环揭示"><a href="#3-循环揭示" class="headerlink" title="3.循环揭示"></a>3.循环揭示</h3><p>它提供视觉上的持续性挡显示或者隐藏一组界面元素。通过ViewAnimationUtils.createCircularReveal()方法可以使用动画效果来揭示或者隐藏一个视图。</p>
+<p><img src="/assets/images/md3.gif" alt="image"></p>
+<p>关键代码<br>揭示一个先前隐藏的视图</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Animator anim =</span><br><span class="line">    ViewAnimationUtils.createCircularReveal(myView, cx, cy, <span class="number">0</span>, finalRadius)<span class="comment">;</span></span><br><span class="line">myView.setVisibility(View.VISIBLE)<span class="comment">;</span></span><br><span class="line">anim.start()<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>隐藏一个先前显示的视图</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Animator anim =</span><br><span class="line">    ViewAnimationUtils.createCircularReveal(myView, cx, cy, initialRadius, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">anim.addListener(<span class="keyword">new</span> AnimatorListenerAdapter() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">onAnimationEnd</span><span class="params">(Animator animation)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onAnimationEnd(animation);</span><br><span class="line">        myView.setVisibility(View.INVISIBLE);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">anim.start();</span><br></pre></td></tr></table></figure>
+<p>针对5.0以下如果实现，可以借用第三方库：<a href="https://github.com/ozodrukh/CircularReveal" target="_blank" rel="noopener">CircularReveal</a></p>
+<h3 id="共享元素转场"><a href="#共享元素转场" class="headerlink" title="共享元素转场"></a>共享元素转场</h3><p>android 5.0(api 21)提供以下进入和退出效果：</p>
+<ul>
+<li>explode(分解)  </li>
+<li>slide(滑动)   </li>
+<li>fade(淡入淡出)</li>
+</ul>
+<p>接下来猪脚登场,共享元素过渡效果：</p>
+<ul>
+<li>changeBounds - 改变目标视图的布局边界</li>
+<li>changeClipBounds - 裁剪目标视图边界</li>
+<li>changeTransform - 改变目标视图的缩放比例和旋转角度</li>
+<li>changeImageTransform - 改变目标图片的大小和缩放比例</li>
+</ul>
+<p><img src="/assets/images/SceneTransition.png" alt="image"></p>
+<p>首先在我们继承的主题上，使用android:windowContentTransitions属性开启窗口内内容过渡效果</p>
+<ul>
+<li>以共享元素启动一个操作行为</li>
+</ul>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ActivityOptionsCompat <span class="keyword">options</span> = ActivityOptionsCompat.</span><br><span class="line">    makeSceneTransitionAnimation(<span class="keyword">this</span>, (View)ivAvatar, <span class="string">"avatar"</span>);</span><br><span class="line">startActivity(intent, <span class="keyword">options</span>.toBundle());</span><br></pre></td></tr></table></figure>
+<ul>
+<li>以多个共享元素启动一个操作行为</li>
+</ul>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Pair&lt;<span class="built_in">View</span>, <span class="keyword">String</span>&gt; p1 = Pair.<span class="keyword">create</span>((<span class="built_in">View</span>)ivProfile, <span class="string">"profile"</span>);</span><br><span class="line">Pair&lt;<span class="built_in">View</span>, <span class="keyword">String</span>&gt; p2 = Pair.<span class="keyword">create</span>(vPalette, <span class="string">"palette"</span>);</span><br><span class="line">Pair&lt;<span class="built_in">View</span>, <span class="keyword">String</span>&gt; p3 = Pair.<span class="keyword">create</span>((<span class="built_in">View</span>)tvName, <span class="string">"text"</span>);</span><br><span class="line">ActivityOptionsCompat options = ActivityOptionsCompat.</span><br><span class="line">    makeSceneTransitionAnimation(this, p1, p2, p3);</span><br><span class="line">startActivity(intent, options.toBundle());</span><br></pre></td></tr></table></figure>
+<h3 id="Scrolling-Animations"><a href="#Scrolling-Animations" class="headerlink" title="Scrolling Animations"></a>Scrolling Animations</h3><p>放到后面</p>
+<h3 id="高度和阴影"><a href="#高度和阴影" class="headerlink" title="高度和阴影"></a>高度和阴影</h3><p><img src="/assets/images/md4.png" alt="image"></p>
+<p>Z = elevation + translationZ</p>
+<p>主要借助elevation属性</p>
+<h3 id="着色"><a href="#着色" class="headerlink" title="着色"></a>着色</h3><p>利用 Android 5.0（API 级别 21）及更高版本,可为位图以及定义为 Alpha 蒙版的点九图着色，主要借助android:tint 以及 android:tintMode 属性设置您的布局中的着色颜色和模式。</p>
+<h3 id="裁剪视图"><a href="#裁剪视图" class="headerlink" title="裁剪视图"></a>裁剪视图</h3><p><img src="/assets/images/md5.png" alt="image"></p>
+<ul>
+<li>扩展 ViewOutlineProvider 类别。</li>
+<li>重写 getOutline() 方法。</li>
+<li>利用 View.setOutlineProvider() 方法设置轮廓。</li>
+</ul>
+<h3 id="矢量图片添加动画"><a href="#矢量图片添加动画" class="headerlink" title="矢量图片添加动画"></a>矢量图片添加动画</h3><p>先是xml文件，对应类是VectorDrawable<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">vector</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:height</span>=<span class="string">"64dp"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:width</span>=<span class="string">"64dp"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:viewportHeight</span>=<span class="string">"600"</span></span></span><br><span class="line"><span class="tag">     <span class="attr">android:viewportWidth</span>=<span class="string">"600"</span> &gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">group</span></span></span><br><span class="line"><span class="tag">         <span class="attr">android:name</span>=<span class="string">"rotationGroup"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">android:pivotX</span>=<span class="string">"300.0"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">android:pivotY</span>=<span class="string">"300.0"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">android:rotation</span>=<span class="string">"45.0"</span> &gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">path</span></span></span><br><span class="line"><span class="tag">             <span class="attr">android:name</span>=<span class="string">"v"</span></span></span><br><span class="line"><span class="tag">             <span class="attr">android:fillColor</span>=<span class="string">"#000000"</span></span></span><br><span class="line"><span class="tag">             <span class="attr">android:pathData</span>=<span class="string">"M300,70 l 0,-70 70,70 0,0 -70,70z"</span> /&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">group</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">vector</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>设置drawable，对应类是AnimatedVectorDrawable<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">animated-vector</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">   <span class="attr">android:drawable</span>=<span class="string">"@drawable/vectordrawable"</span> &gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">target</span></span></span><br><span class="line"><span class="tag">         <span class="attr">android:name</span>=<span class="string">"rotationGroup"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">android:animation</span>=<span class="string">"@anim/rotation"</span> /&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">target</span></span></span><br><span class="line"><span class="tag">         <span class="attr">android:name</span>=<span class="string">"v"</span></span></span><br><span class="line"><span class="tag">         <span class="attr">android:animation</span>=<span class="string">"@anim/path_morph"</span> /&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">animated-vector</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>上面是使用了两个属性动画，对应类是ObjectAnimator</p>
+<p>其中旋转动画和变形动画：<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;objectAnimator  </span><br><span class="line">    xmlns:<span class="attribute">android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:<span class="attribute">duration</span>=<span class="string">"6000"</span>  </span><br><span class="line">    android:<span class="attribute">propertyName</span>=<span class="string">"rotation"</span>  </span><br><span class="line">    android:<span class="attribute">valueFrom</span>=<span class="string">"0"</span>  </span><br><span class="line">    android:<span class="attribute">valueTo</span>=<span class="string">"360"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;objectAnimator  </span><br><span class="line">    xmlns:<span class="attribute">android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span><br><span class="line">    android:<span class="attribute">duration</span>=<span class="string">"3000"</span>  </span><br><span class="line">    android:<span class="attribute">propertyName</span>=<span class="string">"pathData"</span>  </span><br><span class="line">    android:<span class="attribute">valueFrom</span>=<span class="string">"M300,70 l 0,-70 70,70 0,0   -70,70z"</span>  </span><br><span class="line">    android:<span class="attribute">valueTo</span>=<span class="string">"M300,70 l 0,-70 70,0  0,140 -70,0 z"</span>  </span><br><span class="line">    android:<span class="attribute">valueType</span>=<span class="string">"pathType"</span>/&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="从图像萃取颜色"><a href="#从图像萃取颜色" class="headerlink" title="从图像萃取颜色"></a>从图像萃取颜色</h3><p>如果要萃取这些颜色，可以通过如下函数：</p>
+<p><img src="/assets/images/md6.png" alt="image"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">Palette</span><span class="selector-class">.from</span>(<span class="selector-tag">bitmap</span>)<span class="selector-class">.generate</span>()</span><br><span class="line"><span class="selector-tag">Palette</span><span class="selector-class">.generateAsync</span>(<span class="selector-tag">bitmap</span>,<span class="selector-tag">paletteAsyncListener</span>)</span><br></pre></td></tr></table></figure>
+<p>然后可以通过 Palette.getVibrantColor方法获取色值</p>
+<h2 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h2><h3 id="颜色"><a href="#颜色" class="headerlink" title="颜色"></a>颜色</h3><p>颜色不宜过多。选取一种主色、一种辅助色（非必需），在此基础上进行明度、饱和度变化，构成配色方案。(<a href="https://www.materialpalette.com" target="_blank" rel="noopener">https://www.materialpalette.com</a>)</p>
+<h3 id="图标"><a href="#图标" class="headerlink" title="图标"></a>图标</h3><p>建议模仿现实中的折纸效果，通过扁平色彩表现空间和光影。这里也推荐下这个插件：<a href="https://github.com/konifar/android-material-design-icon-generator-plugin" target="_blank" rel="noopener">https://github.com/konifar/android-material-design-icon-generator-plugin</a></p>
+<h3 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h3><p>优先使用图像。然后可以考虑使用插画。</p>
+<h3 id="文字"><a href="#文字" class="headerlink" title="文字"></a>文字</h3><p>英文官方建议Roboto字体，中文推荐Noto(思源黑体)，另外官方也开源了<a href="http://fonts.google.com/" target="_blank" rel="noopener">字体库</a>,需翻墙</p>
+<h2 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h2><p>这里列出部分尺寸：</p>
+<ul>
+<li>所有可操作元素最小点击区域尺寸：48dp X 48dp。</li>
+<li>栅格系统的最小单位是8dp，一切距离、尺寸都应该是8dp的整数倍。以下是一些常见的尺寸与距离：（推荐网格校正工具：keyline pushing）</li>
+<li>顶部状态栏高度：24dp</li>
+<li>Appbar最小高度：56dp</li>
+<li>底部导航栏高度：48dp</li>
+<li>悬浮按钮尺寸：56x56dp/40x40dp</li>
+<li>用户头像尺寸：64x64dp/40x40dp</li>
+<li>小图标点击区域：48x48dp</li>
+<li>侧边抽屉到屏幕右边的距离：56dp</li>
+<li>卡片间距：8dp</li>
+<li>分隔线上下留白：8dp</li>
+<li>大多元素的留白距离：16dp</li>
+</ul>
+<p>推荐国外开发者贡献的一个开源库：<a href="https://github.com/DmitryMalkovich/material-design-dimens" target="_blank" rel="noopener">https://github.com/DmitryMalkovich/material-design-dimens</a>  里面总结了一些Material Design的设计规范，另外也推荐一款网格校正工具：<a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;ved=0ahUKEwiB17eglZvOAhVJ72MKHdcIADUQFggfMAA&amp;url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.faizmalkani.keylines%26hl%3Dzh_CN&amp;usg=AFQjCNFaXp2sbsfOHk8bifBkhuS38VukCw&amp;sig2=pEOMduInSxFH9v2qvjPcYw" target="_blank" rel="noopener">keyline pushing</a></p>
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>这里列出来一些官方组件，可供我们开发Material Design时使用</p>
+<ul>
+<li>RecyclerView</li>
+<li>CardView</li>
+<li>DrawerLayout</li>
+<li>NavigationView</li>
+<li>Toolbar</li>
+<li>FloatingActionButton</li>
+<li>Snackbar</li>
+<li>TextInputLayout</li>
+<li>TextInputEditText</li>
+<li>CoordinatorLayout</li>
+<li>TabLayout</li>
+<li>AppBarLayout</li>
+<li>SwipeRefreshLayout</li>
+<li>CollapsingToolbarLayout</li>
+<li>BottomSheetBehavior</li>
+<li>PercentRelativeLayout</li>
+<li>Palette</li>
+<li>PagerTabStrip</li>
+<li>PagerTitleStrip</li>
+<li>SlidingPanelLayout</li>
+</ul>
+<h3 id="RecyclerView"><a href="#RecyclerView" class="headerlink" title="RecyclerView"></a>RecyclerView</h3><p>关于RecyclerView的几点总结：</p>
+<ul>
+<li>RecyclerView.LayoutManager    :负责Item视图的布局的显示管理</li>
+<li>RecyclerView.ItemDecoration    :给每一项Item视图添加子View,如加分割线等</li>
+<li>RecyclerView.ItemAnimator:负责处理数据添加或者删除时候的动画效果</li>
+<li>RecyclerView.Adapter:为每一项Item创建视图</li>
+<li>RecyclerView.ViewHolder:承载Item视图的子布局</li>
+</ul>
+<p>与ListView的对比：</p>
+<ul>
+<li>RecyclerView需借助ViewHolder模式来实现Adapter</li>
+<li>RecyclerView可以自定义Item布局：listview只能以垂直线性排列的方式来布局Item,而RecyclerView借助RecyclerView.LayoutManager可以实现多种布局，如网格、瀑布流等</li>
+<li>Item 动画：借助RecyclerView.ItemAnimator很容易实现item动画</li>
+<li>数据源：listview针对不同的数据源可以有不同的适配器，而RecyclerView需要借助RecyclerView.Adapter自定义实现适配器来提供数据。</li>
+<li>Item Decoration：listview可以通过android:divider很容易实现分割线等，而RecycerView则需要借助RecyclerView.ItemDecoration</li>
+<li>Item Click : listview可以通过AdapterView.OnItemClickListener来实现，而RecyclerView则只提供了RecyclerView.OnItemTouchListener</li>
+</ul>
+<h3 id="CardView"><a href="#CardView" class="headerlink" title="CardView"></a>CardView</h3><p><img src="/assets/images/md7.png" alt="image"></p>
+<p>两个属性：</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">app:</span>cardCornerRadius</span><br><span class="line"><span class="symbol">app:</span>cardBackgroundColor</span><br></pre></td></tr></table></figure>
+<h3 id="Toolbar"><a href="#Toolbar" class="headerlink" title="Toolbar"></a>Toolbar</h3><p>用来替代ActionBar，可以当做一个普通的ViewGroup来使用，所以来说比前者更灵活</p>
+<h3 id="AppBarLayout"><a href="#AppBarLayout" class="headerlink" title="AppBarLayout"></a>AppBarLayout</h3><p>常作为Toolbar和其他View的父View配合CoordinatorLayout使用来实现Scrolling Animation</p>
+<h3 id="FloatingActionButton"><a href="#FloatingActionButton" class="headerlink" title="FloatingActionButton"></a>FloatingActionButton</h3><p>浮动Button,也可以加入二级菜单</p>
+<h3 id="Snackbar"><a href="#Snackbar" class="headerlink" title="Snackbar"></a>Snackbar</h3><p>带有动作的Toast</p>
+<h3 id="TabLayout"><a href="#TabLayout" class="headerlink" title="TabLayout"></a>TabLayout</h3><p>常和ViewPager搭配使用，比较方便</p>
+<h3 id="CoordinatorLayout-Behavior"><a href="#CoordinatorLayout-Behavior" class="headerlink" title="CoordinatorLayout.Behavior"></a>CoordinatorLayout.Behavior</h3><p>CoordinatorLayout是一个比较重要的类，大致主要分这几点：</p>
+<ul>
+<li>一个抽象内部类</li>
+<li>利用泛型是指定我们应用这个Behavior的view的类型</li>
+<li>自定义Behavior：某个View监听另一个view的状态变化，例如大小、位置、显示状态等：layoutDependendsOn和onDependentViewChanged方法；</li>
+<li>某个view监听CoordinatorLayout里的滑动状态：onStartNestedScroll和onNestedPreScroll方法。</li>
+<li>CoordinatorLayout 所做的事情就是当成一个通信的 桥梁 ，连接不同的view。使用 Behavior 对象进行通信。</li>
+</ul>
+<p>两个常见用例：</p>
+<ul>
+<li>CoordinatorLayout与悬浮操作按钮</li>
+</ul>
+<ol>
+<li><p>CoordinatorLayout是用来协调其子view们之间动作的一个父view，而Behavior就是用来给CoordinatorLayout的子view们实现交互的。</p>
+</li>
+<li><p>FloatingActionButton作为一个子View添加进CoordinatorLayout并且将CoordinatorLayout传递给 Snackbar.make()</p>
+</li>
+</ol>
+<ul>
+<li>CoordinatorLayout与app bar</li>
+</ul>
+<ol>
+<li><p>使用AppBarLayout可以让你的Toolbar与其他view（比如TabLayout的选项卡）能响应被标记了ScrollingViewBehavior的View的滚动事件</p>
+</li>
+<li><p>这里使用了CollapsingToolbarLayout的app:layout_collapseMode=”pin”来确保Toolbar在view折叠的时候仍然被固定在屏幕的顶部。借助app:layout_collapseMode=”parallax”（以及使用app:layout_collapseParallaxMultiplier=”0.7”来设置视差因子）来实现视差滚动效果（比如CollapsingToolbarLayout里面的一个ImageView），这种情况和CollapsingToolbarLayout的app:contentScrim=”?attr/colorPrimary”属性一起配合更完美。</p>
+</li>
+</ol>
+<p>总结：</p>
+<ul>
+<li>CoordinatorLayout必须作为整个布局的父布局容器。</li>
+<li>给需要滑动的组件设置 app:layout_scrollFlags=”scroll|enterAlways” 属性。</li>
+<li>给你的可滑动的组件，也就是RecyclerView 或者 NestedScrollView 设置如下属性:app:layout_behavior = @string/appbar_scrolling_view_behavior</li>
+<li>给需要有折叠效果的组件设置 layout_collapseMode属性。</li>
+</ul>
+<h3 id="Chris-Banes"><a href="#Chris-Banes" class="headerlink" title="Chris Banes"></a>Chris Banes</h3><p>android.support:design库作者</p>
+<p>github: <a href="https://github.com/chrisbanes" target="_blank" rel="noopener">https://github.com/chrisbanes</a><br>google+: <a href="https://plus.google.com/+ChrisBanes" target="_blank" rel="noopener">https://plus.google.com/+ChrisBanes</a><br>twitter: <a href="https://twitter.com/chrisbanes" target="_blank" rel="noopener">https://twitter.com/chrisbanes</a><br>blog: <a href="http://chris.banes.me/" target="_blank" rel="noopener">http://chris.banes.me/</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li><p>阴影：android:elevation 和 android:translationZ</p>
+</li>
+<li><p>调色：通过android:colorPrimary 和 android:colorAccent、Palette萃取等</p>
+</li>
+<li><p>图标：使用遵循material design spec的icon</p>
+</li>
+<li><p>尺寸：注意8dp的整数倍</p>
+</li>
+<li><p>动效：波纹动画、循环揭示、共享元素转场、滑动、SVG动画等</p>
+</li>
+<li><p>组件：FAB、Appbar、Tabs、Cards、Lists等</p>
+</li>
+</ul>
+<h2 id="兼容"><a href="#兼容" class="headerlink" title="兼容"></a>兼容</h2><h3 id="样式与布局兼容"><a href="#样式与布局兼容" class="headerlink" title="样式与布局兼容"></a>样式与布局兼容</h3><blockquote>
+<p>可以写对应的样式文件和布局文件</p>
+<ul>
+<li>res/values/styles.xml.</li>
+<li>res/values-v21/styles.xml.</li>
+<li>res/layout/my_activity.xml</li>
+<li>res/layout-v21/my_activity.xml</li>
+</ul>
+</blockquote>
+<h3 id="使用支持库提供的组件"><a href="#使用支持库提供的组件" class="headerlink" title="使用支持库提供的组件"></a>使用支持库提供的组件</h3><h3 id="使用兼容的主题：Theme-AppCompat"><a href="#使用兼容的主题：Theme-AppCompat" class="headerlink" title="使用兼容的主题：Theme.AppCompat"></a>使用兼容的主题：Theme.AppCompat</h3><blockquote>
+<p>以下组件可以借助兼容主题来实现已有样式</p>
+<ul>
+<li>EditText</li>
+<li>Spinner</li>
+<li>CheckBox</li>
+<li>RadioButton</li>
+<li>SwitchCompat</li>
+<li>CheckedTextView</li>
+</ul>
+</blockquote>
+<h3 id="调色板"><a href="#调色板" class="headerlink" title="调色板"></a>调色板</h3><p><img src="/assets/images/md8.png" alt="image"></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">style</span> <span class="attr">name</span>=<span class="string">"AppTheme"</span> <span class="attr">parent</span>=<span class="string">"android:Theme.Material"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="xml">   <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:colorPrimary"</span>&gt;</span>@color/primary<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">   <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:colorPrimaryDark"</span>&gt;</span>@color/primary_dark<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="xml">   <span class="tag">&lt;<span class="name">item</span> <span class="attr">name</span>=<span class="string">"android:colorAccent"</span>&gt;</span>@color/accent<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span></span><br><span class="line"><span class="undefined">  </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用第三方组件库"><a href="#使用第三方组件库" class="headerlink" title="使用第三方组件库"></a>使用第三方组件库</h3><h3 id="自己造轮子"><a href="#自己造轮子" class="headerlink" title="自己造轮子"></a>自己造轮子</h3><p>先<a href="http://developer.android.com/design/material/index.html" target="_blank" rel="noopener">熟悉API</a>，再查看官方设计指南，利用现有API进行封装</p>
+<h2 id="Best-In-Class-Android-Design"><a href="#Best-In-Class-Android-Design" class="headerlink" title="Best-In-Class Android Design"></a>Best-In-Class Android Design</h2><p>Material Design团队整理的Google Play上比较好的MD风格的App</p>
+<p><img src="/assets/images/md9.png" alt="image"></p>
+<p><a href="https://play.google.com/store/apps/collection/promotion_3001769_io_awards" target="_blank" rel="noopener">https://play.google.com/store/apps/collection/promotion_3001769_io_awards</a></p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>这次的PPT<a href="https://pan.baidu.com/s/1dFLqrs9" target="_blank" rel="noopener">下载地址</a></p>
+
+        
+            
+        
+        <!--MOB SHARE BEGIN-->
+        <div class="-hoofoo-share-title">分享到：</div>
+        <div class="-hoofoo-share-buttons">
+            <div class="-mob-share-weibo -hoofoo-share-weibo -hoofoo-share-ui-button"><i class="fa fa-weibo" aria-hidden="true"></i></div>
+            <div class="-mob-share-weixin -hoofoo-share-weixin -hoofoo-share-ui-button"><i class="fa fa-weixin" aria-hidden="true"></i></div>
+            <div class="-mob-share-qq -hoofoo-share-qq -hoofoo-share-ui-button"><i class="fa fa-qq" aria-hidden="true"></i></div>
+            <div class="-mob-share-twitter -hoofoo-share-twitter -hoofoo-share-ui-button"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+            <div class="-hoofoo-share-more -hoofoo-share-ui-button -mob-share-open"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+        </div>
+        <div class="-mob-share-ui -mob-share-ui-theme" style="display: none; left: 0px; top: 0px;">
+            <ul class="-mob-share-list">
+                <li class="-mob-share-weibo" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>新浪微博</p></li>
+                <li class="-mob-share-weixin" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>微信</p></li>
+                <li class="-mob-share-qzone" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>QQ空间</p></li>
+                <li class="-mob-share-qq" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>QQ好友</p></li>
+                
+                <li class="-mob-share-douban" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>豆瓣</p></li>
+                <li class="-mob-share-youdao" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>有道云笔记</p></li>
+                
+                <li class="-mob-share-facebook" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Facebook</p></li>
+                <li class="-mob-share-twitter" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Twitter</p></li>
+                <li class="-mob-share-pocket" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Pocket</p></li>
+                <li class="-mob-share-google" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Google+</p></li>
+                <li class="-mob-share-tumblr" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Tumblr</p></li>
+                <li class="-mob-share-instapaper" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Instapaper</p></li>
+                <li class="-mob-share-linkedin" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Linkedin</p></li>
+            </ul>
+            <div class="-mob-share-close">取消</div>
+        </div>
+        <div class="-mob-share-ui-bg"></div>
+        <script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=23a3d44c6690c"></script>
+<!--MOB SHARE END-->
+            
+        <div style="background-color: #2E7D32;height: 3px;margin-bottom: 15px;margin-top: 15px;"></div>
+        <span>移动开发者/技术爱好者/喜欢开源与分享，你也可以关注微信公众号MobDevGroup，移动开发在线分享：<a href="http://mobdevgroup.com">MobDevGroup</a></span>
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/Material-Design/">Material Design</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/11/12/vue/" data-tooltip="前端笔记">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/03/01/AndroidStudio/" data-tooltip="从Android Studio来谈开发工具">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+        
+    </div>
+</article>
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 Sean Liu. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div class="post-bottom-bar">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/11/12/vue/" data-tooltip="前端笔记">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2016/03/01/AndroidStudio/" data-tooltip="从Android Studio来谈开发工具">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/user.jpg">
+        
+            <h4 id="about-card-name">Sean Liu</h4>
+        
+            <h5 id="about-card-bio">Just Keep Sharing 移动开发在线分享：http://mobdevgroup.com</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                Mobile Developer
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br>
+                Xi&#39;an, Shaanxi, China
+            </h5>
+        
+    </div>
+</div>
+        <div id="cover" style="background-color:#2196f3"></div>
+
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.fancybox.js"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js"></script>
+<script src="/assets/js/tranquilpeak.js"></script>
+<!--SCRIPTS END-->
+
+
+</html>
