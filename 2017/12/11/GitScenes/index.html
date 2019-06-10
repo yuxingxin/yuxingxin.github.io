@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="宇信同行">
+    <title>Git使用过程中的一些常见场景问题总结 - 宇信同行</title>
+    <meta name="author" content="Sean Liu">
+    <meta name="description" content="宇信同行">
+    <link rel="icon" href="/assets/images/fav.ico">
+    
+        <link rel="alternative" type="application/atom+xml" title="RSS" href="atom.xml">
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/assets/css/font-awesome.css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+    <link rel="stylesheet" href="/assets/css/jquery.fancybox-thumbs.css">
+    <link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+    <!--STYLES END-->
+    
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-77096739-2']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?fdaa18e768db90bb9e82a9db3aec9d3d";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</head>
+
+    <body>
+        <div id="blog">
+            <header id="header">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars "></i>
+    <h1 class="header-title">
+        <a class="header-title-link" href="https://yuxingxin.com">宇信同行</a>
+    </h1>
+    
+        <a class="header-picture-link" href="/#about">
+            <img class="header-picture" src="/assets/images/user.jpg">
+        </a>
+    
+</header>
+            <nav id="sidebar">
+    
+    <div class="sidebar-profile">
+        <a href="/#about">
+            
+            <img class="sidebar-profile-picture" src="/assets/images/user.jpg">
+            
+        </a>
+        <span class="sidebar-profile-name hide-md">Sean Liu</span>
+    </div>
+    
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+                    <span class="sidebar-button-desc hide-md">主页</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-categories">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+                    <span class="sidebar-button-desc hide-md">分类</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-tags">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+                    <span class="sidebar-button-desc hide-md">标签</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/all-archives">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+                    <span class="sidebar-button-desc hide-md">归档</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/#about">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+                    <span class="sidebar-button-desc hide-md">关于宇行信</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="http://weibo.com/lx8909" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-weibo"></i>
+                    <span class="sidebar-button-desc hide-md">weibo</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://github.com/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+                    <span class="sidebar-button-desc hide-md">GitHub</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="http://stackoverflow.com/users/4866682/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+                    <span class="sidebar-button-desc hide-md">Stack Overflow</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://twitter.com/yuxingxin" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-twitter"></i>
+                    <span class="sidebar-button-desc hide-md">Twitter</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="https://www.facebook.com/profile.php?id=100004716995168" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-facebook"></i>
+                    <span class="sidebar-button-desc hide-md">Facebook</span>
+                </a>
+        </li>
+        
+        <li class="sidebar-button">
+            
+            <a class="sidebar-button-link" href="mailto:lx8909@gmail.com" target="_blank">
+                
+                    <i class="sidebar-button-icon fa fa-lg fa-envelope-o"></i>
+                    <span class="sidebar-button-desc hide-md">Mail</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+    <ul class="sidebar-buttons">
+        
+        <li class="sidebar-button">
+            
+                <a class="sidebar-button-link" href="https://yuxingxin.com/atom.xml">
+                    
+                    <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+                    <span class="sidebar-button-desc hide-md">RSS</span>
+                </a>
+        </li>
+        
+    </ul>
+    
+</nav>
+            <div id="main">
+                
+<style type="text/css">
+
+.-hoofoo-share-buttons {
+  display: inline-block;
+}
+.-hoofoo-share-title {
+  font-size: 1.1em;
+  font-weight: 200;
+}
+.-hoofoo-share-ui-button {
+  cursor: pointer;
+  background-color: #555;
+  color: #fff;
+  font-size: 24px;
+  line-height: 40px;
+  width: 40px;
+  height: 40px;
+  margin: 10px;
+  border-radius: 25px;
+  float: left;
+  transition: background 0.4s;
+  -moz-transition: background 0.4s; /* Firefox 4 */
+  -webkit-transition: background 0.4s; /* Safari å’Œ Chrome */
+  -o-transition: background 0.4s;
+  text-align: center;
+}
+.-hoofoo-share-weibo:hover {
+  background-color: #cf3f41;
+}
+.-hoofoo-share-weixin:hover {
+  background-color: #18a01a;
+}
+.-hoofoo-share-qq:hover {
+  background-color: #5593d9;
+}
+.-hoofoo-share-twitter:hover {
+  background-color: #2ab3e6;
+}
+.-hoofoo-share-more:hover {
+  background-color: #777;
+}
+.-mob-share-weixin-qrcode-content {
+  border-radius: 4px;
+  -webkit-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  -o-box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+.-mob-share-weixin-qrcode {
+  margin: 5% !important;
+  width: 90% !important;
+  height: auto !important;
+}
+.-mob-share-weixin-qrcode-close {
+  background-image: url("/assets/images/fancybox_sprite.png") !important;
+}
+.-mob-share-weixin-qrcode-close {
+  overflow: hidden;
+  line-height: 100px !important;
+  position: absolute !important;
+  top: -18px !important;
+  right: -18px !important;
+  width: 36px !important;
+  height: 36px !important;
+  cursor: pointer !important;
+  z-index: 8040 !important;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  .-mob-share-weixin-qrcode-close {
+    background-image: url("/assets/images/fancybox_sprite@2x.png") !important;
+    background-size: 44px 152px !important; /*The size of the normal image, half the size of the hi-res image*/
+  }
+}
+.-mob-share-close {
+  height: 4em !important;
+  font-size: 0.8em !important;
+  line-height: 4em !important;
+  background: #555 !important;
+  color: #fff !important;
+}
+</style>
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+        <div class="post-header main-content-wrap">
+    
+        <h1 class="post-title" itemprop="headline">Git使用过程中的一些常见场景问题总结</h1>
+    
+    <div class="post-meta">
+    <time itemprop="datePublished" content="Mon Dec 11 2017 00:00:00 GMT+0800">
+        Dec 11, 2017
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Tools/">Tools</a>
+
+
+    
+</div>
+</div>
+    
+    <div class="post-content markdown main-content-wrap" itemprop="articleBody">
+        <p>之前在公司内部推Git，写了一份<a href="https://devops.yuxingxin.com" target="_blank" rel="noopener">git使用教程</a>，后来又在团队内部做了一次分享，内容是关于Git使用过程中经常会遇到的一些场景，并有了这份总结。</p>
+<h3 id="git基础"><a href="#git基础" class="headerlink" title="git基础"></a>git基础</h3><p>基于feature的工作流</p>
+<ul>
+<li>添加忽略文件   .gitignore (<a href="http://gitignore.io/" target="_blank" rel="noopener">http://gitignore.io/</a>)</li>
+<li>基于develop分支开发：feature分支   bugfix分支   版本节点tag</li>
+<li>问题排查: diff 、log  、reflog、blame</li>
+<li>撤销操作: checkout  、reset、revert、commit –amend</li>
+<li>删除操作: rm  clean</li>
+<li>储藏操作: stash</li>
+<li>分支操作：创建、删除（注意远程分支的删除）、切换、合并（–no-ff 、rebase）</li>
+<li>标签操作</li>
+</ul>
+<p>更多详细查看上面教程链接</p>
+<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><h4 id="1-本地已经存在的项目-分支与如何远程仓库关联"><a href="#1-本地已经存在的项目-分支与如何远程仓库关联" class="headerlink" title="1. 本地已经存在的项目/分支与如何远程仓库关联"></a>1. 本地已经存在的项目/分支与如何远程仓库关联</h4><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote <span class="keyword">add</span><span class="bash"> origin &lt;your-repo-git-url&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="2-刚刚提交了的commit-log发现错了，想修改"><a href="#2-刚刚提交了的commit-log发现错了，想修改" class="headerlink" title="2. 刚刚提交了的commit log发现错了，想修改"></a>2. 刚刚提交了的commit log发现错了，想修改</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">commit</span> <span class="comment">--amend -m "your new log"</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-查看某次提交的日志和ID"><a href="#3-查看某次提交的日志和ID" class="headerlink" title="3. 查看某次提交的日志和ID"></a>3. 查看某次提交的日志和ID</h4><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git reflog</span></span><br></pre></td></tr></table></figure>
+<h4 id="4-查看某次提交的内容"><a href="#4-查看某次提交的内容" class="headerlink" title="4. 查看某次提交的内容"></a>4. 查看某次提交的内容</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git show <span class="tag">&lt;<span class="name">commit_id</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="5-只是修改了工作区的文件，想恢复到原来修改前的样子"><a href="#5-只是修改了工作区的文件，想恢复到原来修改前的样子" class="headerlink" title="5. 只是修改了工作区的文件，想恢复到原来修改前的样子"></a>5. 只是修改了工作区的文件，想恢复到原来修改前的样子</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">reset</span> <span class="comment">--hard HEAD</span></span><br><span class="line">git checkout <span class="comment">-- &lt;file_name&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="6-被修改的文件已经添加到了暂存区，想撤销添加"><a href="#6-被修改的文件已经添加到了暂存区，想撤销添加" class="headerlink" title="6. 被修改的文件已经添加到了暂存区，想撤销添加"></a>6. 被修改的文件已经添加到了暂存区，想撤销添加</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">reset</span> <span class="comment">--mixed HEAD</span></span><br></pre></td></tr></table></figure>
+<h4 id="7-被修改的文件已经commit提交，想撤销提交"><a href="#7-被修改的文件已经commit提交，想撤销提交" class="headerlink" title="7. 被修改的文件已经commit提交，想撤销提交"></a>7. 被修改的文件已经commit提交，想撤销提交</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">reset</span> <span class="comment">--soft HEAD^</span></span><br></pre></td></tr></table></figure>
+<h4 id="8-已经提交到远程主机的文件，想撤销"><a href="#8-已经提交到远程主机的文件，想撤销" class="headerlink" title="8. 已经提交到远程主机的文件，想撤销"></a>8. 已经提交到远程主机的文件，想撤销</h4><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">git</span> <span class="keyword">revert </span>&lt;commit_id&gt;</span><br><span class="line"><span class="symbol">git</span> <span class="keyword">revert </span>HEAD</span><br></pre></td></tr></table></figure>
+<h4 id="9-已经开发一半的功能，但是没有开发完，这时候有个bug要紧急处理，需要放下手头的功能，赶去修改BUG"><a href="#9-已经开发一半的功能，但是没有开发完，这时候有个bug要紧急处理，需要放下手头的功能，赶去修改BUG" class="headerlink" title="9. 已经开发一半的功能，但是没有开发完，这时候有个bug要紧急处理，需要放下手头的功能，赶去修改BUG"></a>9. 已经开发一半的功能，但是没有开发完，这时候有个bug要紧急处理，需要放下手头的功能，赶去修改BUG</h4><figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 保存现场</span></span><br><span class="line">git stash  </span><br><span class="line"><span class="comment">// 恢复现场</span></span><br><span class="line">git stash <span class="keyword">pop</span></span><br></pre></td></tr></table></figure>
+<h4 id="10-加入过历史版本的文件，因某些原因被删除了想恢复"><a href="#10-加入过历史版本的文件，因某些原因被删除了想恢复" class="headerlink" title="10. 加入过历史版本的文件，因某些原因被删除了想恢复"></a>10. 加入过历史版本的文件，因某些原因被删除了想恢复</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout <span class="tag">&lt;<span class="name">commit_id</span>&gt;</span> -- <span class="tag">&lt;<span class="name">file_name</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>另外你也可以用reset命令来完成</p>
+<h4 id="11-需要单独把多次提交中的某一次提交从你的分支迁移到另外一个分支上，即跨分支应用commit"><a href="#11-需要单独把多次提交中的某一次提交从你的分支迁移到另外一个分支上，即跨分支应用commit" class="headerlink" title="11. 需要单独把多次提交中的某一次提交从你的分支迁移到另外一个分支上，即跨分支应用commit"></a>11. 需要单独把多次提交中的某一次提交从你的分支迁移到另外一个分支上，即跨分支应用commit</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git cherry-pick <span class="tag">&lt;<span class="name">commit_id</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>比如：我想把以下分支<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A-B  <span class="literal">master</span></span><br><span class="line">   \</span><br><span class="line">    C-D-E-F-G develop</span><br></pre></td></tr></table></figure></p>
+<p>中的D，F 两次提交移动到master分支，而保持其他commit不变，结果就像这样<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A-B-D-F  <span class="literal">master</span></span><br><span class="line">       \</span><br><span class="line">        C-E-G develop</span><br></pre></td></tr></table></figure></p>
+<p>那么，思路是将D，F 用cherry-pick应用到master分支上，然后将develop分支对master分支变基。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git checkout master  </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git cherry-pick D  </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git cherry-pick F  </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout develop  </span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git rebase master</span></span><br></pre></td></tr></table></figure></p>
+<p>注意有些情况下使用cherry-pick会存在冲突，解决方法和我们平时合并分支遇到冲突一样。</p>
+<h4 id="12-遇到文件冲突，可以手动解决，或者用你配置的工具解决，记得把文件标位resolved：add-rm"><a href="#12-遇到文件冲突，可以手动解决，或者用你配置的工具解决，记得把文件标位resolved：add-rm" class="headerlink" title="12. 遇到文件冲突，可以手动解决，或者用你配置的工具解决，记得把文件标位resolved：add/rm"></a>12. 遇到文件冲突，可以手动解决，或者用你配置的工具解决，记得把文件标位resolved：add/rm</h4><p>如：常见的拉取同事的代码合并引起冲突<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 手动处理冲突</span><br><span class="line"><span class="number">2.</span> 文件标志位置为resolved：git <span class="built_in">add</span> &lt;file_name&gt;</span><br><span class="line"><span class="number">3.</span> 继续合并  git <span class="built_in">merge</span> <span class="comment">--continue</span></span><br><span class="line">当然也可以选择放弃合并：git <span class="built_in">merge</span> <span class="comment">--abort</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="13-让自己本地分支上面的每一次提交日志变得更有意义，有时候需要我们选择有意义的提交日志信息合并上去"><a href="#13-让自己本地分支上面的每一次提交日志变得更有意义，有时候需要我们选择有意义的提交日志信息合并上去" class="headerlink" title="13. 让自己本地分支上面的每一次提交日志变得更有意义，有时候需要我们选择有意义的提交日志信息合并上去"></a>13. 让自己本地分支上面的每一次提交日志变得更有意义，有时候需要我们选择有意义的提交日志信息合并上去</h4><p>比如我们在bugfix分支上面由于修改bug提交了很多次，修复好了之后，我们想把这些提交合并入我们的master分支<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout <span class="literal">master</span></span><br><span class="line">git merge --squash bugfix</span><br><span class="line">git commit -m <span class="string">"bug fixed"</span></span><br></pre></td></tr></table></figure></p>
+<p>上面操作会将bugfix分支上的所有commit都合并为一个commit，并把它并入我们的master分支上去。这里还有一点需要注意的是：–squash含义代表的是本地内容与不使用该选项的合并结果相同，但是不提交，不移动HEAD指针，所以我们要另外多一条语句来移动我们的HEAD指针，即最后的commit。</p>
+<h4 id="14-有时候需要整理我们本地的commits，可以使用Squash"><a href="#14-有时候需要整理我们本地的commits，可以使用Squash" class="headerlink" title="14. 有时候需要整理我们本地的commits，可以使用Squash"></a>14. 有时候需要整理我们本地的commits，可以使用Squash</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rebase -<span class="selector-tag">i</span> &lt;commit&gt;</span><br></pre></td></tr></table></figure>
+<p>举例：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">git rebase -i HEAD~<span class="number">5</span></span><br><span class="line"></span><br><span class="line">执行完后，Git会把所有commit列出来，让你进行一些修改，修改完成之后会根据你的修改来rebase。HEAD-5的意思是只修改最近的<span class="number">5</span>个commit。</span><br><span class="line"></span><br><span class="line">pick <span class="number">033</span>beb4 <span class="keyword">b1</span></span><br><span class="line"><span class="keyword">pick </span><span class="keyword">b426a8a </span><span class="keyword">b2</span></span><br><span class="line"><span class="keyword">pick </span>c216era <span class="keyword">b3</span></span><br><span class="line"><span class="keyword">pick </span>d627c9a <span class="keyword">b4</span></span><br><span class="line"><span class="keyword">pick </span>e416c<span class="number">8b</span> <span class="keyword">b5</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="keyword"># </span>Rebase <span class="number">033</span>beb4..e416c<span class="number">8b</span> onto <span class="number">033</span>beb4</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Commands:</span></span><br><span class="line"><span class="comment">#  p, pick = use commit</span></span><br><span class="line"><span class="comment">#  r, reword = use commit, but edit the commit message</span></span><br><span class="line"><span class="comment">#  e, edit = use commit, but stop for amending</span></span><br><span class="line"><span class="comment">#  s, squash = use commit, but meld into previous commit</span></span><br><span class="line"><span class="comment">#  f, fixup = like "squash", but discard this commit's log message</span></span><br><span class="line"><span class="comment">#  x, exec = run command (the rest of the line) using shell</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># If you remove a line here THAT COMMIT WILL BE LOST.</span></span><br><span class="line"><span class="comment"># However, if you remove everything, the rebase will be aborted.</span></span><br><span class="line"><span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<p>上面pick是要执行的commit指令，另外还有reword、edit、squash、fixup、exec这5个，具体的含义可以看上面的注释解释，比较简单，这里就不说了。<br>我们要合并就需要修改前面的pick指令：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">pick</span> <span class="number">033</span>beb4 <span class="keyword">b1</span></span><br><span class="line"><span class="keyword">squash </span><span class="keyword">b426a8a </span><span class="keyword">b2</span></span><br><span class="line"><span class="keyword">squash </span>c216era <span class="keyword">b3</span></span><br><span class="line"><span class="keyword">squash </span>d627c9a <span class="keyword">b4</span></span><br><span class="line"><span class="keyword">squash </span>e416c8b <span class="keyword">b5</span></span><br></pre></td></tr></table></figure>
+<p>也就是下面这4个提交合并到最前面的那个提交里面，按esc，打上:wq提交保存离开。<br>接着是输入新的commit message</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">b</span><br><span class="line"><span class="meta">#</span><span class="bash"> This is a combination of 2 commits.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> The first commit<span class="string">'s message is:</span></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> b1</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> This is the 2nd commit message:</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> b2</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> This is the 3rd commit message:</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> b3</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> This is the 4th commit message:</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> b4</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> This is the 5th commit message:</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> b5</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Please enter the commit message <span class="keyword">for</span> your changes. Lines starting</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> with <span class="string">'#'</span> will be ignored, and an empty message aborts the commit.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Not currently on any branch.</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> Changes to be committed:</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> (use <span class="string">"git reset HEAD &lt;file&gt;..."</span> to unstage)</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> modified:   a.txt</span></span><br><span class="line"><span class="meta">#</span><span class="bash"></span></span><br></pre></td></tr></table></figure>
+<p>其中第一行的b就是需要我们输入的新信息，同样编辑完保存，出现类似下面的信息：</p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Successfully rebased <span class="keyword">and</span> updated refs/heads/develop.</span><br></pre></td></tr></table></figure>
+<p>最后可以用git log指令来验证commits是不是我们要变成的样子。</p>
+<h4 id="15-多人协作开发项目，想知道某个文件的当前改动情况"><a href="#15-多人协作开发项目，想知道某个文件的当前改动情况" class="headerlink" title="15. 多人协作开发项目，想知道某个文件的当前改动情况"></a>15. 多人协作开发项目，想知道某个文件的当前改动情况</h4><p>通常查问题时想知道某个文件的某部分代码是谁改动的，那么git blame 就派上用场了。<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">git</span> <span class="keyword">blame </span>&lt;file_name&gt;</span><br></pre></td></tr></table></figure></p>
+<p>你也可以具体指定到某一行或者某几行代码<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git blame -L <span class="tag">&lt;<span class="name">start_line</span>&gt;</span>,<span class="tag">&lt;<span class="name">end_line</span>&gt;</span> <span class="tag">&lt;<span class="name">file_name</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="16-执行push命令向多个仓库同时提交代码"><a href="#16-执行push命令向多个仓库同时提交代码" class="headerlink" title="16. 执行push命令向多个仓库同时提交代码"></a>16. 执行push命令向多个仓库同时提交代码</h4><p>有时候会做代码备份，将代码保存在几个不同的Git代码管理平台，这时候就需要用到了</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">修改本地仓库目录下.git/config文件</span><br><span class="line"></span><br><span class="line">[core]</span><br><span class="line">	<span class="attr">repositoryformatversion</span> = <span class="number">0</span></span><br><span class="line">	<span class="attr">filemode</span> = <span class="literal">true</span></span><br><span class="line">	<span class="attr">bare</span> = <span class="literal">false</span></span><br><span class="line">	<span class="attr">logallrefupdates</span> = <span class="literal">true</span></span><br><span class="line">	<span class="attr">ignorecase</span> = <span class="literal">true</span></span><br><span class="line">	<span class="attr">precomposeunicode</span> = <span class="literal">true</span></span><br><span class="line">[remote <span class="string">"origin"</span>]</span><br><span class="line">	<span class="attr">url</span> = git@github.com:yuxingxin/blog.git</span><br><span class="line">    <span class="attr">url</span> = ……</span><br><span class="line">    <span class="attr">url</span> = ……</span><br><span class="line">	<span class="attr">fetch</span> = +refs/heads<span class="comment">/*:refs/remotes/origin/*</span></span><br></pre></td></tr></table></figure>
+<p>如上 在remote处可以添加多个远程地址。</p>
+<h4 id="17-从多次提交中快速定位某一次提交的bug"><a href="#17-从多次提交中快速定位某一次提交的bug" class="headerlink" title="17. 从多次提交中快速定位某一次提交的bug"></a>17. 从多次提交中快速定位某一次提交的bug</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 开始 bisect</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git bisect start</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 录入正确的 commit</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git bisect good xxxxxx</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 录入出错的 commit</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git bisect bad xxxxxx</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 然后 git 开始在出错的 commit 与正确的 commit 之间开始二分查找，这个过程中你需要不断的验证你的应用是否正常</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git bisect bad</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git bisect good</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git bisect good</span></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 直到定位到出错的 commit，退出 bisect</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git bisect reset</span></span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>当然了，git的一些常见场景，还远不止这些，限于本人能力有限，如果你在平时的工作中遇到一些很实用的命令，也欢迎反馈给我，我好一并学习。更多的详细可以参考之前总结的一系列文档: <a href="https://devops.yuxingxin.com。" target="_blank" rel="noopener">https://devops.yuxingxin.com。</a> 学习git命令是一件很有意思的事情，我想它能帮助使用git命令的人更好的理解这一代码管理工具，从而不至于犯一些低级错误，MobDevGroup网站上面也分享过几个学习命令的网站，可以供参考：<a href="https://mobdevgroup.com/tools/assistant" target="_blank" rel="noopener">https://mobdevgroup.com/tools/assistant</a></p>
+
+        
+            
+        
+        <!--MOB SHARE BEGIN-->
+        <div class="-hoofoo-share-title">分享到：</div>
+        <div class="-hoofoo-share-buttons">
+            <div class="-mob-share-weibo -hoofoo-share-weibo -hoofoo-share-ui-button"><i class="fa fa-weibo" aria-hidden="true"></i></div>
+            <div class="-mob-share-weixin -hoofoo-share-weixin -hoofoo-share-ui-button"><i class="fa fa-weixin" aria-hidden="true"></i></div>
+            <div class="-mob-share-qq -hoofoo-share-qq -hoofoo-share-ui-button"><i class="fa fa-qq" aria-hidden="true"></i></div>
+            <div class="-mob-share-twitter -hoofoo-share-twitter -hoofoo-share-ui-button"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+            <div class="-hoofoo-share-more -hoofoo-share-ui-button -mob-share-open"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+        </div>
+        <div class="-mob-share-ui -mob-share-ui-theme" style="display: none; left: 0px; top: 0px;">
+            <ul class="-mob-share-list">
+                <li class="-mob-share-weibo" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>新浪微博</p></li>
+                <li class="-mob-share-weixin" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>微信</p></li>
+                <li class="-mob-share-qzone" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>QQ空间</p></li>
+                <li class="-mob-share-qq" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>QQ好友</p></li>
+                
+                <li class="-mob-share-douban" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>豆瓣</p></li>
+                <li class="-mob-share-youdao" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>有道云笔记</p></li>
+                
+                <li class="-mob-share-facebook" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Facebook</p></li>
+                <li class="-mob-share-twitter" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Twitter</p></li>
+                <li class="-mob-share-pocket" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Pocket</p></li>
+                <li class="-mob-share-google" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Google+</p></li>
+                <li class="-mob-share-tumblr" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Tumblr</p></li>
+                <li class="-mob-share-instapaper" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Instapaper</p></li>
+                <li class="-mob-share-linkedin" style="margin: 0px; top: 482px; left: 354px; position: absolute;" data-mob-share-center-top="482px" data-mob-share-center-left="354px"><p>Linkedin</p></li>
+            </ul>
+            <div class="-mob-share-close">取消</div>
+        </div>
+        <div class="-mob-share-ui-bg"></div>
+        <script id="-mob-share" src="https://f1.webshare.mob.com/code/mob-share.js?appkey=23a3d44c6690c"></script>
+<!--MOB SHARE END-->
+            
+        <div style="background-color: #2E7D32;height: 3px;margin-bottom: 15px;margin-top: 15px;"></div>
+        <span>移动开发者/技术爱好者/喜欢开源与分享，你也可以关注微信公众号MobDevGroup，移动开发在线分享：<a href="http://mobdevgroup.com">MobDevGroup</a></span>
+    </div>
+    <div class="post-footer main-content-wrap">
+        
+            <div class="post-footer-tags">
+                <span class="text-color-light text-small">TAGGED IN</span><br>
+                
+    <a class="tag tag--primary tag--small t-link" href="/tags/Git/">Git</a>
+
+            </div>
+        
+        <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/12/29/RubyVersionManage/" data-tooltip="Ruby相关环境配置">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/11/10/ArchitectureComponentsCodelab/" data-tooltip="西安GDG上关于Architecture Components的Codelab">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+        
+    </div>
+</article>
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2019 Sean Liu. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div class="post-bottom-bar">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/12/29/RubyVersionManage/" data-tooltip="Ruby相关环境配置">
+                
+                    <i class="fa fa-angle-left"></i>
+                    <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+                
+                    <a class="post-action-btn btn btn--default tooltip--top" href="/2017/11/10/ArchitectureComponentsCodelab/" data-tooltip="西安GDG上关于Architecture Components的Codelab">
+                
+                    <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+                </div>
+            
+        </div>
+        <div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-remove"></i>
+        </div>
+        
+            <img id="about-card-picture" src="/assets/images/user.jpg">
+        
+            <h4 id="about-card-name">Sean Liu</h4>
+        
+            <h5 id="about-card-bio">Just Keep Sharing 移动开发在线分享：http://mobdevgroup.com</h5>
+        
+        
+            <h5 id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br>
+                Mobile Developer
+            </h5>
+        
+        
+            <h5 id="about-card-location">
+                <i class="fa fa-map-marker"></i>
+                <br>
+                Xi&#39;an, Shaanxi, China
+            </h5>
+        
+    </div>
+</div>
+        <div id="cover" style="background-color:#2196f3"></div>
+
+    </body>
+    <!--SCRIPTS-->
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.fancybox.js"></script>
+<script src="/assets/js/jquery.fancybox-thumbs.js"></script>
+<script src="/assets/js/tranquilpeak.js"></script>
+<!--SCRIPTS END-->
+
+
+</html>
