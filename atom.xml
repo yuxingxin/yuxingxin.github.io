@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yuxingxin.com/"/>
-  <updated>2019-04-28T02:48:44.769Z</updated>
+  <updated>2019-10-29T16:10:04.921Z</updated>
   <id>https://yuxingxin.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>基于Hacker News的内容热度推荐算法</title>
+    <link href="https://yuxingxin.com/2019/03/10/RecommendationAlgorithm/"/>
+    <id>https://yuxingxin.com/2019/03/10/RecommendationAlgorithm/</id>
+    <published>2019-03-09T16:00:00.000Z</published>
+    <updated>2019-10-29T16:10:04.921Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>近期公司产品需要做一个内容推荐的功能，但限于人员和能力有限，经过调研，确定了一个简单相对我们可以实现的方案。一篇文章产生，随着用户浏览、点赞、分享、收藏、评论，热度逐渐攀升，进入榜单到推荐页面，但随着时间的推移，这篇文章也不能永久的霸占榜单，让后面新产生的文章没有机会到推荐页，因此也就有了时间衰减的因素，从而可以让榜单能够动态的变化，除了上面基本的原理以外，还需要人为干预因素，通过加权或者降权的方式来影响排名。</p><h4 id="因子"><a href="#因子" class="headerlink" title="因子"></a>因子</h4><ol><li>用户活跃度（以积分的形式）</li><li>浏览量</li><li>点赞数</li><li>收藏数</li><li>评论数</li><li>分享数</li><li>时间衰减</li><li>平台编辑推荐（人为因素介入干预）</li></ol><h4 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h4><p><img src="https://pic1.zhimg.com/80/v2-5807f2036274e5d082dc5cb2b83742d4_hd.png" alt="img1"></p><h5 id="初始热度-Hinit"><a href="#初始热度-Hinit" class="headerlink" title="初始热度  Hinit"></a>初始热度  H<sub>init</sub></h5><p>与最后的推荐指数呈正相关（注意不是成正比），影响其的因素有：</p><ul><li>创作者：暂时以用户活跃度来界定</li><li>内容属性：以篇幅、类别来区分</li></ul><h5 id="互动热度-Hinteract"><a href="#互动热度-Hinteract" class="headerlink" title="互动热度  Hinteract"></a>互动热度  H<sub>interact</sub></h5><p>与最后的推荐指数呈正相关（注意不是成正比），用户行为数据是决定一篇文章是否热门的重要因素，通过对这些数据评级来进行调整行为分：</p><p>比如： 浏览+1分，点赞+3分，评论+8分，收藏+10分，分享+15分。 </p><h5 id="时间衰减-Htime"><a href="#时间衰减-Htime" class="headerlink" title="时间衰减 Htime"></a>时间衰减 H<sub>time</sub></h5><p>与最后的推荐指数呈负相关（注意不是成反比）</p><p>大部分内容属于一次性消费品，用户看过也就过了，若推荐榜单总是那么几条， 可能很快就觉得乏味 ，从而转向别的产品。所以我们自然希望内容能不断更新，而若只看初始热度+互动热度，那么后来者必定很难超越前者。 </p><p>所以还必须考虑一个因素就是时间衰减，通常这个也不是线性衰减，往往是一个指数函数：即过了一定时间后，持续衰减，热度直到无限趋于0</p><h5 id="权重-Hweight"><a href="#权重-Hweight" class="headerlink" title="权重 Hweight"></a>权重 H<sub>weight</sub></h5><p>运营或编辑人为干预来调整权重也很重要，毕竟算法是死的，人是活的，虽然大部分都遵循这样一个规律，但也不排除偶然或者极端情况，比如恶意刷榜，这时候就需要人为的干预</p><p>图形曲线：</p><p><img src="https://pic1.zhimg.com/80/v2-60770e14bf4cf2dd9748d91f77bf2b24_hd.jpg" alt="image-20191029102231667"></p><h4 id="总结公式"><a href="#总结公式" class="headerlink" title="总结公式"></a>总结公式</h4><p><img src="https://pic2.zhimg.com/80/v2-8ae6e823be2d4823be05d973e6aaaa0d_hd.jpg" alt="img2"></p><p>参数解释：</p><p><strong>H<sub>init</sub></strong> ： 初始热度值，可以以用户活跃度来衡量，比如以积分的形式，积分积累的途径有：</p><ol><li>发文章</li><li>发笔记</li><li>发动态</li><li>提问题</li><li>回答问题</li><li>评论</li><li>系统、平台编辑推荐</li></ol><p>在其他条件一定的情况下，初始热度越高，其最终热度也就越高</p><p><strong>H<sub>interact</sub></strong>：互动热度值，根据用户行为数据来衡量，参考点有以下几项：</p><ol><li>浏览量</li><li>点赞量</li><li>评论量</li><li>收藏量</li><li>分享量</li></ol><p>在其他条件一定的情况下，互动热度越高，其最终热度也就越高</p><p><strong>H<sub>time</sub></strong>：时间衰减因子， 加2是为了防止最新发表的会导致分母过小 ，这个值可调，在前期平台人数较少时调整大一些，在后期人数增长起来后，可以调整的小一些，比如，因为用户对平台资源有一个消化时间。并不是一发出来就有数据的。</p><p><strong>G</strong>：重力因子，它决定了热度随时间下降的速度，前期平台人员较少时，相对应得发的资源也会比较少，这时可以把G调小一点，减缓时间推移对热度下降的影响，后期平台人员增多时，相对应的资源也会增加，这时可以把G调大一点，加速时间推移对热度下降的影响。比如：1.2-1.8</p><p><strong>H<sub>weight</sub></strong>: 加减权重，初始值可以为0，在某些偶然或者极端情况下需要人为干预的时候，可以动态调整其值，使其能够及时的控制其热度。</p><h4 id="反作弊"><a href="#反作弊" class="headerlink" title="反作弊"></a>反作弊</h4><ol><li>可以通过权重来干预</li><li>可以制定社区规则来动态调整H<sub>init</sub></li></ol><h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ol><li><a href="https://medium.com/hacking-and-gonzo/how-hacker-news-ranking-algorithm-works-1d9b0cf2c08d" target="_blank" rel="noopener">Hacker News 帖子热度排序算法</a></li><li><a href="https://juejin.im/post/5cc80ad7e51d45789161d0e1" target="_blank" rel="noopener">掘金文章内容热度排序算法</a></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;近期公司产品需要做一个内容推荐的功能，但限于人员和能力有限，经过调研，确定了一个简单相对我们可以实现的方案。一篇文章产生，随着用户浏览、点赞
+      
+    
+    </summary>
+    
+      <category term="Algorithm" scheme="https://yuxingxin.com/categories/Algorithm/"/>
+    
+    
+      <category term="Recommendation algorithm" scheme="https://yuxingxin.com/tags/Recommendation-algorithm/"/>
+    
+  </entry>
   
   <entry>
     <title>关于Code Review的一些思考总结</title>
@@ -490,31 +515,6 @@
       
       
         &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;1月10号这一天，也是值得高兴的日子，一大早起来打开手机看到《RxJava Essentials》一书的作者Ivan.Morgillo给我在
-      
-    
-    </summary>
-    
-      <category term="Android" scheme="https://yuxingxin.com/categories/Android/"/>
-    
-    
-      <category term="RxJava" scheme="https://yuxingxin.com/tags/RxJava/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>RxJava Essentials翻译总结</title>
-    <link href="https://yuxingxin.com/2016/01/08/RxJavaEssentials/"/>
-    <id>https://yuxingxin.com/2016/01/08/RxJavaEssentials/</id>
-    <published>2016-01-07T16:00:00.000Z</published>
-    <updated>2019-03-19T02:52:15.563Z</updated>
-    
-    <content type="html"><![CDATA[<p>##前言<br>在前年的时候，一直忙于工作，偶尔关注下开源社区，平时在使用retrofit的库时一直采用传统的回调，当时看官网发现也可以Observable对象，很好奇，但是一直不知道这是什么？慢慢的，关注Jake大神，才知道是RxJava，当时并没有引起我对RxJava 的好奇，也就没有太在意，但是我的心里一直有个梗就是在使用回调时如何让嵌套回调的代码看起来不是那么槽糕，用今天的话说就是回调地狱，直到去年，国内一些积极推动RxJava的大神们才真正让我认识了它，可能最让我印象深刻的一点就是它解决了我这么多年的那个梗，从大头鬼的深入浅出系列到扔物线的给Android开发者的RxJava详解，我决定想系统的学一下它，一直想找本中文书，可是没找到，直到有一天发现国外的这本《RxJava Essentials》，看了一下之后，欣喜之余，决定把它翻译出来，算是巩固学习。</p><p>##书内容介绍<br>全书分了八章，前两章介绍Rx，并引出Rx在Android中的引用，三四五六章着重讲RxJava的操作符，从创建、过滤一直讲到变换、组合，最后一张结合Android开源库Retrofit来一起使用，总之对于Android开发者来讲是本不错的基础书。</p><h3 id="1-RX-from-NET-to-RxJava"><a href="#1-RX-from-NET-to-RxJava" class="headerlink" title="1.RX-from .NET to RxJava"></a><strong>1.RX-from .NET to RxJava</strong></h3><blockquote><p>本章带你进入reactive的世界。我们会比较reactive 方法和传统方法，进而探索它们之间的相似和不同的地方。</p></blockquote><h3 id="2-Why-Observables"><a href="#2-Why-Observables" class="headerlink" title="2.Why Observables?"></a><strong>2.Why Observables?</strong></h3><blockquote><p>本章会对观察者模式做一个概述，如何实现它以及怎样用RxJava来进行扩展，被观察者是什么，以及被观察者如何与迭代联系到一起的。</p></blockquote><h3 id="3-Hello-Reactive-World"><a href="#3-Hello-Reactive-World" class="headerlink" title="3.Hello Reactive World"></a><strong>3.Hello Reactive World</strong></h3><blockquote><p>本章会利用我们所学的知识来创建第一个reactive Android应用。</p></blockquote><h3 id="4-Filtering-Observables"><a href="#4-Filtering-Observables" class="headerlink" title="4.Filtering Observables"></a><strong>4.Filtering Observables</strong></h3><blockquote><p>本章我们会研究Observable序列的本质:filtering.我们也将学到如何从一个发出的Observable中选取我们想要的值，如何获得一个有限的数值，如何处理溢出的场景，以及更多有用的技巧。</p></blockquote><h3 id="5-Transforming-Observables"><a href="#5-Transforming-Observables" class="headerlink" title="5.Transforming Observables"></a><strong>5.Transforming Observables</strong></h3><blockquote><p>本章将讲述如何通过变换Observable序列来创建出我们所需要的序列。</p></blockquote><h3 id="6-Combining-Observables"><a href="#6-Combining-Observables" class="headerlink" title="6.Combining Observables"></a><strong>6.Combining Observables</strong></h3><blockquote><p>本章将研究与函数结合，同时也会学到当创建我们想要的Observable时又如何与多个Observable协同工作。</p></blockquote><h3 id="7-Schedulers-Defeating-the-Android-MainThread-Issue"><a href="#7-Schedulers-Defeating-the-Android-MainThread-Issue" class="headerlink" title="7.Schedulers-Defeating the Android MainThread Issue"></a><strong>7.Schedulers-Defeating the Android MainThread Issue</strong></h3><blockquote><p>本章将介绍如何使用RxJava Schedulers 来处理多线程和并发编程。我们也将用reactive的方式来创建网络操作、内存访问、耗时处理。</p></blockquote><h3 id="8-REST-in-peace-RxJava-and-Retrofit"><a href="#8-REST-in-peace-RxJava-and-Retrofit" class="headerlink" title="8.REST in peace-RxJava and Retrofit"></a><strong>8.REST in peace-RxJava and Retrofit</strong></h3><blockquote><p>本章教会你如何让Square公司的Retrofit和RxJava结合来一起使用，来创建一个更高效的REST客户端程序。</p></blockquote><h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>Rx给了我们一种新的学习扩展和并发的方式，它和面向对象一样是一种新的思想，熟练的使用它可以很容易的帮助我们处理日常繁杂的业务逻辑，同时又不会搞乱你的代码，建议开发者都可以学习下，另外这里也推荐另外一本《Learning Reactive Programming》，是它的姊妹篇，介绍响应式编程，同样推荐看看。<br><img src="/assets/images/rxjava.jpg" alt="RxJava"><br>【RxJava Essentials】</p><p><img src="/assets/images/reactive.jpg" alt="Learning Reactive Programming"><br>【Learning Reactive Programming】</p><p>《RxJava Essentials》<a href="https://www.gitbook.com/book/yuxingxin/rxjava-essentials-cn/" target="_blank" rel="noopener">翻译中文版电子书下载地址</a></p><p>《RxJava Essentials》<a href="http://vdisk.weibo.com/s/CeH3i0tfvZMVq" target="_blank" rel="noopener">英文版下载地址</a></p><p>《Learning Reactive Programming》<a href="http://vdisk.weibo.com/s/CeH3i0tfvZMfT" target="_blank" rel="noopener">英文版下载地址</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;##前言&lt;br&gt;在前年的时候，一直忙于工作，偶尔关注下开源社区，平时在使用retrofit的库时一直采用传统的回调，当时看官网发现也可以Observable对象，很好奇，但是一直不知道这是什么？慢慢的，关注Jake大神，才知道是RxJava，当时并没有引起我对RxJava 
       
     
     </summary>
