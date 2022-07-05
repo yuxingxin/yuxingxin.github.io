@@ -1,0 +1,32 @@
+---
+---
+
+/*
+  If the number of TAB files has changed, the following variable is required.
+  And it must be defined before `@import`.
+*/
+$tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
+
+@import "{{ site.theme }}";
+
+/* append your custom style below */
+$--sidebar-bg: #2a408e;
+#sidebar .sidebar-bottom>a {
+  // padding-left: 0.6rem;
+  // padding-right: 0.6rem;
+  margin-left: 0;
+  margin-right: 0;
+}
+#sidebar {
+  background-color: #2a408e;
+}
+
+#sidebar .nav-item.active .nav-link {
+  color: white;
+}
+#sidebar a:hover {
+  color: white !important;
+}
+.loaded {
+  width: 40px;
+}
