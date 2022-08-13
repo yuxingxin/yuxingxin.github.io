@@ -200,10 +200,16 @@ console.log(child2.getContent1())  // Array [1,2,3,5]
 ```javascript
 function _new() {
     var obj = new Object();
-    Constructor = [].shift.call(arguments); // 拿到参数中的第一个参数，即构造函数Constructor;
-    obj.__proto__ = Constructor.prototype;
-    var ret = Constructor.apply(obj, arguments);
-    return typeof ret === 'object'? ret || obj: obj;
+    var constructor = [].shift.call(arguments); // 拿到arguments中的第一个参数，即构造函数constructor;
+    if(constructor.prototype !== null) {
+        obj.__proto__ = constructor.prototype;
+    }
+    var ret = constructor.apply(obj, arguments);
+    let isObject = typeof res === 'object' && res !== null;
+    
+    let isFunction = typeof res === 'function';
+    // 如果传入的构造函数已经指定返回的对象，那么就返回该对象，否则返回内部构造的obj。
+    return isObject || isFunction? res: obj;
 }
 
 /** 
@@ -212,9 +218,9 @@ function _new() {
 3.将this指向这个空对象，执行构造函数中的代码，以获取私有属性
 4.如果构造函数返回了一个对象res，就将该返回值res返回，如果返回值不是对象，就将创建的对象返回
 */
-function _new(ctor, ...params) {
+function _new(ctor, ...args) {
     if(typeof ctor !== 'function') {
-        throw 'ctor must bu a function';
+        throw 'ctor must be a function';
     }
 
     let obj = new Object();
@@ -232,7 +238,7 @@ function _new(ctor, ...params) {
 
 1. new产生一个新对象;
 
-1. 拿到传入的参数中的第一个参数，即构造函数Constructor;
+1. 拿到传入的参数中的第一个参数，即构造函数constructor;
 
 1. 执行构造函数，并将this指向创建的空对象obj;
 
