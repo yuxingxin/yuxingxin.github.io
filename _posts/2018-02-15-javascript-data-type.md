@@ -132,6 +132,7 @@ function getType(obj) {
     if(type !== 'object'){  // 先对基础数据类型进行判断
         return type
     }
+    // return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
     return Object.prototype.toString.call(obj).replace(/^\[object (\S+)\]$/,'$1')
 }
 ```
