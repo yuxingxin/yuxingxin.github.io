@@ -45,10 +45,10 @@ date: 2016-01-08
 
 ## 后续
 Rx给了我们一种新的学习扩展和并发的方式，它和面向对象一样是一种新的思想，熟练的使用它可以很容易的帮助我们处理日常繁杂的业务逻辑，同时又不会搞乱你的代码，建议开发者都可以学习下，另外这里也推荐另外一本《Learning Reactive Programming》，是它的姊妹篇，介绍响应式编程，同样推荐看看。
-![RxJava](/assets/images/rxjava.jpg)
+![RxJava](https://github.com/yuxingxin/RxJava-Essentials-CN/blob/master/images/rxjava.jpg)
 【RxJava Essentials】
 
-![Learning Reactive Programming](/assets/images/reactive.jpg)
+![Learning Reactive Programming](https://tva1.sinaimg.cn/large/e6c9d24ely1h58t0ygq91j20u0110gr9.jpg)
 【Learning Reactive Programming】
 
 《RxJava Essentials》[翻译中文版电子书下载地址](https://www.gitbook.com/book/yuxingxin/rxjava-essentials-cn/)
