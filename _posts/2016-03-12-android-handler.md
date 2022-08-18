@@ -6,7 +6,7 @@ categories: Android
 date: 2016-03-12
 ---
 
-在Android开发中，我们经常会用到Handler，主要是子线程完成耗时操作后，通过Handler向主线程发送消息Message，用来刷新UI。我们都知道下面这两个原则：
+在Android开发中，我们 经常会用到Handler，主要是子线程完成耗时操作后，通过Handler向主线程发送消息Message，用来刷新UI。我们都知道下面这两个原则：
 
 1. 不能在子线程更新UI
 2. 不能在主线程执行耗时操作
@@ -269,6 +269,21 @@ private static Message getPostMessage(Runnable r) {
     m.callback = r;
     return m;
 }
+public static Message obtain() {
+    // 保证线程安全
+    synchronized (sPoolSync) {
+        if (sPool != null) {
+            Message m = sPool;
+            sPool = m.next;
+            m.next = null;
+            // flags为移除使用标志
+            m.flags = 0; // clear in-use flag
+            sPoolSize--;
+            return m;
+        }
+    }
+    return new Message();
+}
 public final boolean sendMessageDelayed(@NonNull Message msg, long delayMillis) {
     if (delayMillis < 0) {
         delayMillis = 0;
@@ -291,9 +306,86 @@ private static void handleCallback(Message message) {
 }
 ```
 
-而前面的如果callback不为空就通过handleCallback执行Runnable的run方法，注意这里的Runnable就是一个回调方法，和线程没有关系。
+而前面的如果callback不为空就通过handleCallback执行Runnable的run方法，注意这里的Runnable就是一个回调方法，和线程没有关系。综上：如果Message的callback为空，则一般通过sendMessage发送消息，交给handlerMessage方法来处理，而不为空则通过handleCallback来处理。另外Google官方不建议我们通过new Message来创建消息对象，而是通过obtain方法复用Message来获得，这里不得不提一下sPool这个消息池。我们看下Message是如何回收的：
 
-综上：如果Message的callback为空，则一般通过sendMessage发送消息，交给handlerMessage方法来处理，而不为空则通过handleCallback来处理。
+```java
+//Message.java
+void recycleUnchecked() {
+    // Mark the message as in use while it remains in the recycled object pool.
+    // Clear out all other details.
+    // 添加正在使用标志位，其他情况就除掉
+    flags = FLAG_IN_USE;
+    what = 0;
+    arg1 = 0;
+    arg2 = 0;
+    obj = null;
+    replyTo = null;
+    sendingUid = -1;
+    when = 0;
+    target = null;
+    callback = null;
+    data = null;
+    //拿到同步锁，以避免线程不安全
+    synchronized (sPoolSync) {
+        if (sPoolSize < MAX_POOL_SIZE) {
+            next = sPool;
+            sPool = this;
+            sPoolSize++;
+        }
+    }
+}
+
+// Handler.java
+public static Message obtain() {
+    // 保证线程安全
+    synchronized (sPoolSync) {
+        if (sPool != null) {
+            Message m = sPool;
+            sPool = m.next;
+            m.next = null;
+            // flags为移除使用标志
+            m.flags = 0; // clear in-use flag
+            sPoolSize--;
+            return m;
+        }
+    }
+    return new Message();
+}
+```
+
+详细解释一下上面的sPool和next，将sPool看成一个指针，通过next来将对象组成一个链表，因为每次只需要从池子里拿出一个对象，所以不需要关心池子里具体有多少个对象，而是拿出当前这个sPool所指向的这个对象就可以了，sPool从思路上理解就是通过左右移动来完成复用和回收，
+
+假设消息对象池为空，从new message开始，到这个message被取出使用后，准备回收 
+
+> 1. **next=sPool**，因为消息对象池为空，所以此时sPool为null，同时next也为null。
+>
+> 1. **spool = this**，将当前这个message作为消息对象池中下一个被复用的对象。
+>
+> 1. **sPoolSize++**，默认为0，此时为1，将消息对象池的数量+1，这个数量依然是全系统共共享的。
+
+这时候假设又调用了这个方法，之前的原来的第一个Message对象假定为以为**msg1**，依旧走到上面的循环。
+
+> 1. **next=sPool**，因为消息对象池为msg1，所以此时sPool为msg1，同时next，即下一个Message对象也为msg1。
+>
+> 1. **sPool = this**，将当前这个message作为消息对象池中下一个被复用的对象。
+>
+> 1. **sPoolSize++**，此时为1，将消息对象池的数量+1，sPoolSize为2，这个数量依然是全系统共共享的。
+
+以此类推，直到sPoolSize=50(MAX_POOL_SIZE = 50)，这里回收可以看到采用的是链表的头插法。
+
+假设上面已经回收了一个Message对象，又从这里获取一个message，看看obtain如何复用？
+
+> 1. 判断**sPool**是否为空，如果消息对象池为空，则直接new Message并返回
+>
+> 1. **Message m = sPool**，将消息对象池中的对象取出来，为m。
+>
+> 1. **sPool = m.next**，将消息对象池中的下一个可以复用的Message对象(m.next)赋值为消息对象池中的当前对象。(如果消息对象池就之前就一个，则此时sPool=null)
+>
+> 1. 将m.next置为null，因为之前已经把这个对象取出来了。
+>
+> 1. **m.flags = 0**，设置m的标记位，标记位正在被使用
+>
+> 1. **sPoolSize--**，因为已经把m取出了，这时候要把消息对象池的容量减一。
 
 ## Handler
 
