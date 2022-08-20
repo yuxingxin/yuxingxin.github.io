@@ -3,7 +3,7 @@ layout: post
 title: Android线程间通信之Handle机制原理
 tags: Handler
 categories: Android
-date: 2016-03-12
+date: 2015-06-12
 ---
 
 在Android开发中，我们 经常会用到Handler，主要是子线程完成耗时操作后，通过Handler向主线程发送消息Message，用来刷新UI。我们都知道下面这两个原则：
