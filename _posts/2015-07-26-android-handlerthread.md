@@ -28,21 +28,56 @@ private void createThreadWithHandler() {
 ## 使用
 
 ```java
-// 实例对象，参数为线程名字
-HandlerThread handlerThread = new HandlerThread("handlerThread");
-// 启动线程
-handlerThread.start();
-// 参数为 HandlerThread 内部的一个 looper
-Handler handler = new Handler(handlerThread.getLooper()) {
-    @Override
-    public void handleMessage(Message msg) {
-        super.handleMessage(msg);
+public class DownloadHandlerThread extends HandlerThread implements Handler.Callback {
+
+    private Handler mWorkHandler;
+    private Handler mUIHandler;
+
+    public DownloadHandlerThread(String name) {
+        super(name);
     }
-};
+
+    @Override
+    protected void onLooperPrepared() {
+        super.onLooperPrepared();
+        mWorkHandler = new Handler(getLooper(), this);
+
+        Message message = mWorkHandler.obtainMessage();
+        Bundle bundle = new Bundle();
+        bundle.putString("URL", "https://XXX");
+        message.setData(bundle);
+        mWorkHandler.sendMessage(message);
+    }
+
+    public void setUIHandler(Handler uiHandler){
+        this.mUIHandler = uiHandler;
+    }
+
+    @Override
+    public boolean handleMessage(@NonNull Message msg) {
+        if(msg == null || msg.getData() == null) {
+            return false;
+        }
+        String url = (String)msg.getData().get("URL");
+
+        //省略执行下载任务的逻辑
+        
+
+        //通知主线程更新UI
+        this.mUIHandler.sendEmptyMessage(1);
+
+        return true;
+    }
+}
+
+//MainActivity.java
+DownloadHandlerThread downloadHandlerThread = new DownloadHandlerThread("DownloadTask");
+downloadHandlerThread.setUIHandler(this);
+downloadHandlerThread.start();
 ```
+上面实现了一个简单的下载任务，子线程Handler发送下载任务的通知,在handleMessage中处理耗时操作，完了之后借助主线程Handler发送通知消息操作UI。
 
-注意这里的start需要先执行，不然获取不到looper，这一点可以从它的run函数看出来：
-
+## 源码分析
 ```java
 @Override
 public void run() {
