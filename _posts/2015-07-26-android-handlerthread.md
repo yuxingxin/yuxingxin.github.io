@@ -3,7 +3,7 @@ layout: post
 title: Android源码之HandlerThread用法与原理
 tags: 源码分析
 categories: Android
-date: 2015-07-20
+date: 2015-07-26
 ---
 
 在android开发中，当我们用Thread和Handler构造一个消息循环的需求时，往往这样做：
