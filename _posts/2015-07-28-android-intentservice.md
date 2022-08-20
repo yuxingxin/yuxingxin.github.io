@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Andriod源码之IntentService用法与原来
+title: Andriod源码之IntentService用法与原理
 tags: 源码分析
 categories: Android
 date: 2015-07-28
