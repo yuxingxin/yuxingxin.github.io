@@ -115,3 +115,6 @@ public boolean quitSafely() {
 1. 当我们使用HandlerThread构造函数创建一个对象，同时执行它的run方法，这时候在run方法内部，创建了一个Looper对象，并和当前线程绑定，同时也初始化了一个消息队列MessageQueue，并通过调用Looper的loop方法实现消息循环。
 2. 根据上一步创建的Looper对象传入我们在主线程创建的Handler，就能将子线程的消息发送到MessageQueue队列，经Looper不断的取出消息交给我们的handler来处理。
 3. 最后我们在不用的时候可以通过quit或者quitSafely终止这个循环。
+4. HandlerThread 是一个自带 Looper 的线程，因此只能作为子线程使用。
+5. HandlerThread必须配合Handler使用，通过覆写Handler的callback开实现HanderThread中做的事情
+6. 子线程的Handler与HandlerThread建立关系是通过构造子线程Handler时传入HandlerThread的Looper，所以在次之前，必须先调用HandlerThread的run方法，让Looper创建出来。
