@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Android源码之AsyncTask用法与原理
-tags: AsyncTask 源码分析
+tags: 源码分析
 categories: Android
 date: 2015-07-20
 ---
