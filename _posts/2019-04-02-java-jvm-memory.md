@@ -3,7 +3,7 @@ layout: post
 title: JVM内存区域以及内存管理
 tags: JVM
 categories: Java
-date: 2016-02-01
+date: 2019-04-02
 ---
 
 ## 内存区域划分
