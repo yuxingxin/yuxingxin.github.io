@@ -427,7 +427,43 @@ java.util.concurrent.atomic 包下提供了一个可处理 ABA 问题的原子�
 
 ## 单例模式
 
-我们使用DCL(double-check-locking)双检查锁机制来实现单例模式
+在保证线程安全的前提下，最简单的实现方式是“饿汉式”，即在加载单例类的字节码时，在初始化阶段对静态的instance变量进行赋值，代码如下:
+
+```java
+//“饿汉式”实现线程安全的单例模式
+public class Singleton {
+    private static Singleton instance = new Singleton();
+    
+    private Singleton() {
+    }
+    
+    public static Singletion getInstance() {
+        return instance;
+    }
+}
+```
+
+如果我们希望延迟初始化这个单例对象，就不能使用上述的“饿汉式”实现，而要使用“懒汉式”的实现。最容易想到的一种实现方式当然是使用`synchronized`关键字对`getInstance()`方法进行修饰。代码如下:
+
+```java
+//使用同步方法实现的单例模式
+public class Singleton {
+    private static Singleton instance;
+    
+    private Singleton(){
+    }
+    
+    public static synchronized getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        
+        return instance;
+    }
+}
+```
+
+这是最简单的单例模式的延迟初始化实现版本，并且通过`synchonized`锁住了`Singleton`这个类的字节码，保证了线程安全。但是，这种锁字节码的方式粒度太大，同一时间只能有一个线程执行同步方法拿到这个单例，因此，在高并发环境下，吞吐量严重受限。为了提升并发性能，我们使用DCL(double-check-locking)双检查锁机制来实现单例模式，代码如下：
 
 ```java
 public class SingleInstance {
@@ -448,3 +484,5 @@ public class SingleInstance {
   }
 }
 ```
+
+DCL方式将同步方法改成了同步代码块，锁的粒度缩小，并发性能更好。当单例对象已经被创建之后，多个线程可以同时执行第一个if条件判断并且拿到单例对象。当单例对象未被创建时，同一时间只有一个线程能进入同步代码块进行第二次if条件判断，如果发现此时单例对象仍没有被其他线程所创建，则创建单例对象。
