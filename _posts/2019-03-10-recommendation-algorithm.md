@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 基于Hacker News的内容热度推荐算法
-tags: Recommendation algorithm
+tags: algorithm
 categories: Algorithm
 date: 2019-03-10
 pin: false

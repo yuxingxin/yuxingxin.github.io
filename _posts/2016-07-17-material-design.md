@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 西安GDG上《以开发者的角度再聊Material Design》的总结
-tags: Material Design
+tags: MaterialDesign
 categories: Android
 date: 2016-07-17
 ---

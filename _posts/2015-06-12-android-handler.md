@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Android线程间通信之Handle机制原理
-tags: Handler
+tags: Handler 源码分析
 categories: Android
 date: 2015-06-12
 ---
