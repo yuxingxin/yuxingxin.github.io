@@ -3,7 +3,7 @@ layout: post
 title: Android Framework源码分析之Activity、Window、View之间的关系
 tags: 源码分析 framework
 categories: Android
-date: 2019-05-18
+date: 2019-05-27
 ---
 
 每当我们显示一个界面的时候，都是通过start一个Activity的方式，对于显示布局内容，也只是通过在onCreate方法里面setContentView就可以，剩下的都是Activity帮我们做了，我们自始至终也没有创建过window或者view，那么这背后都发生了什么 ？这篇文章梳理一下这三者的关系
