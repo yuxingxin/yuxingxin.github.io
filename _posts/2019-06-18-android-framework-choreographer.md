@@ -253,7 +253,7 @@ public void scheduleVsync() {
 
 该方法会调用一个本地方法nativeScheduleVsync来向系统订阅Vsync信号，Android 系统每过 16.6ms 会发送一个 vsync 信号。但这个信号并不是所有 App 都能收到的，只有订阅的才能收到。这样设计的合理之处在于，当 UI 没有变化的时候就不会去调用 nativeScheduleVsync 去订阅，也就不会收到 vsync 信号，减少了不必要的绘制操作。需要注意的是每次订阅只能收到一次 vsync 信号，如果需要收到下次信号需要重新订阅。比如 Animation 的实现就是在订阅一次信号之后，紧接着再次调用 nativeScheduleVsync 方法订阅下次 vsync 信号，因此会不断地刷新 UI。
 
-而Vsync信号的接受，其实也是由FrameDisplayEventReceiver来完成的，它回调了onVsync方法：
+而Vsync信号的接收，其实也是由FrameDisplayEventReceiver来完成的，它回调了onVsync方法：
 
 ```java
 // Choreographer#FrameDisplayEventReceiver.java
