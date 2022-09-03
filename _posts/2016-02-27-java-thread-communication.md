@@ -98,7 +98,7 @@ synchronized(object) {
 
 变量值的共享可以使用public static变量的形式，所有线程都是用同一个变量，如果想实现每一个线程都有自己的共享变量，那么ThreadLocal就派上用场了。
 
-类ThreadLocal主要解决的就是每个线程绑定自己的值，可以将ThreadLocal类比喻成全局存放数据的盒子，盒子中可以存储每隔线程的私有数据。
+类ThreadLocal主要解决的就是每个线程绑定自己的值，可以将ThreadLocal类比喻成全局存放数据的盒子，盒子中可以存储每个线程的私有数据。
 
 ### 创建和使用
 
