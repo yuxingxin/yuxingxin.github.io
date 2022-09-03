@@ -954,7 +954,7 @@ public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] 
 }
 ```
 
-## RxJava支持
+### RxJava支持
 
 我们在初始化一个Retrofit时加入 `addCallAdapterFactory(RxJava2CallAdapterFactory.create())`这行
 
