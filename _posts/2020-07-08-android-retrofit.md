@@ -1104,3 +1104,4 @@ public CallAdapter<?, ?> nextCallAdapter(
 3. 最后执行OkHttpCall的enqueue方法，本质也是在执行okhttp3.Call 的 `enqueue`方法
 4. 当然在这期间会解析方法上的注解，构建 okhttp3.Call 需要的 okhttp3.Request 对象
 5. 然后通过 Converter 来解析返回的响应数据，并回调 CallBack 接口
+![image-20220904121512259](https://tva1.sinaimg.cn/large/e6c9d24ely1h5ug8rcbraj21gb0teaiw.jpg)
