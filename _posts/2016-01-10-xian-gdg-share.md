@@ -25,7 +25,7 @@ date: 2016-01-10
 * 2.迭代器模式：对对象序列进行迭代输出从而使订阅者可以依次对其处理。
 * 3.函数式编程思想：简化问题的解决的步骤，让你的代码更优雅和简洁
 
-然后介绍了ReactiveX在各个语言和平台上的实现,[官方地址](http://reactivex.io/languages.html)
+然后介绍了ReactiveX在各个语言和平台上的实现,[官方地址](https://reactivex.io/languages.html)
 最后对上面三点展开进行详细介绍：
 
 * 1.先介绍GoF书中的观察者模式，被观察者发出事件，然后观察者（事件源）订阅然后进行处理。并指出其中的不足：比如观察者不知道是否出错与完成，还有就是整个过程是同步，会阻塞线程，从而引出所谓的“扩展”的观察者模式，除了提到的不足作为补充外，另外还有一点：如果没有观察者，被观察者是不会发出任何事件的。
@@ -128,7 +128,7 @@ Observable.just("Hello World!").subscribe(s -> Log.v("lambdas写法",s));
 
 #### RxJava操作符
 
-在讲操作符之前，先是介绍了直观有趣的宝石图：这里引用了一张官方的[图片](http://reactivex.io/documentation/observable.html),另外再附上一个国外程序员创建的动态的宝石图[网站](http://rxmarbles.com/)，虽然不全，但是作者一直在更新，相信后面会有更多，这有助于我们来理解操作符。
+在讲操作符之前，先是介绍了直观有趣的宝石图：这里引用了一张官方的[图片](https://reactivex.io/documentation/observable.html),另外再附上一个国外程序员创建的动态的宝石图[网站](https://rxmarbles.com/)，虽然不全，但是作者一直在更新，相信后面会有更多，这有助于我们来理解操作符。
 
 大致分为这几类展开介绍：
 * 创建操作符：Create, Defer, From, Interval, Just, Range, Repeat, Timer等。
@@ -518,21 +518,21 @@ Observable.concat(memory, disk, network)
 
 感谢Jake大神的启蒙，感谢Ivan.Morgillo的书《RxJava Essentials》,感谢扔物线的文章和大头鬼的翻译文章，同时也是一路看他们的文章走过来的，最后感谢所有分享RxJava的小伙伴们。
 
-* http://gank.io/post/560e15be2dca930e00da1083
-* http://blog.csdn.net/lzyzsd/article/details/41833541
-* http://blog.csdn.net/theone10211024/article/details/50435325
+* https://gank.io/post/560e15be2dca930e00da1083
+* https://blog.csdn.net/lzyzsd/article/details/41833541
+* https://blog.csdn.net/theone10211024/article/details/50435325
 * 《RxJava Essentials》
-* http://reactivex.io
+* https://reactivex.io
 
 ### 关于RxJava和Android的学习
 
-主要从渠道，知识点和资源几方面介绍了下学习，提到[MobDevGroup](http://mobdevgroup.com)这个资源站。
+主要从渠道，知识点和资源几方面介绍了下学习，提到[MobDevGroup](https://mobdevgroup.com)这个资源站。
 
 ## GDG总结
 
 由于时间上的问题，没有对一些原理进行讲解，尤其是变换等，大部分是在讲应用，总之呢除了对自己知识点一次不错的总结外，也是对自己的一次历练，接下来再接再厉。最后附上这次的PPT下载地址：
 
-* Mac [keynote](http://vdisk.weibo.com/s/CeH3i0tfvuvLU)
-* Windows [PowerPoint](http://vdisk.weibo.com/s/CeH3i0tfvuvMd)
+* Mac [keynote](https://vdisk.weibo.com/s/CeH3i0tfvuvLU)
+* Windows [PowerPoint](https://vdisk.weibo.com/s/CeH3i0tfvuvMd)
 
 

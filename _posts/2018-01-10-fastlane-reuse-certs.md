@@ -99,10 +99,10 @@ register_devices(
 ```
 register_devices(
   devices_file: "./devices.txt"
-) # Alternatively provide a standard UDID export .txt file, see the Apple Sample (http://devimages.apple.com/downloads/devices/Multiple-Upload-Samples.zip)
+) # Alternatively provide a standard UDID export .txt file, see the Apple Sample (https://devimages.apple.com/downloads/devices/Multiple-Upload-Samples.zip)
 ```
 
-文件格式参考demo：[http://devimages.apple.com/downloads/devices/Multiple-Upload-Samples.zip](http://link.zhihu.com/?target=http%3A//devimages.apple.com/downloads/devices/Multiple-Upload-Samples.zip)
+文件格式参考demo：[https://devimages.apple.com/downloads/devices/Multiple-Upload-Samples.zip](https://link.zhihu.com/?target=http%3A//devimages.apple.com/downloads/devices/Multiple-Upload-Samples.zip)
 
 你也可以添加参数：
 ```
@@ -139,6 +139,6 @@ export FASTLANE_SESSION=‘YOUR SESSION’
 
 
 ### 参考
-1. [Simplify your life with fastlane match](http://macoscope.com/blog/simplify-your-life-with-fastlane-match/)
+1. [Simplify your life with fastlane match](https://macoscope.com/blog/simplify-your-life-with-fastlane-match/)
 2.  [register_devices - fastlane docs](https://docs.fastlane.tools/actions/register_devices/)
 3.  [match - fastlane docs](https://docs.fastlane.tools/actions/match/)

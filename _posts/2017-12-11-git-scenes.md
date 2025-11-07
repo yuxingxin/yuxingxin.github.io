@@ -12,7 +12,7 @@ date: 2017-12-11
 
 基于feature的工作流
 
-- 添加忽略文件   .gitignore (http://gitignore.io/)
+- 添加忽略文件   .gitignore (https://gitignore.io/)
 - 基于develop分支开发：feature分支   bugfix分支   版本节点tag
 - 问题排查: diff 、log  、reflog、blame
 - 撤销操作: checkout  、reset、revert、commit --amend

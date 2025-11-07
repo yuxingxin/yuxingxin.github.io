@@ -53,6 +53,6 @@ Rx给了我们一种新的学习扩展和并发的方式，它和面向对象一
 
 《RxJava Essentials》[翻译中文版电子书下载地址](https://www.gitbook.com/book/yuxingxin/rxjava-essentials-cn/)
 
-《RxJava Essentials》[英文版下载地址](http://vdisk.weibo.com/s/CeH3i0tfvZMVq)
+《RxJava Essentials》[英文版下载地址](https://vdisk.weibo.com/s/CeH3i0tfvZMVq)
 
-《Learning Reactive Programming》[英文版下载地址](http://vdisk.weibo.com/s/CeH3i0tfvZMfT)
+《Learning Reactive Programming》[英文版下载地址](https://vdisk.weibo.com/s/CeH3i0tfvZMfT)
