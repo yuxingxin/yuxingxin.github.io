@@ -1,0 +1,143 @@
+
+
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>http://localhost:4000/</id>
+  <title>yuxingxin</title>
+  <subtitle>yuxingxin's blog</subtitle>
+  <updated>2025-11-07T18:15:31+08:00</updated>
+  <author>
+    <name>yuxingxin</name>
+    <uri>http://localhost:4000/</uri>
+  </author>
+  <link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml"/>
+  <link rel="alternate" type="text/html" hreflang="zh-CN"
+    href="http://localhost:4000/"/>
+  <generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator>
+  <rights> © 2025 yuxingxin </rights>
+  <icon>/assets/img/favicons/favicon.ico</icon>
+  <logo>/assets/img/favicons/favicon-96x96.png</logo>
+
+
+  
+  <entry>
+    <title>Android三方开源库之RxJava3源码分析</title>
+    <link href="http://localhost:4000/posts/android-rxjava/" rel="alternate" type="text/html" title="Android三方开源库之RxJava3源码分析" />
+    <published>2020-07-26T00:00:00+08:00</published>
+  
+    <updated>2020-07-26T00:00:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/android-rxjava/</id>
+    <content type="text/html" src="http://localhost:4000/posts/android-rxjava/" />
+    <author>
+      <name>yuxingxin</name>
+    </author>
+
+  
+    
+    <category term="Android" />
+    
+  
+
+  <summary>RxJava作为主流的框架之一，有着丰富的功能操作符以及便捷的线程切换，深受Android开发者喜爱，本文尝试从源码角度分析其工作原理。  Single.just  Single.just最为最简单的模型，可以看下它是如何工作的：  Single&amp;lt;Integer&amp;gt; single = Single.just(1); single.subscribe(new SingleObserver&amp;lt;Integer&amp;gt;() {     @Override     public void onSubscribe(Disposable d) {     }      @Override     public void onSuccess(Integer integer) {     }      @Override     public void onError(Throwable...</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>Android三方开源库之OkHttp源码分析</title>
+    <link href="http://localhost:4000/posts/android-okhttp/" rel="alternate" type="text/html" title="Android三方开源库之OkHttp源码分析" />
+    <published>2020-07-14T00:00:00+08:00</published>
+  
+    <updated>2020-07-14T00:00:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/android-okhttp/</id>
+    <content type="text/html" src="http://localhost:4000/posts/android-okhttp/" />
+    <author>
+      <name>yuxingxin</name>
+    </author>
+
+  
+    
+    <category term="Android" />
+    
+  
+
+  <summary>OkHttp 是目前应用最广泛的开源网络库了，而且在Android6.0之后也将内部的HttpUrlConnection替换成了OkHttp，这篇文章来分析一下源码。  基本使用  OkHttpClient client = new OkHttpClient(); Request request = new Request.Builder()     .url("https://github.com")     .build(); // 同步请求 try {     okhttp3.Response response = client.newCall(request).execute(); } catch (IOException e) {     e.printStackTrace(); }  // 异步请求 client.newCall(request).enqueue(new ...</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>Android三方开源库之Retrofit源码分析</title>
+    <link href="http://localhost:4000/posts/android-retrofit/" rel="alternate" type="text/html" title="Android三方开源库之Retrofit源码分析" />
+    <published>2020-07-08T00:00:00+08:00</published>
+  
+    <updated>2020-07-08T00:00:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/android-retrofit/</id>
+    <content type="text/html" src="http://localhost:4000/posts/android-retrofit/" />
+    <author>
+      <name>yuxingxin</name>
+    </author>
+
+  
+    
+    <category term="Android" />
+    
+  
+
+  <summary>Retrofit是目前Android开发中主流的网络请求客户端，其底层基于OkHttp封装，提供了方便高效的网络请求框架。  基本用法  Retrofit retrofit = new Retrofit.Builder()                 .baseUrl("https://api.github.com")                 .addConverterFactory(GsonConverterFactory.create())                 .build();  GitHubApiService service = retrofit.create(GitHubApiService.class); Call&amp;lt;List&amp;lt;String&amp;gt;&amp;gt; call = service.listRepo();  call.enqueue...</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>Android三方开源库之LeakCanary2.4源码分析</title>
+    <link href="http://localhost:4000/posts/android-leakcanary/" rel="alternate" type="text/html" title="Android三方开源库之LeakCanary2.4源码分析" />
+    <published>2020-06-29T00:00:00+08:00</published>
+  
+    <updated>2020-06-29T00:00:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/android-leakcanary/</id>
+    <content type="text/html" src="http://localhost:4000/posts/android-leakcanary/" />
+    <author>
+      <name>yuxingxin</name>
+    </author>
+
+  
+    
+    <category term="Android" />
+    
+  
+
+  <summary>LeanCanary内部主要使用了Reference以及ReferenceQueue配合来实现对象被回收时的监听，这是它的核心逻辑，因此我们先了解下这部分内容：  Reference  Reference是一个泛型抽象类，其中软引用、弱引用、虚引用都继承自它，它主要有几个成员变量：     泛型引用对象 T：被回收时被赋值为null   引用队列 ReferenceQueue：一个单链表实现的队列，保存即将被回收的引用对象   queueNext：指向下一个待处理的Reference引用对象   pendingNext：指向下一个待入列的Reference引用对象   ReferenceQueue  Reference配合ReferenceQueue就可以实现对象回收监听，示例代码如下：  //创建一个引用队列 ReferenceQueue queue = new Reference...</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>Android三方开源库之BlockCanary源码分析</title>
+    <link href="http://localhost:4000/posts/android-blockcanary/" rel="alternate" type="text/html" title="Android三方开源库之BlockCanary源码分析" />
+    <published>2020-03-05T00:00:00+08:00</published>
+  
+    <updated>2020-03-05T00:00:00+08:00</updated>
+  
+    <id>http://localhost:4000/posts/android-blockcanary/</id>
+    <content type="text/html" src="http://localhost:4000/posts/android-blockcanary/" />
+    <author>
+      <name>yuxingxin</name>
+    </author>
+
+  
+    
+    <category term="Android" />
+    
+  
+
+  <summary>我们手机屏幕帧率通常是60，也就意味着每秒钟有60个画面出现，即16.6ms就要有一个画面渲染出来，Android系统每隔16.6ms发出一个Vsync信号，触发对View进行渲染，如果在这个时间内渲染成功，那么画面正常显示，否则就会出现丢帧的情况，如果掉帧频率很高，也就导致了卡顿。  我们回顾一下View刷新机制，App启动时，会通过ActivityThread类的main方法，创建一个主线程Looper，并通过Looper.loop方法不断轮询，从MessageQueue队列中取出Message来更新UI，而UI更新往往会通过ViewRootImpl类的scheduleTraversals方法来进行一次View树的遍历绘制，最终通过Choreographer的postCallback将该绘制任务添加到待执行队列里面，由主线程looper的loop方法不断取出消息执行任务。  //...</summary>
+
+  </entry>
+
+</feed>
+
+

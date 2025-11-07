@@ -30,25 +30,25 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <meta name="generator" content="Jekyll v4.4.1" />
-<meta property="og:title" content="yuxingxin" />
+<meta property="og:title" content="JVM对象回收机制（下）" />
 <meta property="og:locale" content="zh_CN" />
-<meta name="description" content="yuxingxin’s blog" />
-<meta property="og:description" content="yuxingxin’s blog" />
-<link rel="canonical" href="http://localhost:4000/" />
-<meta property="og:url" content="http://localhost:4000/" />
+<meta name="description" content="我们知道当内存空间达到一定条件时，会自动触发。这个过程就叫作 GC，负责 GC 的组件，就叫作垃圾回收器。按照语义上面理解，垃圾回收首先需要找到的是这些垃圾，然后回收掉，但是GC过程正好相反，它是先找到活跃的对象，然后把其他不活跃的对象判定为垃圾，然后删除。所以垃圾回收只与活跃的对象有关，和堆的大小无关。" />
+<meta property="og:description" content="我们知道当内存空间达到一定条件时，会自动触发。这个过程就叫作 GC，负责 GC 的组件，就叫作垃圾回收器。按照语义上面理解，垃圾回收首先需要找到的是这些垃圾，然后回收掉，但是GC过程正好相反，它是先找到活跃的对象，然后把其他不活跃的对象判定为垃圾，然后删除。所以垃圾回收只与活跃的对象有关，和堆的大小无关。" />
+<link rel="canonical" href="http://localhost:4000/posts/java-jvm-gc2/" />
+<meta property="og:url" content="http://localhost:4000/posts/java-jvm-gc2/" />
 <meta property="og:site_name" content="yuxingxin" />
-<meta property="og:type" content="website" />
-<link rel="next" href="http://localhost:4000/page2" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-04-16T00:00:00+08:00" />
 <meta property="og:image" content="https://p26-passport.byteacctimg.com/img/user-avatar/48ea01ce7b18b0e8c3332207950bc317~300x300.image# string, local or CORS resources" /><meta name="twitter:card" content="summary_large_image" />
       <meta property="twitter:image" content="https://p26-passport.byteacctimg.com/img/user-avatar/48ea01ce7b18b0e8c3332207950bc317~300x300.image# string, local or CORS resources" />
-<meta property="twitter:title" content="yuxingxin" />
+<meta property="twitter:title" content="JVM对象回收机制（下）" />
 <meta name="twitter:site" content="@yuxingxin" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"yuxingxin’s blog","headline":"yuxingxin","name":"yuxingxin","sameAs":["https://twitter.com/yuxingxin","https://github.com/yuxingxin"],"url":"http://localhost:4000/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2019-04-16T00:00:00+08:00","datePublished":"2019-04-16T00:00:00+08:00","description":"我们知道当内存空间达到一定条件时，会自动触发。这个过程就叫作 GC，负责 GC 的组件，就叫作垃圾回收器。按照语义上面理解，垃圾回收首先需要找到的是这些垃圾，然后回收掉，但是GC过程正好相反，它是先找到活跃的对象，然后把其他不活跃的对象判定为垃圾，然后删除。所以垃圾回收只与活跃的对象有关，和堆的大小无关。","headline":"JVM对象回收机制（下）","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/java-jvm-gc2/"},"url":"http://localhost:4000/posts/java-jvm-gc2/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>yuxingxin
+  <title>JVM对象回收机制（下） | yuxingxin
   </title>
 
   <!--
@@ -107,11 +107,16 @@
   <!-- 3rd-party Dependencies -->
 
   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.36.4/dist/tocbot.min.css">
+  
 
   
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css">
   
 
+  
+    <!-- Image Popup -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css">
   
 
   <!-- Scripts -->
@@ -130,6 +135,9 @@
   
 
   
+    <!-- image lazy-loading & popup & clipboard -->
+    
+  
 
 
 
@@ -187,9 +195,30 @@
 
   
 
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
 
 
-  <script defer src="https://cdn.jsdelivr.net/combine/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/dayjs@1.11.18/dayjs.min.js,npm/dayjs@1.11.18/locale/zh.js,npm/dayjs@1.11.18/plugin/relativeTime.js,npm/dayjs@1.11.18/plugin/localizedFormat.js"></script>
+
+  <script defer src="https://cdn.jsdelivr.net/combine/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/glightbox@3.3.0/dist/js/glightbox.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.18/dayjs.min.js,npm/dayjs@1.11.18/locale/zh.js,npm/dayjs@1.11.18/plugin/relativeTime.js,npm/dayjs@1.11.18/plugin/localizedFormat.js,npm/tocbot@4.36.4/dist/tocbot.min.js"></script>
 
 
 
@@ -197,11 +226,15 @@
 
 
 
-<script defer src="/assets/js/dist/home.min.js"></script>
+<script defer src="/assets/js/dist/post.min.js"></script>
 
 
 
 <!-- Pageviews -->
+
+  
+
+  
 
 
 
@@ -227,7 +260,7 @@
   <nav class="flex-column flex-grow-1 w-100 ps-0">
     <ul class="nav">
       <!-- home -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a href="/" class="nav-link">
           <i class="fa-fw fas fa-home"></i>
           <span>首页</span>
@@ -389,9 +422,23 @@
       
 
       
-        <!-- index page -->
-        <span>首页</span>
+        
+          
+            <span>
+              <a href="/">首页</a>
+            </span>
 
+          
+        
+          
+        
+          
+            
+              <span>JVM对象回收机制（下）</span>
+            
+
+          
+        
       
     </nav>
     <!-- endof #breadcrumb -->
@@ -401,7 +448,7 @@
     </button>
 
     <div id="topbar-title">
-      yuxingxin
+      文章
     </div>
 
     <button type="button" id="search-trigger" class="btn btn-link" aria-label="Search">
@@ -455,6 +502,146 @@
 
 
 
+  
+  
+
+  
+    
+      
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+      
+
+      
+    
+
+    <!-- take out classes -->
+    
+
+    
+
+    
+    
+
+    
+
+    
+      
+    
+
+    <!-- lazy-load images -->
+    
+
+    
+      <!-- make sure the `<img>` is wrapped by `<a>` -->
+      
+
+      
+        <!-- create the image wrapper -->
+        
+
+        
+        
+      
+    
+
+    <!-- combine -->
+    
+  
+
+  
+
 
 <!-- Add header for code snippets -->
 
@@ -470,10 +657,96 @@
   
 
   
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
 
   
   
 
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
   
 
   
@@ -499,703 +772,277 @@
 
 
 
-<!-- Get pinned posts on current page -->
 
-
-
-
-
-
-<!-- Get normal posts on current page -->
-
-
-
-
-
-<div id="post-list" class="flex-grow-1 px-xl-1">
-  
-    <article class="card-wrapper card">
-      <a href="/posts/android-rxjava/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android三方开源库之RxJava3源码分析</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>RxJava作为主流的框架之一，有着丰富的功能操作符以及便捷的线程切换，深受Android开发者喜爱，本文尝试从源码角度分析其工作原理。  Single.just  Single.just最为最简单的模型，可以看下它是如何工作的：  Single&lt;Integer&gt; single = Single.just(1); single.subscribe(new SingleObserv...</p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1595692800"
-  data-df="YYYY/MM/DD"
-  
->
-  2020/07/26
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      Android
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/android-okhttp/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android三方开源库之OkHttp源码分析</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>OkHttp 是目前应用最广泛的开源网络库了，而且在Android6.0之后也将内部的HttpUrlConnection替换成了OkHttp，这篇文章来分析一下源码。  基本使用  OkHttpClient client = new OkHttpClient(); Request request = new Request.Builder()     .url("https://github...</p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1594656000"
-  data-df="YYYY/MM/DD"
-  
->
-  2020/07/14
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      Android
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/android-retrofit/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android三方开源库之Retrofit源码分析</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>Retrofit是目前Android开发中主流的网络请求客户端，其底层基于OkHttp封装，提供了方便高效的网络请求框架。  基本用法  Retrofit retrofit = new Retrofit.Builder()                 .baseUrl("https://api.github.com")                 .addConverterFacto...</p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1594137600"
-  data-df="YYYY/MM/DD"
-  
->
-  2020/07/08
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      Android
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/android-leakcanary/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android三方开源库之LeakCanary2.4源码分析</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>LeanCanary内部主要使用了Reference以及ReferenceQueue配合来实现对象被回收时的监听，这是它的核心逻辑，因此我们先了解下这部分内容：  Reference  Reference是一个泛型抽象类，其中软引用、弱引用、虚引用都继承自它，它主要有几个成员变量：     泛型引用对象 T：被回收时被赋值为null   引用队列 ReferenceQueue：一个单链表实现...</p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1593360000"
-  data-df="YYYY/MM/DD"
-  
->
-  2020/06/29
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      Android
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/android-blockcanary/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android三方开源库之BlockCanary源码分析</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>我们手机屏幕帧率通常是60，也就意味着每秒钟有60个画面出现，即16.6ms就要有一个画面渲染出来，Android系统每隔16.6ms发出一个Vsync信号，触发对View进行渲染，如果在这个时间内渲染成功，那么画面正常显示，否则就会出现丢帧的情况，如果掉帧频率很高，也就导致了卡顿。  我们回顾一下View刷新机制，App启动时，会通过ActivityThread类的main方法，创建一个主...</p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1583337600"
-  data-df="YYYY/MM/DD"
-  
->
-  2020/03/05
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      Android
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/android-binder/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android Framework之Binder原理分析</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>Binder是Android Framework层一个不可或缺的存在，了解Framework的前提必须先掌握Binder原理，它是Android进程间通信的一种方式，我们在应用程序使用的四大组件，可以运行在同一个进程，也可以运行在不同进程，进程之间通信就依赖Binder，另外我们之前了解到的系统服务，像AMS、PMS、WMS等都是基于Binder IPC 进行通信的。  进程空间  Linu...</p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1562515200"
-  data-df="YYYY/MM/DD"
-  
->
-  2019/07/08
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      Android
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/android-framework-choreographer/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android Framework源码分析之屏幕刷新机制以及Choreographer</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>生活中，我们经常遇到别人说手机画面卡，这里的卡对应我们开发者来说，表示的就是掉帧（jank）或者画面撕裂（tearing），我们先来说说一些概念：          帧（Frame）：动画中的单幅画面，相当于电影胶片中的一个镜头，一帧就是一幅静止的画面，连续帧动起来就是我们看到的动画。           帧率（Frame Rate）：每秒传输的图片画面的帧数，也可以理解为画面每秒钟刷新几次...</p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1560787200"
-  data-df="YYYY/MM/DD"
-  
->
-  2019/06/18
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      Android
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/android-framework-view-traverse/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android Framework源码分析之View的绘制流程</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>通过分析Activity的启动过程，我们知道，View的绘制开始是从ViewRootImpl类中通过调用setView方法执行了requestLayout后开始的。  requestLayout过程  // ViewRootImpl.java public void setView(View view, WindowManager.LayoutParams attrs, View panel...</p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1560355200"
-  data-df="YYYY/MM/DD"
-  
->
-  2019/06/13
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      Android
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/android-framework-activity-window-view/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android Framework源码分析之Activity、Window、View之间的关系</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>每当我们显示一个界面的时候，都是通过start一个Activity的方式，对于显示布局内容，也只是通过在onCreate方法里面setContentView就可以，剩下的都是Activity帮我们做了，我们自始至终也没有创建过window或者view，那么这背后都发生了什么 ？这篇文章梳理一下这三者的关系  setContentView  我们从setContentView源码开始：  //...</p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1558886400"
-  data-df="YYYY/MM/DD"
-  
->
-  2019/05/27
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      Android
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/android-framework-start-activity/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android Framework源码分析-Activity的启动过程</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>Activity是我们平时用到最多的一个组件之一，它提供给用户一个可以交互的页面，通常启动一个Activity可以使用下面代码：  Intent intent = new Intent(this, DemoActivity.class); this.startActivity(intent);   可以看出代码很简洁，但是背后有着复杂的执行流程，这篇文章就介绍下Activity启动的执行过程...</p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1558108800"
-  data-df="YYYY/MM/DD"
-  
->
-  2019/05/18
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      Android
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-</div>
-<!-- #post-list -->
-
-
-  <!-- The paginator for post list on HomgPage. -->
-
-<nav aria-label="Page Navigation">
-  <ul class="pagination align-items-center mt-4 mb-0">
-    <!-- left arrow -->
+<article class="px-1" data-toc="true">
+  <header>
+    <h1 data-toc-skip>JVM对象回收机制（下）</h1>
     
 
-    <li class="page-item disabled">
-      <a class="page-link" href="#" aria-label="previous-page">
-        <i class="fas fa-angle-left"></i>
-      </a>
-    </li>
+    <div class="post-meta text-muted">
+      <!-- published date -->
+      <span>
+        发表于
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
 
-    <!-- page numbers -->
-    
-    
 
-    
-      
-      
-      
-      
-      
 
-      
 
-      
-        <!-- show number -->
-        <li class="page-item  active">
-          <a
-            class="page-link"
-            href="/"
-          >1</a>
-        </li>
-      
-    
-      
-      
-      
-      
+<time
+  
+  data-ts="1555344000"
+  data-df="YYYY/MM/DD"
+  
+    data-bs-toggle="tooltip" data-bs-placement="bottom"
+  
+>
+  2019/04/16
+</time>
+
+      </span>
+
+      <!-- lastmod date -->
       
 
       
 
-      
-        <!-- show number -->
-        <li class="page-item ">
-          <a
-            class="page-link"
-            href="/page2"
-          >2</a>
-        </li>
-      
-    
-      
-      
-      
-      
-      
-
-      
-
-      
-        <!-- show number -->
-        <li class="page-item ">
-          <a
-            class="page-link"
-            href="/page3"
-          >3</a>
-        </li>
-      
-    
-      
-      
-      
-      
-      
-
-      
-
-      
-        <!-- hide number -->
-        
-          <li class="page-item disabled">
-            <span class="page-link">...</span>
-          </li>
+      <div class="d-flex justify-content-between">
+        <!-- author(s) -->
+        <span>
           
+
+          作者
+
+          <em>
+            
+              <a href="https://twitter.com/yuxingxin">yuxingxin</a>
+            
+          </em>
+        </span>
+
+        <div>
+          <!-- pageviews -->
+          
+
+          <!-- read time -->
+          <!-- Calculate the post's reading time, and display the word count in tooltip -->
+
+
+
+<!-- words per minute -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span
+  class="readtime"
+  data-bs-toggle="tooltip"
+  data-bs-placement="bottom"
+  title="1614 字"
+>
+  <em>8 分钟</em>阅读</span>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+    <div id="toc-bar" class="d-flex align-items-center justify-content-between invisible">
+      <span class="label text-truncate">JVM对象回收机制（下）</span>
+      <button type="button" class="toc-trigger btn me-1">
+        <i class="fa-solid fa-list-ul fa-fw"></i>
+      </button>
+    </div>
+
+    <button id="toc-solo-trigger" type="button" class="toc-trigger btn btn-outline-secondary btn-sm">
+      <span class="label ps-2 pe-1">文章内容</span>
+      <i class="fa-solid fa-angle-right fa-fw"></i>
+    </button>
+
+    <dialog id="toc-popup" class="p-0">
+      <div class="header d-flex flex-row align-items-center justify-content-between">
+        <div class="label text-truncate py-2 ms-4">JVM对象回收机制（下）</div>
+        <button id="toc-popup-close" type="button" class="btn mx-1 my-1 opacity-75">
+          <i class="fas fa-close"></i>
+        </button>
+      </div>
+      <div id="toc-popup-content" class="px-4 py-3 pb-4"></div>
+    </dialog>
+  
+
+  <div class="content">
+    <p>我们知道当内存空间达到一定条件时，会自动触发。这个过程就叫作 GC，负责 GC 的组件，就叫作垃圾回收器。按照语义上面理解，垃圾回收首先需要找到的是这些垃圾，然后回收掉，但是GC过程正好相反，它是先找到活跃的对象，然后把其他不活跃的对象判定为垃圾，然后删除。所以垃圾回收只与活跃的对象有关，和堆的大小无关。</p>
+
+<h2 id="标记-清除算法"><span class="me-2">标记-清除算法</span><a href="#标记-清除算法" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>就像我们前面说的，GC过程正好相反：垃圾回收的第一步，就是找出活跃的对象，并将它们标记起来。根据GC Roots从上到下遍历所有可达对象，这个过程就叫做标记。<a href="https://tva1.sinaimg.cn/large/e6c9d24ely1h5foib776vj20sl0qntaj.jpg" class="popup img-link shimmer"><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h5foib776vj20sl0qntaj.jpg" alt="image-20220822173744871" loading="lazy"></a></p>
+
+<p>如上图所示，绿色代表GC Roots，蓝色代表可以被引用到的对象，灰色代表被回收的对象。但是这种方式有一个弊端就是会产生大量不连续的碎片，空间碎片太对可能会导致以后再程序运行过程中需要分配较大对象时，无法找到足够的连续内存而不得不提前触发另一次GC动作。</p>
+
+<h2 id="复制算法"><span class="me-2">复制算法</span><a href="#复制算法" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>将堆分为两个大小相同的空间 From 和 To， 利用 From 空间进行分配，当 From 空间满的时候，GC将其中的活动对象复制到 To 空间，之后将两个空间互换即完成GC。虽然解决了碎片问题，但是弊端也很明显，就是将内存缩小为了原来的一半，如果资源本身有限，这就是非常高的代价了。</p>
+
+<h2 id="标记-整理算法"><span class="me-2">标记-整理算法</span><a href="#标记-整理算法" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p><a href="https://tva1.sinaimg.cn/large/e6c9d24ely1h5fovyqga9j20tk0gigmh.jpg" class="popup img-link shimmer"><img src="https://tva1.sinaimg.cn/large/e6c9d24ely1h5fovyqga9j20tk0gigmh.jpg" alt="image-20220822175052116" loading="lazy"></a></p>
+
+<p>它的主要思路就是，标记过程和标记-清除算法一样，但是到了整理阶段，它会移动所有存活的对象，且按照内存地址顺序依次排列，然后将末端内存地址以后的内存全部回收掉。这种算法虽然效率差一些，但是没有空间浪费，也没有产生碎片。</p>
+
+<h2 id="分代收集算法"><span class="me-2">分代收集算法</span><a href="#分代收集算法" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>综上，没有最优的算法，只有最合适的算法。分代收集没有新的思想，只是根据对象的存活周期的不同将内存划分为几块，一般把Java堆分为新生代和老年代，这样就可以根据各个年代的特点采用最适当的收集算法，在新生代中，每次垃圾收集时有大批对象死去，只有少量存活，那就选用复制算法，只需要付出少量存活对象的复制成本就可以完成收集，而老年代中因为对象存活率高，没有额外空间对他们进行分配担保，就必须使用标记-清理或者标记-整理算法进行回收。</p>
+
+<h3 id="新生代"><span class="me-2">新生代</span><a href="#新生代" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<p>综合上面，年轻代使用的垃圾回收算法是复制算法。因为年轻代发生 GC 后，只会有非常少的对象存活，复制这部分对象是非常高效的。我们前面也了解到复制算法会造成一定的空间浪费，所以年轻代中间也会分很多区域：一个伊甸园空间（Eden ），两个幸存者空间（Survivor ）</p>
+
+<p>当新生代中的 Eden 区分配满的时候，就会触发新生代的 GC（Minor GC）。具体过程如下：</p>
+
+<ul>
+  <li>在 Eden 区执行了第一次 GC 之后，存活的对象会被移动到其中一个 Survivor 分区（以下简称from）；</li>
+  <li>Eden 区再次 GC，这时会采用复制算法，将 Eden 和 from 区一起清理。存活的对象会被复制到 to 区；接下来，只需要清空 from 区就可以了。</li>
+</ul>
+
+<p>所以在这个过程中，总会有一个 Survivor 分区是空置的。Eden、from、to 的默认比例是 8:1:1，所以只会造成 10% 的空间浪费。</p>
+
+<p>这个比例，是由参数 -XX:SurvivorRatio 进行配置的（默认为 8）。</p>
+
+<h3 id="老年代"><span class="me-2">老年代</span><a href="#老年代" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<p>结合上面，老年代一般使用“标记-清除”、“标记-整理”算法，因为老年代的对象存活率一般是比较高的，空间又比较大，拷贝起来并不划算，还不如采取就地收集的方式。</p>
+
+<p>那么新生代对象如何进入老年代的呢？它们有这么几种：</p>
+
+<ol>
+  <li>
+    <p>大对象直接进入老年代</p>
+
+    <p>超出某个大小的对象将直接在老年代分配。这个值是通过参数 -XX:PretenureSizeThreshold 进行配置的。默认为 0，意思是全部首选 Eden 区进行分配。</p>
+  </li>
+  <li>
+    <p>长期存活的对象将进入老年代</p>
+
+    <p>新生代对象每当发生一次 Minor GC，存活下来的对象年龄都会加 1。直到达到一定的阈值，就会把这些“老顽固”给提升到老年代。这个阈值，可以通过参数 ‐XX:+MaxTenuringThreshold 进行配置，最大值是 15（默认）。</p>
+
+    <p>这些对象如果变的不可达，直到老年代发生 GC 的时候，才会被清理掉。</p>
+  </li>
+  <li>
+    <p>动态对象年龄判断</p>
+
+    <p>为了更好地适应不同程序的内存状况，虚拟机并不是永远的要求对象的年龄必须达到MaxTenuringThreshold才能提升到老年代，如果在Survivor空间中相同年龄所有对象大小的总和大于Survivor空间的一半，年龄大于或等于该年龄的对象就可以直接进入老年代，无须等到MaxTenuringThreshold中要求的年龄。</p>
+  </li>
+  <li>
+    <p>空间分配担保</p>
+
+    <p>上面新生代每次存活的对象，都会放入其中一个幸存区，这个区域默认的比例是 10%。但是我们无法保证每次存活的对象都小于 10%，当 Survivor 空间不够，就需要依赖其他内存（指老年代）进行分配担保。这个时候，对象也会直接在老年代上分配。</p>
+  </li>
+</ol>
+
+  </div>
+
+  <div class="post-tail-wrapper text-muted">
+    <!-- categories -->
+    
+      <div class="post-meta mb-3">
+        <i class="far fa-folder-open fa-fw me-1"></i>
         
-      
+          <a href="/categories/java/">Java</a>
+      </div>
     
-      
-      
-      
-      
-      
 
-      
-
-      
-        <!-- show number -->
-        <li class="page-item ">
+    <!-- tags -->
+    
+      <div class="post-tags">
+        <i class="fa fa-tags fa-fw me-1"></i>
+        
           <a
-            class="page-link"
-            href="/page5"
-          >5</a>
-        </li>
+            href="/tags/jvm/"
+            class="post-tag no-text-decoration"
+          >JVM</a>
+        
+      </div>
+    
+
+    <div
+      class="
+        post-tail-bottom
+        d-flex justify-content-between align-items-center mt-5 pb-2
+      "
+    >
+      <div class="license-wrapper">
+        
+          
+
+          本文由作者按照 
+        <a href="https://creativecommons.org/licenses/by/4.0/">
+          CC BY 4.0
+        </a>
+         进行授权
+        
+      </div>
+
+      <!-- Post sharing snippet -->
+
+<div class="share-wrapper d-flex align-items-center">
+  <span class="share-label text-muted">分享</span>
+  <span class="share-icons">
+    
+    
+    
+
+    
+
       
-    
 
-    <!-- mobile pagination -->
-    <li class="page-index align-middle">
-      <span>1</span>
-      <span class="text-muted">/ 5</span>
-    </li>
-
-    <!-- right arrow -->
-    
-
-    <li class="page-item ">
-      <a class="page-link" href="/page2" aria-label="next-page">
-        <i class="fas fa-angle-right"></i>
+      <a href="https://twitter.com/intent/tweet?text=JVM%E5%AF%B9%E8%B1%A1%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%EF%BC%88%E4%B8%8B%EF%BC%89%20-%20yuxingxin&url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fjava-jvm-gc2%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter">
+        <i class="fa-fw fa-brands fa-square-x-twitter"></i>
       </a>
-    </li>
-  </ul>
-</nav>
-<!-- .pagination -->
+    
 
+      
 
+      <a href="https://www.facebook.com/sharer/sharer.php?title=JVM%E5%AF%B9%E8%B1%A1%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%EF%BC%88%E4%B8%8B%EF%BC%89%20-%20yuxingxin&u=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fjava-jvm-gc2%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook" aria-label="Facebook">
+        <i class="fa-fw fab fa-facebook-square"></i>
+      </a>
+    
+
+      
+
+      <a href="https://t.me/share/url?url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fjava-jvm-gc2%2F&text=JVM%E5%AF%B9%E8%B1%A1%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%EF%BC%88%E4%B8%8B%EF%BC%89%20-%20yuxingxin" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram" aria-label="Telegram">
+        <i class="fa-fw fab fa-telegram"></i>
+      </a>
+    
+
+    <button
+      id="copy-link"
+      aria-label="Copy link"
+      class="btn small"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title="分享链接"
+      data-title-succeed="链接已复制！"
+    >
+      <i class="fa-fw fas fa-link pe-none fs-6"></i>
+    </button>
+  </span>
+</div>
+
+    </div>
+    <!-- .post-tail-bottom -->
+  </div>
+  <!-- div.post-tail-wrapper -->
+</article>
 
 
             
@@ -2099,12 +1946,322 @@
             </div>
 
             
+              
+              
+
+
+
+
+
+
+  <div class="toc-border-cover z-3"></div>
+  <section id="toc-wrapper" class="invisible position-sticky ps-0 pe-4 pb-4">
+    <h2 class="panel-heading ps-3 pb-2 mb-0">文章内容</h2>
+    <nav id="toc"></nav>
+  </section>
+
+
+            
           </aside>
         </div>
 
         <div class="row">
           <!-- tail -->
           <div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              
+              <!-- Recommend the other 3 posts according to the tags and categories of the current post. -->
+
+<!-- The total size of related posts -->
+
+
+<!-- An random integer that bigger than 0 -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  <aside id="related-posts" aria-labelledby="related-label">
+    <h3 class="mb-4" id="related-label">相关文章</h3>
+    <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
+      
+        <article class="col">
+          <a href="/posts/java-jvm-gc1/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1554998400"
+  data-df="YYYY/MM/DD"
+  
+>
+  2019/04/12
+</time>
+
+              <h4 class="pt-0 my-2">JVM对象回收机制（上）</h4>
+              <div class="text-muted">
+                <p>我们知道Java实例对象存储在堆中，等不用的时候，GC会回收它，但是GC是不受程序控制的，它会在满足条件时自动触发。那我们接下来就聊一聊这个条件。  在发生GC时，一个对象，JVM总能找到引用它的祖先，最后发现这个祖先已经被回收，那么它们就都会被清理掉，而能够躲过垃圾回收的那些祖先，我们管它叫GC Roots。  引用计数法  该方法是在对象头里面维护了一个计数器，每当该对象被引用1次，计数...</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/java-jvm-classloader/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1554652800"
+  data-df="YYYY/MM/DD"
+  
+>
+  2019/04/08
+</time>
+
+              <h4 class="pt-0 my-2">JVM类加载机制及类加载器</h4>
+              <div class="text-muted">
+                <p>类加载时机  我们都知道JVM通过加载.class文件，能够将其中的字节码解析成操作系统机器码。那么JVM加载时类的初始化是什么时候呢？大致有这么5种情况：     遇到new、getstatic、putstatic或invokestatic这四条字节码指令时，如果类没有进行过初始化，则需要先对其进行初始化。生成这四条指令的最常见的Java代码场景是：            使用new关键字...</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/java-jvm-memory/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1554134400"
+  data-df="YYYY/MM/DD"
+  
+>
+  2019/04/02
+</time>
+
+              <h4 class="pt-0 my-2">JVM内存区域以及内存管理</h4>
+              <div class="text-muted">
+                <p>内存区域划分  JVM内存布局在Java8以及之后做了一些修改，方法区做了一些变化：将原来永久代（Permanent Generation）移除了，改为使用元空间（Metaspace）来代替，因此原来的两个调优参数：-XX:PermSize和-XX:MaxPermSize被弃用了，改为使用-XX:MetaspaceSize 和 -XX:MaxMetaspaceSize 来指定元空间的大小。如...</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+    </nav>
+  </aside>
+  <!-- #related-posts -->
+
+
+            
+              
+              <!-- Navigation buttons at the bottom of the post. -->
+
+<nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation">
+  
+  
+
+  
+    <a
+      href="/posts/java-jvm-gc1/"
+      class="btn btn-outline-primary"
+      aria-label="上一篇"
+    >
+      <p>JVM对象回收机制（上）</p>
+    </a>
+  
+
+  
+    <a
+      href="/posts/java-jmm/"
+      class="btn btn-outline-primary"
+      aria-label="下一篇"
+    >
+      <p>Java内存模型JMM与多线程</p>
+    </a>
+  
+</nav>
+
             
 
             <!-- The Footer -->
@@ -3029,6 +3186,67 @@
     
 
     <!-- Embedded scripts -->
+
+    
+      
+      <!-- The comments switcher -->
+
+  
+  <!-- https://giscus.app/ -->
+<script>
+  (function () {
+    const themeMapper = Theme.getThemeMapper('light', 'dark_dimmed');
+    const initTheme = themeMapper[Theme.visualState];
+
+    let lang = 'zh-CN';if (lang.length > 2 && !lang.startsWith('zh')) {
+      lang = lang.slice(0, 2);
+    }
+
+    let giscusAttributes = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'yuxingxin/yuxingxin.github.io',
+      'data-repo-id': 'MDEwOlJlcG9zaXRvcnkzNzAyNTMxOA==',
+      'data-category': 'General',
+      'data-category-id': 'DIC_kwDOAjT2Js4CxiNM',
+      'data-mapping': 'pathname',
+      'data-strict' : '0',
+      'data-reactions-enabled': '1',
+      'data-emit-metadata': '0',
+      'data-theme': initTheme,
+      'data-input-position': 'bottom',
+      'data-lang': lang,
+      'data-loading': 'lazy',
+      crossorigin: 'anonymous',
+      async: ''
+    };
+
+    let giscusNode = document.createElement('script');
+    Object.entries(giscusAttributes).forEach(([key, value]) =>
+      giscusNode.setAttribute(key, value)
+    );
+
+    const $footer = document.querySelector('footer');
+    $footer.insertAdjacentElement("beforebegin", giscusNode);
+
+    addEventListener('message', (event) => {
+      if (event.source === window && event.data && event.data.id === Theme.ID) {
+        const newTheme = themeMapper[Theme.visualState];
+
+        const message = {
+          setConfig: {
+            theme: newTheme
+          }
+        };
+
+        const giscus =
+          document.getElementsByClassName('giscus-frame')[0].contentWindow;
+        giscus.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+    });
+  })();
+</script>
+
+
 
     
 

@@ -34,17 +34,18 @@
 <meta property="og:locale" content="zh_CN" />
 <meta name="description" content="yuxingxin’s blog" />
 <meta property="og:description" content="yuxingxin’s blog" />
-<link rel="canonical" href="http://localhost:4000/" />
-<meta property="og:url" content="http://localhost:4000/" />
+<link rel="canonical" href="http://localhost:4000/page3/" />
+<meta property="og:url" content="http://localhost:4000/page3/" />
 <meta property="og:site_name" content="yuxingxin" />
 <meta property="og:type" content="website" />
-<link rel="next" href="http://localhost:4000/page2" />
+<link rel="prev" href="http://localhost:4000/page2" />
+<link rel="next" href="http://localhost:4000/page4" />
 <meta property="og:image" content="https://p26-passport.byteacctimg.com/img/user-avatar/48ea01ce7b18b0e8c3332207950bc317~300x300.image# string, local or CORS resources" /><meta name="twitter:card" content="summary_large_image" />
       <meta property="twitter:image" content="https://p26-passport.byteacctimg.com/img/user-avatar/48ea01ce7b18b0e8c3332207950bc317~300x300.image# string, local or CORS resources" />
 <meta property="twitter:title" content="yuxingxin" />
 <meta name="twitter:site" content="@yuxingxin" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"yuxingxin’s blog","headline":"yuxingxin","name":"yuxingxin","sameAs":["https://twitter.com/yuxingxin","https://github.com/yuxingxin"],"url":"http://localhost:4000/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"yuxingxin’s blog","headline":"yuxingxin","url":"http://localhost:4000/page3/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -515,17 +516,17 @@
 <div id="post-list" class="flex-grow-1 px-xl-1">
   
     <article class="card-wrapper card">
-      <a href="/posts/android-rxjava/" class="post-preview row g-0 flex-md-row-reverse">
+      <a href="/posts/javascript-event-emitter/" class="post-preview row g-0 flex-md-row-reverse">
         
 
         
 
         <div class="col-md-12">
           <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android三方开源库之RxJava3源码分析</h1>
+            <h1 class="card-title my-2 mt-md-0">JavaScript基础之发布-订阅模式EventEmitter的实现</h1>
 
             <div class="card-text content mt-0 mb-3">
-              <p>RxJava作为主流的框架之一，有着丰富的功能操作符以及便捷的线程切换，深受Android开发者喜爱，本文尝试从源码角度分析其工作原理。  Single.just  Single.just最为最简单的模型，可以看下它是如何工作的：  Single&lt;Integer&gt; single = Single.just(1); single.subscribe(new SingleObserv...</p>
+              <p>我们知道EventEmitter是在Node.js中events模块封装的，但是在浏览器端还没有，在Vue中非父子组件通信，官方推荐过一种EventBus的解决方案，它是将EventBus作为组件传递数据的桥梁，所有组件共用的相同事件中心，可以向该中心发送事件或者接收事件，所有组件都可以收到通知，使用起来非常便利，其核心便是发布-订阅模式的实现。  接下来实现一个简易版的发布-订阅模式Eve...</p>
             </div>
 
             <div class="post-meta flex-grow-1 d-flex align-items-end">
@@ -542,11 +543,11 @@
 
 <time
   
-  data-ts="1595692800"
+  data-ts="1521993600"
   data-df="YYYY/MM/DD"
   
 >
-  2020/07/26
+  2018/03/26
 </time>
 
 
@@ -555,7 +556,7 @@
                   <i class="far fa-folder-open fa-fw me-1"></i>
                   <span class="categories">
                     
-                      Android
+                      JavaScript
                   </span>
                 
               </div>
@@ -570,17 +571,17 @@
     </article>
   
     <article class="card-wrapper card">
-      <a href="/posts/android-okhttp/" class="post-preview row g-0 flex-md-row-reverse">
+      <a href="/posts/javascript-asynchronous/" class="post-preview row g-0 flex-md-row-reverse">
         
 
         
 
         <div class="col-md-12">
           <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android三方开源库之OkHttp源码分析</h1>
+            <h1 class="card-title my-2 mt-md-0">JavaScript基础之异步编程演进</h1>
 
             <div class="card-text content mt-0 mb-3">
-              <p>OkHttp 是目前应用最广泛的开源网络库了，而且在Android6.0之后也将内部的HttpUrlConnection替换成了OkHttp，这篇文章来分析一下源码。  基本使用  OkHttpClient client = new OkHttpClient(); Request request = new Request.Builder()     .url("https://github...</p>
+              <p>在说异步之前，先介绍一下同步的概念，即在执行某段代码时，在该段代码没有返回结果之前，其他代码暂时无法执行，但是一旦拿到返回值后，就可以接着执行其他代码了，换句话说，在此段代码执行完未返回结果前，会阻塞之后的代码的执行，这样的情况就成为同步。  再回过头来说异步，就是当某一代码执行异步过程调用发出后，这段代码不会立刻得到返回结果。而是在异步调用发出之后，一般通过回调函数处理这个调用之后拿到结果...</p>
             </div>
 
             <div class="post-meta flex-grow-1 d-flex align-items-end">
@@ -597,11 +598,11 @@
 
 <time
   
-  data-ts="1594656000"
+  data-ts="1521648000"
   data-df="YYYY/MM/DD"
   
 >
-  2020/07/14
+  2018/03/22
 </time>
 
 
@@ -610,7 +611,7 @@
                   <i class="far fa-folder-open fa-fw me-1"></i>
                   <span class="categories">
                     
-                      Android
+                      JavaScript
                   </span>
                 
               </div>
@@ -625,17 +626,17 @@
     </article>
   
     <article class="card-wrapper card">
-      <a href="/posts/android-retrofit/" class="post-preview row g-0 flex-md-row-reverse">
+      <a href="/posts/javascript-array-operation/" class="post-preview row g-0 flex-md-row-reverse">
         
 
         
 
         <div class="col-md-12">
           <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android三方开源库之Retrofit源码分析</h1>
+            <h1 class="card-title my-2 mt-md-0">JavaScript基础之数组常用操作实现</h1>
 
             <div class="card-text content mt-0 mb-3">
-              <p>Retrofit是目前Android开发中主流的网络请求客户端，其底层基于OkHttp封装，提供了方便高效的网络请求框架。  基本用法  Retrofit retrofit = new Retrofit.Builder()                 .baseUrl("https://api.github.com")                 .addConverterFacto...</p>
+              <p>数组的去重  给定一个数组，如果对其中的元素去重？  1. 利用Set  我们知道ES6引入了Set，它的一个特性就是不能有重复的元素存在，我们可以利用这一特性来实现。另外Set是一个可迭代的对象，我们可以利用Array.from或者展开运算符将其转换为一个新的数组  const result = Array.from(new Set(arr))  const result = [...ne...</p>
             </div>
 
             <div class="post-meta flex-grow-1 d-flex align-items-end">
@@ -652,11 +653,11 @@
 
 <time
   
-  data-ts="1594137600"
+  data-ts="1521388800"
   data-df="YYYY/MM/DD"
   
 >
-  2020/07/08
+  2018/03/19
 </time>
 
 
@@ -665,7 +666,7 @@
                   <i class="far fa-folder-open fa-fw me-1"></i>
                   <span class="categories">
                     
-                      Android
+                      JavaScript
                   </span>
                 
               </div>
@@ -680,17 +681,17 @@
     </article>
   
     <article class="card-wrapper card">
-      <a href="/posts/android-leakcanary/" class="post-preview row g-0 flex-md-row-reverse">
+      <a href="/posts/javascript-array/" class="post-preview row g-0 flex-md-row-reverse">
         
 
         
 
         <div class="col-md-12">
           <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android三方开源库之LeakCanary2.4源码分析</h1>
+            <h1 class="card-title my-2 mt-md-0">JavaScript基础之数组与类数组梳理</h1>
 
             <div class="card-text content mt-0 mb-3">
-              <p>LeanCanary内部主要使用了Reference以及ReferenceQueue配合来实现对象被回收时的监听，这是它的核心逻辑，因此我们先了解下这部分内容：  Reference  Reference是一个泛型抽象类，其中软引用、弱引用、虚引用都继承自它，它主要有几个成员变量：     泛型引用对象 T：被回收时被赋值为null   引用队列 ReferenceQueue：一个单链表实现...</p>
+              <p>JavaScript中数组的API纷繁复杂，其中还有不少坑，这里一起做个总结。  构造器  通常我们使用对象字面量的方式创建一个数组，例如var array = [];，但是，有的时候对象字面量不能满足我们要求，比如，我想给数组限制长度，用对象字面量就无法创建了，这时候只能使用构造器：     new Array(arg1,arg2,…)，参数长度为0或者长度大于等于2时，传入的参数将按照顺...</p>
             </div>
 
             <div class="post-meta flex-grow-1 d-flex align-items-end">
@@ -707,11 +708,11 @@
 
 <time
   
-  data-ts="1593360000"
+  data-ts="1521129600"
   data-df="YYYY/MM/DD"
   
 >
-  2020/06/29
+  2018/03/16
 </time>
 
 
@@ -720,7 +721,7 @@
                   <i class="far fa-folder-open fa-fw me-1"></i>
                   <span class="categories">
                     
-                      Android
+                      JavaScript
                   </span>
                 
               </div>
@@ -735,17 +736,17 @@
     </article>
   
     <article class="card-wrapper card">
-      <a href="/posts/android-blockcanary/" class="post-preview row g-0 flex-md-row-reverse">
+      <a href="/posts/javascript-closure/" class="post-preview row g-0 flex-md-row-reverse">
         
 
         
 
         <div class="col-md-12">
           <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android三方开源库之BlockCanary源码分析</h1>
+            <h1 class="card-title my-2 mt-md-0">JavaScript基础之闭包原理</h1>
 
             <div class="card-text content mt-0 mb-3">
-              <p>我们手机屏幕帧率通常是60，也就意味着每秒钟有60个画面出现，即16.6ms就要有一个画面渲染出来，Android系统每隔16.6ms发出一个Vsync信号，触发对View进行渲染，如果在这个时间内渲染成功，那么画面正常显示，否则就会出现丢帧的情况，如果掉帧频率很高，也就导致了卡顿。  我们回顾一下View刷新机制，App启动时，会通过ActivityThread类的main方法，创建一个主...</p>
+              <p>闭包是JavaScript中重要的概念，并且与作用域紧密相关，这里做个总结。在闭包之前，我们先对作用域做下基本介绍。  作用域  JavaScript 的作用域通俗来讲，就是指变量能够被访问到的范围，在 JavaScript 中作用域也分为好几种，ES5 之前只有全局作用域和函数作用域两种。ES6 出现之后，又新增了块级作用域。接下来我们一一介绍。  全局作用域  在编程语言中，变量通常被分...</p>
             </div>
 
             <div class="post-meta flex-grow-1 d-flex align-items-end">
@@ -762,11 +763,11 @@
 
 <time
   
-  data-ts="1583337600"
+  data-ts="1520870400"
   data-df="YYYY/MM/DD"
   
 >
-  2020/03/05
+  2018/03/13
 </time>
 
 
@@ -775,7 +776,7 @@
                   <i class="far fa-folder-open fa-fw me-1"></i>
                   <span class="categories">
                     
-                      Android
+                      JavaScript
                   </span>
                 
               </div>
@@ -790,17 +791,17 @@
     </article>
   
     <article class="card-wrapper card">
-      <a href="/posts/android-binder/" class="post-preview row g-0 flex-md-row-reverse">
+      <a href="/posts/javascript-keywords/" class="post-preview row g-0 flex-md-row-reverse">
         
 
         
 
         <div class="col-md-12">
           <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android Framework之Binder原理分析</h1>
+            <h1 class="card-title my-2 mt-md-0">JavaScript基础之new、apply、call、bind实现原理</h1>
 
             <div class="card-text content mt-0 mb-3">
-              <p>Binder是Android Framework层一个不可或缺的存在，了解Framework的前提必须先掌握Binder原理，它是Android进程间通信的一种方式，我们在应用程序使用的四大组件，可以运行在同一个进程，也可以运行在不同进程，进程之间通信就依赖Binder，另外我们之前了解到的系统服务，像AMS、PMS、WMS等都是基于Binder IPC 进行通信的。  进程空间  Linu...</p>
+              <p>在 javascript 中，new通常被用来创建一个对象，call 和 apply 都是为了改变某个函数运行时的上下文（context）而存在的，换句话说，就是为了改变函数体内部 this 的指向。而bind 是返回对应函数，便于稍后调用；apply 、call 则是立即调用 。  new关键词原理  new 关键词的主要作用就是执行一个构造函数、返回一个实例对象，在 new 的过程中，根...</p>
             </div>
 
             <div class="post-meta flex-grow-1 d-flex align-items-end">
@@ -817,11 +818,11 @@
 
 <time
   
-  data-ts="1562515200"
+  data-ts="1520524800"
   data-df="YYYY/MM/DD"
   
 >
-  2019/07/08
+  2018/03/09
 </time>
 
 
@@ -830,7 +831,7 @@
                   <i class="far fa-folder-open fa-fw me-1"></i>
                   <span class="categories">
                     
-                      Android
+                      JavaScript
                   </span>
                 
               </div>
@@ -845,17 +846,17 @@
     </article>
   
     <article class="card-wrapper card">
-      <a href="/posts/android-framework-choreographer/" class="post-preview row g-0 flex-md-row-reverse">
+      <a href="/posts/javascript-inherit/" class="post-preview row g-0 flex-md-row-reverse">
         
 
         
 
         <div class="col-md-12">
           <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android Framework源码分析之屏幕刷新机制以及Choreographer</h1>
+            <h1 class="card-title my-2 mt-md-0">JavaScript基础之继承实现</h1>
 
             <div class="card-text content mt-0 mb-3">
-              <p>生活中，我们经常遇到别人说手机画面卡，这里的卡对应我们开发者来说，表示的就是掉帧（jank）或者画面撕裂（tearing），我们先来说说一些概念：          帧（Frame）：动画中的单幅画面，相当于电影胶片中的一个镜头，一帧就是一幅静止的画面，连续帧动起来就是我们看到的动画。           帧率（Frame Rate）：每秒传输的图片画面的帧数，也可以理解为画面每秒钟刷新几次...</p>
+              <p>继承可以使得子类具有父类的方法和属性，同时也可以重新定义父类的某些属性，并重写或者覆盖某些属性和方法。使得子类具有与父类不同的属性和方法。  接下来我们就来一起看看实现继承的几种方式  1. 原型链继承  原型链继承是比较常见的继承方式之一，其基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。其中涉及的构造函数、原型和实例，三者之间存在着一定的关系，即每一个构造函数都有一个原型...</p>
             </div>
 
             <div class="post-meta flex-grow-1 d-flex align-items-end">
@@ -872,11 +873,11 @@
 
 <time
   
-  data-ts="1560787200"
+  data-ts="1520265600"
   data-df="YYYY/MM/DD"
   
 >
-  2019/06/18
+  2018/03/06
 </time>
 
 
@@ -885,7 +886,7 @@
                   <i class="far fa-folder-open fa-fw me-1"></i>
                   <span class="categories">
                     
-                      Android
+                      JavaScript
                   </span>
                 
               </div>
@@ -900,17 +901,17 @@
     </article>
   
     <article class="card-wrapper card">
-      <a href="/posts/android-framework-view-traverse/" class="post-preview row g-0 flex-md-row-reverse">
+      <a href="/posts/javascript-prototype/" class="post-preview row g-0 flex-md-row-reverse">
         
 
         
 
         <div class="col-md-12">
           <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android Framework源码分析之View的绘制流程</h1>
+            <h1 class="card-title my-2 mt-md-0">JavaScript基础之原型与原型链的理解</h1>
 
             <div class="card-text content mt-0 mb-3">
-              <p>通过分析Activity的启动过程，我们知道，View的绘制开始是从ViewRootImpl类中通过调用setView方法执行了requestLayout后开始的。  requestLayout过程  // ViewRootImpl.java public void setView(View view, WindowManager.LayoutParams attrs, View panel...</p>
+              <p>理解原型与原型链对于我们实现继承、new关键字原理、甚至代码优化等非常重要，接下来我们对这块做一个总结。  概念  我们都知道，访问一个对象实例上的属性和方法时，首先在实例本身查找。 如果没有找到，会到实例对象的隐式属性__proto__上查找，就是该实例的构造函数的原型对象。如果还没有，会继续访问原型对象的原型,直到Object.prototype.__proto__(null)为止。这也...</p>
             </div>
 
             <div class="post-meta flex-grow-1 d-flex align-items-end">
@@ -927,11 +928,11 @@
 
 <time
   
-  data-ts="1560355200"
+  data-ts="1519920000"
   data-df="YYYY/MM/DD"
   
 >
-  2019/06/13
+  2018/03/02
 </time>
 
 
@@ -940,7 +941,7 @@
                   <i class="far fa-folder-open fa-fw me-1"></i>
                   <span class="categories">
                     
-                      Android
+                      JavaScript
                   </span>
                 
               </div>
@@ -955,17 +956,17 @@
     </article>
   
     <article class="card-wrapper card">
-      <a href="/posts/android-framework-activity-window-view/" class="post-preview row g-0 flex-md-row-reverse">
+      <a href="/posts/javascript-deep-clone/" class="post-preview row g-0 flex-md-row-reverse">
         
 
         
 
         <div class="col-md-12">
           <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android Framework源码分析之Activity、Window、View之间的关系</h1>
+            <h1 class="card-title my-2 mt-md-0">JavaScript基础之对象深浅拷贝原理以及实现</h1>
 
             <div class="card-text content mt-0 mb-3">
-              <p>每当我们显示一个界面的时候，都是通过start一个Activity的方式，对于显示布局内容，也只是通过在onCreate方法里面setContentView就可以，剩下的都是Activity帮我们做了，我们自始至终也没有创建过window或者view，那么这背后都发生了什么 ？这篇文章梳理一下这三者的关系  setContentView  我们从setContentView源码开始：  //...</p>
+              <p>我们知道JavaScript数据类型分为基本数据类型和引用数据类型，对于基本数据类型，变量存储的是基本类型的值，而对于引用数据类型， 变量存储的是其在内存中的地址，而通常拷贝一个对象，又分为浅拷贝和深拷贝两种，下面我们分别来讨论这种拷贝的区别。  浅拷贝  复制一个对象，如果对象属性是基本数据类型，复制的就是基本类型的值给新对象，但如果是引用数据类型，复制的就是内存中的地址，如果其中一个对象...</p>
             </div>
 
             <div class="post-meta flex-grow-1 d-flex align-items-end">
@@ -982,11 +983,11 @@
 
 <time
   
-  data-ts="1558886400"
+  data-ts="1519574400"
   data-df="YYYY/MM/DD"
   
 >
-  2019/05/27
+  2018/02/26
 </time>
 
 
@@ -995,7 +996,7 @@
                   <i class="far fa-folder-open fa-fw me-1"></i>
                   <span class="categories">
                     
-                      Android
+                      JavaScript
                   </span>
                 
               </div>
@@ -1010,17 +1011,17 @@
     </article>
   
     <article class="card-wrapper card">
-      <a href="/posts/android-framework-start-activity/" class="post-preview row g-0 flex-md-row-reverse">
+      <a href="/posts/javascript-data-type/" class="post-preview row g-0 flex-md-row-reverse">
         
 
         
 
         <div class="col-md-12">
           <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android Framework源码分析-Activity的启动过程</h1>
+            <h1 class="card-title my-2 mt-md-0">JavaScript基础之数据类型及检测和转换</h1>
 
             <div class="card-text content mt-0 mb-3">
-              <p>Activity是我们平时用到最多的一个组件之一，它提供给用户一个可以交互的页面，通常启动一个Activity可以使用下面代码：  Intent intent = new Intent(this, DemoActivity.class); this.startActivity(intent);   可以看出代码很简洁，但是背后有着复杂的执行流程，这篇文章就介绍下Activity启动的执行过程...</p>
+              <p>数据类型  JavaScript数据类型一共分为8种：     Number（数值，包含NaN）   String（字符串）   Boolean（布尔值）   Undefined（未定义/未初始化）   Null（空对象）   Symbol（独一无二的值，ES6 新增）   BigInt （大整数，能够表示超过 Number 类型大小限制的整数，ES 2020新增）   Object（对象。...</p>
             </div>
 
             <div class="post-meta flex-grow-1 d-flex align-items-end">
@@ -1037,11 +1038,11 @@
 
 <time
   
-  data-ts="1558108800"
+  data-ts="1518624000"
   data-df="YYYY/MM/DD"
   
 >
-  2019/05/18
+  2018/02/15
 </time>
 
 
@@ -1050,7 +1051,7 @@
                   <i class="far fa-folder-open fa-fw me-1"></i>
                   <span class="categories">
                     
-                      Android
+                      JavaScript
                   </span>
                 
               </div>
@@ -1075,8 +1076,8 @@
     <!-- left arrow -->
     
 
-    <li class="page-item disabled">
-      <a class="page-link" href="#" aria-label="previous-page">
+    <li class="page-item ">
+      <a class="page-link" href="/page2" aria-label="previous-page">
         <i class="fas fa-angle-left"></i>
       </a>
     </li>
@@ -1096,7 +1097,7 @@
 
       
         <!-- show number -->
-        <li class="page-item  active">
+        <li class="page-item ">
           <a
             class="page-link"
             href="/"
@@ -1132,7 +1133,7 @@
 
       
         <!-- show number -->
-        <li class="page-item ">
+        <li class="page-item  active">
           <a
             class="page-link"
             href="/page3"
@@ -1149,13 +1150,13 @@
       
 
       
-        <!-- hide number -->
-        
-          <li class="page-item disabled">
-            <span class="page-link">...</span>
-          </li>
-          
-        
+        <!-- show number -->
+        <li class="page-item ">
+          <a
+            class="page-link"
+            href="/page4"
+          >4</a>
+        </li>
       
     
       
@@ -1179,7 +1180,7 @@
 
     <!-- mobile pagination -->
     <li class="page-index align-middle">
-      <span>1</span>
+      <span>3</span>
       <span class="text-muted">/ 5</span>
     </li>
 
@@ -1187,7 +1188,7 @@
     
 
     <li class="page-item ">
-      <a class="page-link" href="/page2" aria-label="next-page">
+      <a class="page-link" href="/page4" aria-label="next-page">
         <i class="fas fa-angle-right"></i>
       </a>
     </li>

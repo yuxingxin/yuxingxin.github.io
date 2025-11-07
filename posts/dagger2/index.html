@@ -30,25 +30,25 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <meta name="generator" content="Jekyll v4.4.1" />
-<meta property="og:title" content="yuxingxin" />
+<meta property="og:title" content="依赖注入库Dagger2" />
 <meta property="og:locale" content="zh_CN" />
-<meta name="description" content="yuxingxin’s blog" />
-<meta property="og:description" content="yuxingxin’s blog" />
-<link rel="canonical" href="http://localhost:4000/" />
-<meta property="og:url" content="http://localhost:4000/" />
+<meta name="description" content="依赖注入Dagger2" />
+<meta property="og:description" content="依赖注入Dagger2" />
+<link rel="canonical" href="http://localhost:4000/posts/dagger2/" />
+<meta property="og:url" content="http://localhost:4000/posts/dagger2/" />
 <meta property="og:site_name" content="yuxingxin" />
-<meta property="og:type" content="website" />
-<link rel="next" href="http://localhost:4000/page2" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-06-26T00:00:00+08:00" />
 <meta property="og:image" content="https://p26-passport.byteacctimg.com/img/user-avatar/48ea01ce7b18b0e8c3332207950bc317~300x300.image# string, local or CORS resources" /><meta name="twitter:card" content="summary_large_image" />
       <meta property="twitter:image" content="https://p26-passport.byteacctimg.com/img/user-avatar/48ea01ce7b18b0e8c3332207950bc317~300x300.image# string, local or CORS resources" />
-<meta property="twitter:title" content="yuxingxin" />
+<meta property="twitter:title" content="依赖注入库Dagger2" />
 <meta name="twitter:site" content="@yuxingxin" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","description":"yuxingxin’s blog","headline":"yuxingxin","name":"yuxingxin","sameAs":["https://twitter.com/yuxingxin","https://github.com/yuxingxin"],"url":"http://localhost:4000/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2017-06-26T00:00:00+08:00","datePublished":"2017-06-26T00:00:00+08:00","description":"依赖注入Dagger2","headline":"依赖注入库Dagger2","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/dagger2/"},"url":"http://localhost:4000/posts/dagger2/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>yuxingxin
+  <title>依赖注入库Dagger2 | yuxingxin
   </title>
 
   <!--
@@ -107,11 +107,16 @@
   <!-- 3rd-party Dependencies -->
 
   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.36.4/dist/tocbot.min.css">
+  
 
   
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css">
   
 
+  
+    <!-- Image Popup -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css">
   
 
   <!-- Scripts -->
@@ -130,6 +135,9 @@
   
 
   
+    <!-- image lazy-loading & popup & clipboard -->
+    
+  
 
 
 
@@ -187,9 +195,30 @@
 
   
 
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
 
 
-  <script defer src="https://cdn.jsdelivr.net/combine/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/dayjs@1.11.18/dayjs.min.js,npm/dayjs@1.11.18/locale/zh.js,npm/dayjs@1.11.18/plugin/relativeTime.js,npm/dayjs@1.11.18/plugin/localizedFormat.js"></script>
+
+  <script defer src="https://cdn.jsdelivr.net/combine/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/glightbox@3.3.0/dist/js/glightbox.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.18/dayjs.min.js,npm/dayjs@1.11.18/locale/zh.js,npm/dayjs@1.11.18/plugin/relativeTime.js,npm/dayjs@1.11.18/plugin/localizedFormat.js,npm/tocbot@4.36.4/dist/tocbot.min.js"></script>
 
 
 
@@ -197,11 +226,15 @@
 
 
 
-<script defer src="/assets/js/dist/home.min.js"></script>
+<script defer src="/assets/js/dist/post.min.js"></script>
 
 
 
 <!-- Pageviews -->
+
+  
+
+  
 
 
 
@@ -227,7 +260,7 @@
   <nav class="flex-column flex-grow-1 w-100 ps-0">
     <ul class="nav">
       <!-- home -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a href="/" class="nav-link">
           <i class="fa-fw fas fa-home"></i>
           <span>首页</span>
@@ -389,9 +422,23 @@
       
 
       
-        <!-- index page -->
-        <span>首页</span>
+        
+          
+            <span>
+              <a href="/">首页</a>
+            </span>
 
+          
+        
+          
+        
+          
+            
+              <span>依赖注入库Dagger2</span>
+            
+
+          
+        
       
     </nav>
     <!-- endof #breadcrumb -->
@@ -401,7 +448,7 @@
     </button>
 
     <div id="topbar-title">
-      yuxingxin
+      文章
     </div>
 
     <button type="button" id="search-trigger" class="btn btn-link" aria-label="Search">
@@ -475,15 +522,221 @@
   
 
   
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
 
   
   
 
   
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
 
   
   
 
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
   
 
 
@@ -499,703 +752,309 @@
 
 
 
-<!-- Get pinned posts on current page -->
 
-
-
-
-
-
-<!-- Get normal posts on current page -->
-
-
-
-
-
-<div id="post-list" class="flex-grow-1 px-xl-1">
-  
-    <article class="card-wrapper card">
-      <a href="/posts/android-rxjava/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android三方开源库之RxJava3源码分析</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>RxJava作为主流的框架之一，有着丰富的功能操作符以及便捷的线程切换，深受Android开发者喜爱，本文尝试从源码角度分析其工作原理。  Single.just  Single.just最为最简单的模型，可以看下它是如何工作的：  Single&lt;Integer&gt; single = Single.just(1); single.subscribe(new SingleObserv...</p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1595692800"
-  data-df="YYYY/MM/DD"
-  
->
-  2020/07/26
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      Android
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/android-okhttp/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android三方开源库之OkHttp源码分析</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>OkHttp 是目前应用最广泛的开源网络库了，而且在Android6.0之后也将内部的HttpUrlConnection替换成了OkHttp，这篇文章来分析一下源码。  基本使用  OkHttpClient client = new OkHttpClient(); Request request = new Request.Builder()     .url("https://github...</p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1594656000"
-  data-df="YYYY/MM/DD"
-  
->
-  2020/07/14
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      Android
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/android-retrofit/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android三方开源库之Retrofit源码分析</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>Retrofit是目前Android开发中主流的网络请求客户端，其底层基于OkHttp封装，提供了方便高效的网络请求框架。  基本用法  Retrofit retrofit = new Retrofit.Builder()                 .baseUrl("https://api.github.com")                 .addConverterFacto...</p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1594137600"
-  data-df="YYYY/MM/DD"
-  
->
-  2020/07/08
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      Android
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/android-leakcanary/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android三方开源库之LeakCanary2.4源码分析</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>LeanCanary内部主要使用了Reference以及ReferenceQueue配合来实现对象被回收时的监听，这是它的核心逻辑，因此我们先了解下这部分内容：  Reference  Reference是一个泛型抽象类，其中软引用、弱引用、虚引用都继承自它，它主要有几个成员变量：     泛型引用对象 T：被回收时被赋值为null   引用队列 ReferenceQueue：一个单链表实现...</p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1593360000"
-  data-df="YYYY/MM/DD"
-  
->
-  2020/06/29
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      Android
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/android-blockcanary/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android三方开源库之BlockCanary源码分析</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>我们手机屏幕帧率通常是60，也就意味着每秒钟有60个画面出现，即16.6ms就要有一个画面渲染出来，Android系统每隔16.6ms发出一个Vsync信号，触发对View进行渲染，如果在这个时间内渲染成功，那么画面正常显示，否则就会出现丢帧的情况，如果掉帧频率很高，也就导致了卡顿。  我们回顾一下View刷新机制，App启动时，会通过ActivityThread类的main方法，创建一个主...</p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1583337600"
-  data-df="YYYY/MM/DD"
-  
->
-  2020/03/05
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      Android
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/android-binder/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android Framework之Binder原理分析</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>Binder是Android Framework层一个不可或缺的存在，了解Framework的前提必须先掌握Binder原理，它是Android进程间通信的一种方式，我们在应用程序使用的四大组件，可以运行在同一个进程，也可以运行在不同进程，进程之间通信就依赖Binder，另外我们之前了解到的系统服务，像AMS、PMS、WMS等都是基于Binder IPC 进行通信的。  进程空间  Linu...</p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1562515200"
-  data-df="YYYY/MM/DD"
-  
->
-  2019/07/08
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      Android
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/android-framework-choreographer/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android Framework源码分析之屏幕刷新机制以及Choreographer</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>生活中，我们经常遇到别人说手机画面卡，这里的卡对应我们开发者来说，表示的就是掉帧（jank）或者画面撕裂（tearing），我们先来说说一些概念：          帧（Frame）：动画中的单幅画面，相当于电影胶片中的一个镜头，一帧就是一幅静止的画面，连续帧动起来就是我们看到的动画。           帧率（Frame Rate）：每秒传输的图片画面的帧数，也可以理解为画面每秒钟刷新几次...</p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1560787200"
-  data-df="YYYY/MM/DD"
-  
->
-  2019/06/18
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      Android
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/android-framework-view-traverse/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android Framework源码分析之View的绘制流程</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>通过分析Activity的启动过程，我们知道，View的绘制开始是从ViewRootImpl类中通过调用setView方法执行了requestLayout后开始的。  requestLayout过程  // ViewRootImpl.java public void setView(View view, WindowManager.LayoutParams attrs, View panel...</p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1560355200"
-  data-df="YYYY/MM/DD"
-  
->
-  2019/06/13
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      Android
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/android-framework-activity-window-view/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android Framework源码分析之Activity、Window、View之间的关系</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>每当我们显示一个界面的时候，都是通过start一个Activity的方式，对于显示布局内容，也只是通过在onCreate方法里面setContentView就可以，剩下的都是Activity帮我们做了，我们自始至终也没有创建过window或者view，那么这背后都发生了什么 ？这篇文章梳理一下这三者的关系  setContentView  我们从setContentView源码开始：  //...</p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1558886400"
-  data-df="YYYY/MM/DD"
-  
->
-  2019/05/27
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      Android
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-    <article class="card-wrapper card">
-      <a href="/posts/android-framework-start-activity/" class="post-preview row g-0 flex-md-row-reverse">
-        
-
-        
-
-        <div class="col-md-12">
-          <div class="card-body d-flex flex-column">
-            <h1 class="card-title my-2 mt-md-0">Android Framework源码分析-Activity的启动过程</h1>
-
-            <div class="card-text content mt-0 mb-3">
-              <p>Activity是我们平时用到最多的一个组件之一，它提供给用户一个可以交互的页面，通常启动一个Activity可以使用下面代码：  Intent intent = new Intent(this, DemoActivity.class); this.startActivity(intent);   可以看出代码很简洁，但是背后有着复杂的执行流程，这篇文章就介绍下Activity启动的执行过程...</p>
-            </div>
-
-            <div class="post-meta flex-grow-1 d-flex align-items-end">
-              <div class="me-auto">
-                <!-- posted date -->
-                <i class="far fa-calendar fa-fw me-1"></i>
-                <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/locale-dateime.js
--->
-
-
-
-
-<time
-  
-  data-ts="1558108800"
-  data-df="YYYY/MM/DD"
-  
->
-  2019/05/18
-</time>
-
-
-                <!-- categories -->
-                
-                  <i class="far fa-folder-open fa-fw me-1"></i>
-                  <span class="categories">
-                    
-                      Android
-                  </span>
-                
-              </div>
-
-              
-            </div>
-            <!-- .post-meta -->
-          </div>
-          <!-- .card-body -->
-        </div>
-      </a>
-    </article>
-  
-</div>
-<!-- #post-list -->
-
-
-  <!-- The paginator for post list on HomgPage. -->
-
-<nav aria-label="Page Navigation">
-  <ul class="pagination align-items-center mt-4 mb-0">
-    <!-- left arrow -->
+<article class="px-1" data-toc="true">
+  <header>
+    <h1 data-toc-skip>依赖注入库Dagger2</h1>
     
 
-    <li class="page-item disabled">
-      <a class="page-link" href="#" aria-label="previous-page">
-        <i class="fas fa-angle-left"></i>
-      </a>
-    </li>
+    <div class="post-meta text-muted">
+      <!-- published date -->
+      <span>
+        发表于
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
 
-    <!-- page numbers -->
-    
-    
 
-    
-      
-      
-      
-      
-      
 
-      
 
-      
-        <!-- show number -->
-        <li class="page-item  active">
-          <a
-            class="page-link"
-            href="/"
-          >1</a>
-        </li>
-      
-    
-      
-      
-      
-      
+<time
+  
+  data-ts="1498406400"
+  data-df="YYYY/MM/DD"
+  
+    data-bs-toggle="tooltip" data-bs-placement="bottom"
+  
+>
+  2017/06/26
+</time>
+
+      </span>
+
+      <!-- lastmod date -->
       
 
       
 
-      
-        <!-- show number -->
-        <li class="page-item ">
-          <a
-            class="page-link"
-            href="/page2"
-          >2</a>
-        </li>
-      
-    
-      
-      
-      
-      
-      
-
-      
-
-      
-        <!-- show number -->
-        <li class="page-item ">
-          <a
-            class="page-link"
-            href="/page3"
-          >3</a>
-        </li>
-      
-    
-      
-      
-      
-      
-      
-
-      
-
-      
-        <!-- hide number -->
-        
-          <li class="page-item disabled">
-            <span class="page-link">...</span>
-          </li>
+      <div class="d-flex justify-content-between">
+        <!-- author(s) -->
+        <span>
           
+
+          作者
+
+          <em>
+            
+              <a href="https://twitter.com/yuxingxin">yuxingxin</a>
+            
+          </em>
+        </span>
+
+        <div>
+          <!-- pageviews -->
+          
+
+          <!-- read time -->
+          <!-- Calculate the post's reading time, and display the word count in tooltip -->
+
+
+
+<!-- words per minute -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span
+  class="readtime"
+  data-bs-toggle="tooltip"
+  data-bs-placement="bottom"
+  title="553 字"
+>
+  <em>3 分钟</em>阅读</span>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  
+    <div id="toc-bar" class="d-flex align-items-center justify-content-between invisible">
+      <span class="label text-truncate">依赖注入库Dagger2</span>
+      <button type="button" class="toc-trigger btn me-1">
+        <i class="fa-solid fa-list-ul fa-fw"></i>
+      </button>
+    </div>
+
+    <button id="toc-solo-trigger" type="button" class="toc-trigger btn btn-outline-secondary btn-sm">
+      <span class="label ps-2 pe-1">文章内容</span>
+      <i class="fa-solid fa-angle-right fa-fw"></i>
+    </button>
+
+    <dialog id="toc-popup" class="p-0">
+      <div class="header d-flex flex-row align-items-center justify-content-between">
+        <div class="label text-truncate py-2 ms-4">依赖注入库Dagger2</div>
+        <button id="toc-popup-close" type="button" class="btn mx-1 my-1 opacity-75">
+          <i class="fas fa-close"></i>
+        </button>
+      </div>
+      <div id="toc-popup-content" class="px-4 py-3 pb-4"></div>
+    </dialog>
+  
+
+  <div class="content">
+    <h3 id="依赖注入dagger2"><span class="me-2">依赖注入Dagger2</span><a href="#依赖注入dagger2" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<p>之前在项目中要用到这个库，后来就给团队内部分享完Dagger2后做的一个提纲总结。</p>
+
+<h3 id="解决的痛点"><span class="me-2">解决的痛点</span><a href="#解决的痛点" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<p>依赖管理问题</p>
+
+<h3 id="角色"><span class="me-2">角色</span><a href="#角色" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<ol>
+  <li>依赖实例</li>
+  <li>注入对象</li>
+  <li>注入方式</li>
+</ol>
+
+<h3 id="提供依赖的方式"><span class="me-2">提供依赖的方式</span><a href="#提供依赖的方式" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<ol>
+  <li>
+    <p>@Inject</p>
+  </li>
+  <li>
+    <p>@Module  优先级更高</p>
+
+    <p>@provide</p>
+  </li>
+</ol>
+
+<h3 id="注入在哪里"><span class="me-2">注入在哪里</span><a href="#注入在哪里" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<p>@Inject</p>
+
+<h3 id="注入方式连接的桥梁"><span class="me-2">注入方式：连接的桥梁</span><a href="#注入方式连接的桥梁" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<h4 id="component"><span class="me-2">@Component</span><a href="#component" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4>
+
+<p>注入方法：void inject();</p>
+
+<p>提供中间桥梁：Application  getApplication();</p>
+
+<p>依赖的实体：modules</p>
+
+<p>依赖的传递：dependencies  本质是将依赖的Component的引用传递给了被依赖的Component</p>
+
+<h4 id="subcomponentcomponent的拓展"><span class="me-2">@SubComponent：Component的拓展</span><a href="#subcomponentcomponent的拓展" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4>
+
+<p>公用依赖实例</p>
+
+<h4 id="区别"><span class="me-2">区别</span><a href="#区别" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4>
+
+<h5 id="component-dependencies-单纯依赖"><span class="me-2">Component Dependencies： 单纯依赖</span><a href="#component-dependencies-单纯依赖" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h5>
+
+<ol>
+  <li>你想保留独立的单个组件</li>
+  <li>要明确的显示该组件所使用的其他依赖</li>
+</ol>
+
+<h5 id="subcomponent有点类似继承"><span class="me-2">Subcomponent：有点类似继承</span><a href="#subcomponent有点类似继承" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h5>
+
+<ol>
+  <li>两个组件之间的关系紧密</li>
+  <li>你只关心Component，而Subcomponent只是作为Component的拓展</li>
+</ol>
+
+<h3 id="限定符"><span class="me-2">限定符</span><a href="#限定符" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<p>@Qualifier  自定义注解</p>
+
+<p>区分多个依赖对象，单独为其打上标记</p>
+
+<h3 id="作用域"><span class="me-2">作用域</span><a href="#作用域" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<h4 id="scope--自定义注解"><span class="me-2">@Scope  自定义注解</span><a href="#scope--自定义注解" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4>
+
+<p>管理依赖的生命周期</p>
+
+<p>默认实现：@Singleton   局部单例</p>
+
+<blockquote>
+  <p>Module中provide方法使用了@scope, 对应的Component中也必须加上@scope,  注解名字也是一样的，这时候 provide提供的方法就会在Component中保持『局部单例』，如果只是在Component中标注@scope,Module中的provide方法没有标注，这时候scope就不会起作用，仅仅是为了编译通过</p>
+</blockquote>
+
+<p>实现单例：</p>
+
+<ol>
+  <li>依赖在Component中是单例的（供该依赖的provide方法和对应的Component类使用同一个Scope注解。）</li>
+  <li>对应的Component在App中只初始化一次，每次注入依赖都使用这个Component对象。（在Application中创建该Component）</li>
+</ol>
+
+<p>自定义其他scope：@ActivityScope  @FragmentScope等等</p>
+
+<h3 id="延迟注入lazy"><span class="me-2">延迟注入Lazy<T></T></span><a href="#延迟注入lazy" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<p>初始化的时候不注入，等到调用get方法的时候才去初始化依赖实例注入依赖</p>
+
+<h3 id="多实例注入provider"><span class="me-2">多实例注入Provider<T></T></span><a href="#多实例注入provider" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3>
+
+<p>有时候不仅仅是注入单个实例，我们需要多个实例，每次调用它的 get() 方法都会调用到 <code class="language-plaintext highlighter-rouge">@Inject 构造函数</code>创建新实例或者 Module 的 provide 方法返回新实例</p>
+
+  </div>
+
+  <div class="post-tail-wrapper text-muted">
+    <!-- categories -->
+    
+      <div class="post-meta mb-3">
+        <i class="far fa-folder-open fa-fw me-1"></i>
         
-      
+          <a href="/categories/android/">Android</a>
+      </div>
     
-      
-      
-      
-      
-      
 
-      
-
-      
-        <!-- show number -->
-        <li class="page-item ">
+    <!-- tags -->
+    
+      <div class="post-tags">
+        <i class="fa fa-tags fa-fw me-1"></i>
+        
           <a
-            class="page-link"
-            href="/page5"
-          >5</a>
-        </li>
+            href="/tags/dagger2/"
+            class="post-tag no-text-decoration"
+          >Dagger2</a>
+        
+      </div>
+    
+
+    <div
+      class="
+        post-tail-bottom
+        d-flex justify-content-between align-items-center mt-5 pb-2
+      "
+    >
+      <div class="license-wrapper">
+        
+          
+
+          本文由作者按照 
+        <a href="https://creativecommons.org/licenses/by/4.0/">
+          CC BY 4.0
+        </a>
+         进行授权
+        
+      </div>
+
+      <!-- Post sharing snippet -->
+
+<div class="share-wrapper d-flex align-items-center">
+  <span class="share-label text-muted">分享</span>
+  <span class="share-icons">
+    
+    
+    
+
+    
+
       
-    
 
-    <!-- mobile pagination -->
-    <li class="page-index align-middle">
-      <span>1</span>
-      <span class="text-muted">/ 5</span>
-    </li>
-
-    <!-- right arrow -->
-    
-
-    <li class="page-item ">
-      <a class="page-link" href="/page2" aria-label="next-page">
-        <i class="fas fa-angle-right"></i>
+      <a href="https://twitter.com/intent/tweet?text=%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E5%BA%93Dagger2%20-%20yuxingxin&url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fdagger2%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter">
+        <i class="fa-fw fa-brands fa-square-x-twitter"></i>
       </a>
-    </li>
-  </ul>
-</nav>
-<!-- .pagination -->
+    
 
+      
 
+      <a href="https://www.facebook.com/sharer/sharer.php?title=%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E5%BA%93Dagger2%20-%20yuxingxin&u=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fdagger2%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Facebook" aria-label="Facebook">
+        <i class="fa-fw fab fa-facebook-square"></i>
+      </a>
+    
+
+      
+
+      <a href="https://t.me/share/url?url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fdagger2%2F&text=%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5%E5%BA%93Dagger2%20-%20yuxingxin" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Telegram" aria-label="Telegram">
+        <i class="fa-fw fab fa-telegram"></i>
+      </a>
+    
+
+    <button
+      id="copy-link"
+      aria-label="Copy link"
+      class="btn small"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title="分享链接"
+      data-title-succeed="链接已复制！"
+    >
+      <i class="fa-fw fas fa-link pe-none fs-6"></i>
+    </button>
+  </span>
+</div>
+
+    </div>
+    <!-- .post-tail-bottom -->
+  </div>
+  <!-- div.post-tail-wrapper -->
+</article>
 
 
             
@@ -2099,12 +1958,454 @@
             </div>
 
             
+              
+              
+
+
+
+
+
+
+  <div class="toc-border-cover z-3"></div>
+  <section id="toc-wrapper" class="invisible position-sticky ps-0 pe-4 pb-4">
+    <h2 class="panel-heading ps-3 pb-2 mb-0">文章内容</h2>
+    <nav id="toc"></nav>
+  </section>
+
+
+            
           </aside>
         </div>
 
         <div class="row">
           <!-- tail -->
           <div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              
+              <!-- Recommend the other 3 posts according to the tags and categories of the current post. -->
+
+<!-- The total size of related posts -->
+
+
+<!-- An random integer that bigger than 0 -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  <aside id="related-posts" aria-labelledby="related-label">
+    <h3 class="mb-4" id="related-label">相关文章</h3>
+    <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
+      
+        <article class="col">
+          <a href="/posts/material-design/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1468684800"
+  data-df="YYYY/MM/DD"
+  
+>
+  2016/07/17
+</time>
+
+              <h4 class="pt-0 my-2">西安GDG上《以开发者的角度再聊Material Design》的总结</h4>
+              <div class="text-muted">
+                <p>概述 谷歌在2014年I/O大会上推出了Material Design,旨在为手机、平板电脑、台式机和“其他平台”提供更一致、更广泛的“外观和感觉”。在国内有好几种版本的翻译：材料设计/材质设计/质感设计（官方文档）/原质设计（国内设计师更倾向于这个）。  三大设计原则  隐喻  通过纸墨做比，光影打造空间层次和符合客观规律的特效来隐喻表面质感、光效以及运动感。  鲜明、形象、深思熟虑  借...</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/xian-gdg-share/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1452355200"
+  data-df="YYYY/MM/DD"
+  
+>
+  2016/01/10
+</time>
+
+              <h4 class="pt-0 my-2">西安GDG上关于主题[当Android遇上RxJava]的分享总结</h4>
+              <div class="text-muted">
+                <p>前言 1月10号这一天，也是值得高兴的日子，一大早起来打开手机看到《RxJava Essentials》一书的作者Ivan.Morgillo给我在推特上发的消息点赞并转发后关注了我，这让我激动不已，可能对于我这种没见过大世面的人来说，这点小事或许就足以让我自己心里乐上三天。然后就是昨天下午在西安GDG做了关于RxJava的分享，下面是分享内容的总结。  ##分享内容总结  大致分为以下三个主...</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/posts/rxjava-essentials/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1452182400"
+  data-df="YYYY/MM/DD"
+  
+>
+  2016/01/08
+</time>
+
+              <h4 class="pt-0 my-2">RxJava Essentials翻译总结</h4>
+              <div class="text-muted">
+                <p>##前言 在前年的时候，一直忙于工作，偶尔关注下开源社区，平时在使用retrofit的库时一直采用传统的回调，当时看官网发现也可以Observable对象，很好奇，但是一直不知道这是什么？慢慢的，关注Jake大神，才知道是RxJava，当时并没有引起我对RxJava 的好奇，也就没有太在意，但是我的心里一直有个梗就是在使用回调时如何让嵌套回调的代码看起来不是那么槽糕，用今天的话说就是回调地狱...</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+    </nav>
+  </aside>
+  <!-- #related-posts -->
+
+
+            
+              
+              <!-- Navigation buttons at the bottom of the post. -->
+
+<nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation">
+  
+  
+
+  
+    <a
+      href="/posts/pprm/"
+      class="btn btn-outline-primary"
+      aria-label="上一篇"
+    >
+      <p>终端下Python镜像源管理工具pprm</p>
+    </a>
+  
+
+  
+    <a
+      href="/posts/migrate-android-studio-3-guide/"
+      class="btn btn-outline-primary"
+      aria-label="下一篇"
+    >
+      <p>Android Studio 和Gradle Plugin 3.0 迁移不完全指南</p>
+    </a>
+  
+</nav>
+
             
 
             <!-- The Footer -->
@@ -3029,6 +3330,67 @@
     
 
     <!-- Embedded scripts -->
+
+    
+      
+      <!-- The comments switcher -->
+
+  
+  <!-- https://giscus.app/ -->
+<script>
+  (function () {
+    const themeMapper = Theme.getThemeMapper('light', 'dark_dimmed');
+    const initTheme = themeMapper[Theme.visualState];
+
+    let lang = 'zh-CN';if (lang.length > 2 && !lang.startsWith('zh')) {
+      lang = lang.slice(0, 2);
+    }
+
+    let giscusAttributes = {
+      src: 'https://giscus.app/client.js',
+      'data-repo': 'yuxingxin/yuxingxin.github.io',
+      'data-repo-id': 'MDEwOlJlcG9zaXRvcnkzNzAyNTMxOA==',
+      'data-category': 'General',
+      'data-category-id': 'DIC_kwDOAjT2Js4CxiNM',
+      'data-mapping': 'pathname',
+      'data-strict' : '0',
+      'data-reactions-enabled': '1',
+      'data-emit-metadata': '0',
+      'data-theme': initTheme,
+      'data-input-position': 'bottom',
+      'data-lang': lang,
+      'data-loading': 'lazy',
+      crossorigin: 'anonymous',
+      async: ''
+    };
+
+    let giscusNode = document.createElement('script');
+    Object.entries(giscusAttributes).forEach(([key, value]) =>
+      giscusNode.setAttribute(key, value)
+    );
+
+    const $footer = document.querySelector('footer');
+    $footer.insertAdjacentElement("beforebegin", giscusNode);
+
+    addEventListener('message', (event) => {
+      if (event.source === window && event.data && event.data.id === Theme.ID) {
+        const newTheme = themeMapper[Theme.visualState];
+
+        const message = {
+          setConfig: {
+            theme: newTheme
+          }
+        };
+
+        const giscus =
+          document.getElementsByClassName('giscus-frame')[0].contentWindow;
+        giscus.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+    });
+  })();
+</script>
+
+
 
     
 
