@@ -39,7 +39,7 @@ date: 2025-11-07
 * 对于订阅，调用 purchases.subscriptions.get。
 * 对于一次性商品，调用 purchases.products.get。
 2. 验证关键字段：
-* purchaseState: 必须为 0 (Purchased)。如果是 1 (Pending)，则不应发货，等待后续状态更新。
+* purchaseState: 必须为 1 (Purchased)。如果是 2 (Pending)，则不应发货，等待后续状态更新。
 * acknowledgementState: 确认交易是否已被确认。
 3. 入账逻辑：
 * 验证通过后，将订单信息（orderId, purchaseToken, 用户ID等）存入你的数据库。
